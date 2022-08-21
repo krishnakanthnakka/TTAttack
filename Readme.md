@@ -27,7 +27,7 @@ This is an official release of the paper **Universal, Transferable Adversarial P
     git clone https://github.com/krishnakanthnakka/Transferable_Perturbations.git
    ```
    
-3. We release  ```pretrained generator checkpoints``` on SiamRPN++ (R) on [GoogleDrive(https://drive.google.com/drive/folders/1CawsQuwFiGlHxqLYM2BOOF9NxxI-U_m4?usp=sharing). Please place them in the root folder.
+3. We release  ```pretrained generator checkpoints``` on SiamRPN++ (R) on [GoogleDrive](https://drive.google.com/drive/folders/1CawsQuwFiGlHxqLYM2BOOF9NxxI-U_m4?usp=sharing). Please place them in the root folder.
 
 
 
