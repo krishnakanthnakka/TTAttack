@@ -31,7 +31,7 @@ This is an official release of the paper **Universal, Transferable Adversarial P
 
 
 
-## Testing on SiamRPN++ (M or R)
+## Testing on SiamRPN++ (M)
 
 1. Set all environmental paths and other packages in path by ```source envs.sh```
 
@@ -42,7 +42,7 @@ This is an official release of the paper **Universal, Transferable Adversarial P
    ```
    
 
-### Results on ImageNet models
+### Results on SiamRPN++ (M) tracker
 
 1. We observe the following results as in Table 1.
     | Method | Success  | Precision | logfile |
