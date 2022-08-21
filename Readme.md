@@ -26,22 +26,25 @@ This is an official release of the paper **Universal, Transferable Adversarial P
    ```
     git clone https://github.com/krishnakanthnakka/TTAttack.git
    ```
-   
+
 3. We release  ```pretrained generator checkpoints``` on SiamRPN++ (R) on [GoogleDrive](https://drive.google.com/drive/folders/1CawsQuwFiGlHxqLYM2BOOF9NxxI-U_m4?usp=sharing). Please place them in the root folder.
 
 
 
 ## Testing on SiamRPN++ (M)
 
-1. Set all environmental paths and other packages in path by ```source envs.sh```
+1. Enter the directory of SiamRPNpp by ```cd SiamRPNpp``
 
-2. For attacking SiamRPN++ (M) tracker using the generator trained on ```SiamRPN++ (R)``` as discriminator and ```GOT10K``` dataset:
-   
+2. Set all environmental paths and other packages in path by ```source envs.sh```
+
+3. For attacking SiamRPN++ (M) tracker using the generator trained on ```SiamRPN++ (R)``` as discriminator and ```GOT10K``` dataset:
+
    ```py
     # universal attack on SiamRPN++ (M) tracker with OTB100
+    cd pysot/tools
     python tta_attack.py   --tracker_name=siamrpn_mobilev2_l234_dwxcorr --dataset=OTB100 --case=1 --gpu=1 --model_iter=4_net_G.pth --attack_universal
    ```
-   
+
 
 ### Results on SiamRPN++ (M) tracker
 
