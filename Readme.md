@@ -33,7 +33,7 @@ This is an official release of the paper **Universal, Transferable Adversarial P
 
 ## Testing on SiamRPN++ (M)
 
-1. Enter the directory of SiamRPNpp by ```cd SiamRPNpp``
+1. Enter the directory of ```SiamRPNpp``` tracker by ```cd SiamRPNpp```
 
 2. Set all environmental paths and other packages in path by ```source envs.sh```
 
@@ -46,9 +46,9 @@ This is an official release of the paper **Universal, Transferable Adversarial P
    ```
 
 
-### Results on SiamRPN++ (M) tracker
+#### Results on SiamRPN++ (M) tracker
 
-1. We observe the following results as in Table 1.
+4. We observe the following results as in Table 1.
     | Method | Success  | Precision |
     | :---:  | :---:     | :---:    |
     |  Normal | 0.657     | 0.862    |
