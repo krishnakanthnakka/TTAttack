@@ -49,8 +49,8 @@ This is an official release of the paper **Universal, Transferable Adversarial P
 ### Results on SiamRPN++ (M) tracker
 
 1. We observe the following results as in Table 1.
-    | Method | Success  | Precision | logfile |
-    | :---:  | :---:     | :---:    |   :---: |
-    |  Normal | 0.657     | 0.862    |   |
-    |  Ours | 0.212     | 0.275    |   |
+    | Method | Success  | Precision |
+    | :---:  | :---:     | :---:    |
+    |  Normal | 0.657     | 0.862    |
+    |  Ours | 0.212     | 0.275     |
 
