@@ -19,12 +19,8 @@ from pysot.models.loss import (select_cross_entropy_loss, select_cross_entropy_l
                                weight_l1_loss)
 from pysot.tracker.tracker_builder import build_tracker
 from torchvision.utils import save_image
-
 import os
 root_dir = os.path.dirname(os.path.abspath(__file__))
-
-# vis_dir = "/cvlabdata1/home/krishna/AttTracker/vis_dir/"
-
 vis_dir = os.path.join(root_dir, "vis_dir")
 
 
@@ -268,16 +264,9 @@ class SiamRPNPP():
         return cls
 
     def generate_all_anchors(self):
+
         anchors2 = Anchors(cfg.ANCHOR.STRIDE, cfg.ANCHOR.RATIOS, cfg.ANCHOR.SCALES)
-
-        # --------------------   MAJOR CHANGEE WHILE TRAINING --------------------
-        # changed from ttrain to track
-
         anchors2.generate_all_anchors(im_c=0, size=cfg.TRACK.OUTPUT_SIZE)
-
-        # print(anchors2.all_anchors[0].shape, cfg.TRACK.OUTPUT_SIZE)
-        # exit()
-
         # anchors2.generate_all_anchors(im_c=0, size=cfg.TRAIN.OUTPUT_SIZE)
 
         return anchors2
@@ -306,23 +295,10 @@ class SiamRPNPP():
         delta_weight = np.zeros((b, anchor_num, h, w), dtype=np.float32)
         label_cls_weight = 0 * np.ones((b, anchor_num, h, w), dtype=np.int64)
 
-        # target = [60, 60, 120, 120]  #for  pos = [2, 23, 23]
-        # target = [-32, 24, 32, 88]  # for pos = [2, 19, 12]
-        # target = [-32, 0, 32, 64]  # for pos = [2, 19, 12]
-        # pos = [2, 12, 16]
-
-        # -----  MAJOR CHANGE WHILE TRAINING
+        # -----   CHANGE WHILE TRAINING
 
         pos = [2, centerpoint[0] + shift[1], centerpoint[1] + shift[0]]
         target = [int(anchor_box[i, pos[0], pos[1], pos[2]]) for i in range(4)]
-
-        # For long-term attacks, increase the box size of attack so thaat it wont shrink
-
-        # enhance = 8
-        # target = [target[0] - enhance, target[1] - enhance,
-        #           target[2] + enhance, target[3] + enhance]
-
-        # print(shift, target, pos)
 
         def select(position, keep_num=16):
             num = position[0].shape[0]
@@ -341,13 +317,6 @@ class SiamRPNPP():
         delta[:, 1] = (tcy - cy) / h
         delta[:, 2] = np.log(tw / w)
         delta[:, 3] = np.log(th / h)
-
-        # This below 3 lines are used for trianing the long-term tracker with extra enhance
-        # overlap = IoU([x1, y1, x2, y2], target)
-        # pos = np.where(overlap > 0.4)
-        # pos, pos_num = select(pos, 1)
-
-        # print(IoU([56, 56, 120, 120], target))
 
         bbox_target = [int(anchor_box[i, pos[0], pos[1], pos[2]]) for i in range(4)]
         output_dict['bbox_target'] = bbox_target
@@ -482,226 +451,3 @@ class SiamRPNPP():
         score = score.view(b, 2, -1)
         score = F.softmax(score, dim=1).data[:, 1].cpu().numpy()
         return score
-
-
-'''
-    def get_target_cls_reg_adaptive(self, X_crop, index=0):
-
-        output_dict = {}
-        outputs = self.outputs  # (N,2x5,25,25)
-
-        pred_cls = outputs['cls']
-        pred_reg = outputs['loc']
-
-        b, a2, h, w = pred_cls.size()
-        anchor_num = a2 // 2
-
-        label_cls = 0 * np.ones((b, anchor_num, h, w), dtype=np.int64)
-        delta = np.zeros((b, 4, anchor_num, h, w), dtype=np.float32)
-        delta_weight = np.zeros((b, anchor_num, h, w), dtype=np.float32)
-        label_cls_weight = 0 * np.ones((b, anchor_num, h, w), dtype=np.int64)
-
-        # target = 60, 60, 120, 120
-        # target = [60, 60, 120, 120]  #for  pos = [2, 23, 23]
-        # targetdict = [[-52, 40, 52, 72], [-44, 36, 44, 76], [-32, 24, 32, 88],
-        #               [-20, 16, 20, 96], [-16, 8, 16, 104]]  # for pos = [*, 19, 12]
-
-        targetdict = [[-52, 40 - 32, 52, 72 - 32], [-44, 36 - 32, 44, 76 - 32], [-32, 24 - 32, 32, 88 - 32],
-                      [-20, 16 - 32, 20, 96 - 32], [-16, 8 - 32, 16, 104 - 32]]  # for pos = [*, 16, 12]
-
-        def select(position, keep_num=16):
-            num = position[0].shape[0]
-            if num <= keep_num:
-                return position, num
-            slt = np.arange(num)
-            np.random.shuffle(slt)
-            slt = slt[:keep_num]
-            return tuple(p[slt] for p in position), keep_num
-
-        anchors2 = self.generate_all_anchors()
-        anchor_box = anchors2.all_anchors[0]
-        anchor_center = anchors2.all_anchors[1]
-        x1, y1, x2, y2 = anchor_box[0], anchor_box[1], anchor_box[2], anchor_box[3]
-        cx, cy, w, h = anchor_center[0], anchor_center[1], anchor_center[2], anchor_center[3]
-
-        for j in range(b):
-
-            tcx, tcy, tw, th = corner2center(targetdict[self.maxratios[j]])
-            delta[j, 0] = (tcx - cx) / w
-            delta[j, 1] = (tcy - cy) / h
-            delta[j, 2] = np.log(tw / w)
-            delta[j, 3] = np.log(th / h)
-
-        # pos = [-1, 19, 12]
-        pos = [-1, 16, 12]
-
-        bbox_target_all = [[int(anchor_box[i, j, pos[1], pos[2]])
-                            for i in range(4)] for j in self.maxratios]
-
-        if False:
-
-            x_crop_all = X_crop.clone()
-
-            for j in range(b):
-
-                bbox_target = bbox_target_all[j]
-                print("Adv Target : ", bbox_target)
-                print(IoU(targetdict[self.maxratios[j]], bbox_target))
-
-                x_crop_img = X_crop[j].detach().cpu().numpy()
-                x_crop_img = np.ascontiguousarray(x_crop_img.transpose(1, 2, 0)).astype('uint8')
-                offset = cfg.TRACK.INSTANCE_SIZE / 2
-                cv2.rectangle(x_crop_img, (int(offset + bbox_target[0]), int(offset + bbox_target[1])),
-                              (int(offset + bbox_target[2]), int(offset + bbox_target[3])), (0, 255, 0), 3)
-
-                x_crop_all[j] = torch.tensor(x_crop_img.transpose(2, 0, 1))
-
-            save_image((x_crop_all) / 255, os.path.join(vis_dir,
-                                                        "{}_target.png".format(index)), nrow=4)
-
-            # exit()
-
-        batchindex = torch.arange(b)
-        anchorindex = self.maxratios
-
-        label_cls[batchindex, anchorindex, pos[1], pos[2]] = 1.0
-        delta_weight[batchindex, anchorindex, pos[1], pos[2]] = 1.0
-
-        label_cls = torch.from_numpy(label_cls).cuda()
-        label_loc = torch.from_numpy(delta).cuda()
-        label_loc_weight = torch.from_numpy(delta_weight).cuda()
-
-        # print(torch.sum(label_cls))
-
-        # exit()
-
-        pred_cls = self.log_softmax(pred_cls)
-        cls_loss = select_cross_entropy_loss_pos(pred_cls, label_cls)
-        loc_loss = weight_l1_loss(pred_reg, label_loc, label_loc_weight)
-
-        outputs = {}
-        outputs['cls_loss'] = cls_loss
-        outputs['loc_loss'] = loc_loss
-
-        return cls_loss, loc_loss
-
-'''
-
-#     def get_target_cls_reg(self, X_crop, shift, centerpoint):
-
-#         output_dict = {}
-#         # outputs = self.model.track(X_crop)  # (N,2x5,25,25)
-
-#         outputs = self.outputs  # (N,2x5,25,25)
-#         pred_cls = outputs['cls']
-#         pred_reg = outputs['loc']
-
-#         #print(pred_cls.shape, pred_reg.shape)
-
-#         b, a2, h, w = pred_cls.size()
-
-#         assert centerpoint[0] == (h - 1) / 2
-#         assert centerpoint[1] == (w - 1) / 2
-#         #assert cfg.TRAIN.OUTPUT_SIZE == h
-#         assert cfg.TRACK.OUTPUT_SIZE == h
-
-#         anchor_num = a2 // 2
-#         anchors2 = self.generate_all_anchors()
-#         anchor_box = anchors2.all_anchors[0]
-#         anchor_center = anchors2.all_anchors[1]
-
-#         label_cls = 0 * np.ones((b, anchor_num, h, w), dtype=np.int64)
-#         delta = np.zeros((b, 4, anchor_num, h, w), dtype=np.float32)
-#         delta_weight = np.zeros((b, anchor_num, h, w), dtype=np.float32)
-#         label_cls_weight = 0 * np.ones((b, anchor_num, h, w), dtype=np.int64)
-
-#         # target = [60, 60, 120, 120]  #for  pos = [2, 23, 23]
-#         # target = [-32, 24, 32, 88]  # for pos = [2, 19, 12]
-#         # target = [-32, 0, 32, 64]  # for pos = [2, 19, 12]
-# #        pos = [2, 12, 16]
-
-#         # +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++   MAJOR CHANGEE WHILE TRAINING +++++++++++++++++++++++++++++++++++++++++++++++++++++++
-
-#         #centerpoint = [12,12]
-#         #centerpoint = [8,8]
-
-#         pos = [2, centerpoint[0] + shift[1], centerpoint[1] + shift[0]]
-#         target = [int(anchor_box[i, pos[0], pos[1], pos[2]]) for i in range(4)]
-
-#         print(target)
-#         exit()
-
-#         #print(pos)
-
-#         def select(position, keep_num=16):
-#             num = position[0].shape[0]
-#             if num <= keep_num:
-#                 return position, num
-#             slt = np.arange(num)
-#             np.random.shuffle(slt)
-#             slt = slt[:keep_num]
-#             return tuple(p[slt] for p in position), keep_num
-
-#         tcx, tcy, tw, th = corner2center(target)
-
-#         x1, y1, x2, y2 = anchor_box[0], anchor_box[1], anchor_box[2], anchor_box[3]
-#         cx, cy, w, h = anchor_center[0], anchor_center[1], anchor_center[2], anchor_center[3]
-#         delta[:, 0] = (tcx - cx) / w
-#         delta[:, 1] = (tcy - cy) / h
-#         delta[:, 2] = np.log(tw / w)
-#         delta[:, 3] = np.log(th / h)
-
-#         # overlap = IoU([x1, y1, x2, y2], target)
-#         # pos = np.where(overlap > 0.5)
-#         # pos, pos_num = select(pos, 1)
-#         # # print(pos)
-#         # label_cls[pos] = 1
-#         # delta_weight[pos] = 1. / (pos_num + 1e-6)
-#         # 2,23, 23
-#         #pos = [2, 16, 12]
-#         # print(IoU([56, 56, 120, 120], target))
-
-#         bbox_target = [int(anchor_box[i, pos[0], pos[1], pos[2]]) for i in range(4)]
-#         output_dict['bbox_target'] = bbox_target
-
-#         if False:
-#             print("Adv Target : ", output_dict['bbox_target'])
-#             print(IoU(target, bbox_target))
-
-#             x_crop_img = X_crop[0].detach().cpu().numpy()
-#             x_crop_img = np.ascontiguousarray(x_crop_img.transpose(1, 2, 0)).astype('uint8')
-#             offset = cfg.TRACK.INSTANCE_SIZE / 2
-#             cv2.rectangle(x_crop_img, (int(offset + bbox_target[0]), int(offset + bbox_target[1])),
-#                           (int(offset + bbox_target[2]), int(offset + bbox_target[3])), (0, 255, 0), 3)
-
-#             bbox1 = [int(anchor_box[i, pos[0], centerpoint[0], centerpoint[1]]) for i in range(4)]
-#             cv2.rectangle(x_crop_img, (int(offset + bbox1[0]), int(offset + bbox1[1])),
-#                           (int(offset + bbox1[2]), int(offset + bbox1[3])), (0, 0, 255), 3)
-
-#             cv2.imwrite("search_target_clean.png", x_crop_img)
-#             #print(delta[0, :, pos[0], pos[1], pos[2]])
-#             exit()
-
-#         label_cls[:, pos[0], pos[1], pos[2]] = 1.0
-#         delta_weight[:, pos[0], pos[1], pos[2]] = 1.0
-#         # label_cls_weight[:, 2, 23, 23] = 1.0
-
-#         label_cls = torch.from_numpy(label_cls).cuda()
-#         label_loc = torch.from_numpy(delta).cuda()
-#         label_loc_weight = torch.from_numpy(delta_weight).cuda()
-
-#         pred_cls = self.log_softmax(pred_cls)
-#         cls_loss = select_cross_entropy_loss_pos(pred_cls, label_cls)
-#         loc_loss = weight_l1_loss(pred_reg, label_loc, label_loc_weight)
-
-#         outputs = {}
-#         outputs['cls_loss'] = cls_loss
-#         outputs['loc_loss'] = loc_loss
-
-#         return cls_loss, loc_loss
-
-#         outputs = {}
-#         outputs['cls_loss'] = cls_loss
-#         outputs['loc_loss'] = loc_loss
-
-#         return cls_loss, loc_loss

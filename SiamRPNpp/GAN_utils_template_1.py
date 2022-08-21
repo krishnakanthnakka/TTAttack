@@ -1,6 +1,5 @@
 import os
 import sys
-
 from common_path import project_path_
 from models import create_model
 from options.test_options0 import TestOptions
@@ -16,15 +15,6 @@ from config_new import eps, istargeted
 opt.eps = eps
 opt.istargeted = istargeted
 os.environ['CUDA_VISIBLE_DEVICES'] = opt.gpu
-
-
-# # --- Create Model
-# GAN = create_model(opt)
-# model_epoch = opt.model_iter
-# expcase = opt.case
-# GAN.load_path = os.path.join(project_path_, 'checkpoints/{}_{}/{}'.format(opt.model, expcase, model_epoch))
-# GAN.setup(opt)
-# GAN.eval()
 
 
 def get_model_GAN(log):
