@@ -45,7 +45,7 @@ This is an official release of the paper **Universal, Transferable Adversarial P
 ### Results on ImageNet models
 
 1. We observe the following results as in Table 1.
-    | Success  | Precision | logfile
-    | :---:  | :---: | 
-    |  Ours| 0.212 | 0.275 |
+    | Method | Success  | Precision | logfile |
+    | :---:  | :---:     | :---:    |   :---: |
+    |  Ours. | 0.212     | 0.275    |   :---: |
 
