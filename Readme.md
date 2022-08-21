@@ -40,9 +40,16 @@ This is an official release of the paper **Universal, Transferable Adversarial P
 3. For attacking SiamRPN++ (M) tracker using the generator trained on ```SiamRPN++ (R)``` as discriminator and ```GOT10K``` dataset:
 
    ```py
-    # universal attack on SiamRPN++ (M) tracker with OTB100
+
     cd pysot/tools
+
+    # universal attack (Ours) on SiamRPN++ (M) tracker with OTB100
     python tta_attack.py   --tracker_name=siamrpn_mobilev2_l234_dwxcorr --dataset=OTB100 --case=1 --gpu=1 --model_iter=4_net_G.pth --attack_universal
+
+    # template dependent attack (Ours (TD)) on SiamRPN++ (M) tracker with OTB100
+    python tta_attack.py   --tracker_name=siamrpn_mobilev2_l234_dwxcorr --dataset=OTB100 --case=1 --gpu=1 --model_iter=4_net_G.pth
+
+
    ```
 
 
