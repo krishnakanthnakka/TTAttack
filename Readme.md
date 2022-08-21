@@ -47,5 +47,5 @@ This is an official release of the paper **Universal, Transferable Adversarial P
 1. We observe the following results as in Table 1.
     | Method | Success  | Precision | logfile |
     | :---:  | :---:     | :---:    |   :---: |
-    |  Ours. | 0.212     | 0.275    |   :---: |
+    |  Ours | 0.212     | 0.275    |   |
 
