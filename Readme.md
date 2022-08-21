@@ -59,5 +59,6 @@ This is an official release of the paper **Universal, Transferable Adversarial P
     | Method | Success  | Precision |
     | :---:  | :---:     | :---:    |
     |  Normal | 0.657     | 0.862    |
-    |  Ours | 0.212     | 0.275     |
+    |  Ours (TD)  | xx  | xx     |
+    |  Ours  | 0.212     | 0.275     |
 
