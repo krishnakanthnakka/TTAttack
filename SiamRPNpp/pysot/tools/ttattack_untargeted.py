@@ -1,33 +1,8 @@
-""" Code for running Untargeted attacks at inference time.
+"""
+Info: Code for running untargeted attacks at inference time.
 
-python run_template_adv2.py   --tracker_name=siamrpn_r50_l234_dwxcorr_otb --dataset=OTB100 --case=22 --gpu=1 --model_iter=8_net_G.pth
-python run_template_adv2.py   --tracker_name=siamrpn_r50_l234_dwxcorr --dataset=OTB100 --case=22 --gpu=1 --model_iter=8_net_G.pth --vis
-python run_template_adv2.py   --tracker_name=siamrpn_r50_l234_dwxcorr --dataset=UAV123 --case=22 --gpu=1 --model_iter=8_net_G.pth  --vis
-python run_template_adv2.py   --tracker_name=siamrpn_r50_l234_dwxcorr --dataset=VOT2018 --case=130 --gpu=1 --model_iter=8_net_G.pth --vis
-python run_template_adv2.py   --tracker_name=siamrpn_r50_l234_dwxcorr --dataset=VOT2018 --case=54 --gpu=1 --model_iter=4_net_G.pth
-
-
-python run_template_adv2.py   --tracker_name=siamrpn_r50_l234_dwxcorr --dataset=OTB100 --case=130 --gpu=1 --model_iter=4_net_G.pth
-python run_template_adv2.py   --tracker_name=siamrpn_r50_l234_dwxcorr --dataset=lasot --case=138 --gpu=1 --model_iter=8_net_G.pth
-
-
-
-#python run_template_adv2.py   --tracker_name=siam_ocean_online --dataset=OTB100 --case=22 --gpu=1 --model_iter=8_net_G.pth --attack_universal
-
-python run_template_adv2.py   --tracker_name=siamrpn_r50_l234_dwxcorr --dataset=OTB100 --case=54 --gpu=1 --model_iter=4_net_G.pth --attack_universal
-
-
-python run_template_adv2.py   --tracker_name=siamrpn_r50_l234_dwxcorr --dataset=VOT2018 --case=22 --gpu=1 --model_iter=8_net_G.pth --attack_universal
-python run_template_adv2.py   --tracker_name=siamrpn_r50_l234_dwxcorr --dataset=VOT2018 --case=22 --gpu=1 --model_iter=8_net_G.pth --attack_universal
-python run_template_adv2.py   --tracker_name=siamrpn_r50_l234_dwxcorr --dataset=VOT2018 --case=22 --gpu=1 --model_iter=8_net_G.pth --attack_universal
-python run_template_adv2.py   --tracker_name=siamrpn_r50_l234_dwxcorr --dataset=VOT2018 --case=22 --gpu=1 --model_iter=8_net_G.pth --attack_universal
-
-siamrpn_mobilev2_l234_dwxcorr
-
-
-
+Usage:
 python ttattack_untargeted.py   --tracker_name=siamrpn_mobilev2_l234_dwxcorr --dataset=OTB100 --case=54 --gpu=1 --model_iter=4_net_G.pth --attack_universal
-
 
 """
 
@@ -79,14 +54,6 @@ parser.add_argument('--attack_universal', default=False, action='store_true',
                     help='whether visualzie result')
 args = parser.parse_args()
 torch.set_num_threads(1)
-
-
-# from GAN_utils_template_1 import *
-# os.environ['CUDA_VISIBLE_DEVICES'] = opt.gpu
-# model_name = opt.model
-# model_name = opt.model + '_{}'.format(args.tracker_name)
-# expcase = opt.case
-# basedir = './results_T/'
 
 
 def main(cmd_line):
