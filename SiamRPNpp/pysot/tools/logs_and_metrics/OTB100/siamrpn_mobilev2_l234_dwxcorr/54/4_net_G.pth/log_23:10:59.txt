@@ -1,0 +1,16 @@
+Logger saved at ./logs_and_metrics/OTB100/siamrpn_mobilev2_l234_dwxcorr/54/4_net_G.pth/log_23:10:59.txt
+Ran experiment with command: "python ttattack_untargeted.py --tracker_name=siamrpn_mobilev2_l234_dwxcorr --dataset=OTB100 --case=54 --gpu=1 --model_iter=4_net_G.pth --attack_universal"
+Initializing vanilla Generator without extra channel
+Center point: [12, 12], Feature Map: [25, 25]
+Actual Epsilon: 8.0
+Isuntargeted Attack: True
+Universal perturb: True
+Case: 54
+Epsilon: 8
+Tracker: siamrpn_mobilev2_l234_dwxcorr
+Checkpoint iter: 4_net_G.pth
+
+(  1) Video: Basketball   Time:   6.5s Speed: 110.8fps, mean Speed: 110.8fps MAE: nan, Avg. Mean: nan,  Lost:   0
+(  2) Video: Biker        Time:   1.2s Speed: 122.0fps, mean Speed: 116.4fps MAE: nan, Avg. Mean: nan,  Lost:   0
+(  3) Video: Bird1        Time:   3.3s Speed: 122.3fps, mean Speed: 118.4fps MAE: nan, Avg. Mean: nan,  Lost:   0
+(  4) Video: Bird2        Time:   0.9s Speed: 107.7fps, mean Speed: 115.7fps MAE: nan, Avg. Mean: nan,  Lost:   0

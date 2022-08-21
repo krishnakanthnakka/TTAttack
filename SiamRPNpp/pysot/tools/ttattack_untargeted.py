@@ -58,7 +58,8 @@ torch.set_num_threads(1)
 
 def main(cmd_line):
 
-    statsdir = './logs/{}/{}/{}/{}/'.format(args.dataset, args.tracker_name, args.case, args.model_iter)
+    statsdir = './logs_and_metrics/{}/{}/{}/{}/'.format(args.dataset,
+                                                        args.tracker_name, args.case, args.model_iter)
 
     if not os.path.exists(statsdir):
         os.makedirs(statsdir)
@@ -68,9 +69,7 @@ def main(cmd_line):
     log("Logger saved at {}".format(log_filename))
     log('Ran experiment with command: "{}"'.format(cmd_line))
 
-    results_dir = './results_U' if args.attack_universal else 'results'
-
-   # exit()
+    results_dir = './results_universal' if args.attack_universal else 'results_TD'
 
     from GAN_utils_template_1 import get_model_GAN
     GAN, opt = get_model_GAN(log)
@@ -78,7 +77,7 @@ def main(cmd_line):
     os.environ['CUDA_VISIBLE_DEVICES'] = opt.gpu
     model_name = opt.model + '_{}'.format(args.tracker_name)
     expcase = opt.case
-    basedir = './results_T/'
+    basedir = './visualizations/'
     model_epoch = opt.model_iter
 
     log("Case: {}\nEpsilon: {}\nTracker: {}\nCheckpoint iter: {}\n".format(
