@@ -31,11 +31,21 @@ This is an official release of the paper **Universal, Transferable Adversarial P
 
 
 
-## Testing on Cross-Model Setting
+## Testing on SiamRPN++ (M or R)
 
 1. Set all environmental paths and other packages in path by ```source envs.sh```
 
-2. For attacking PyTorch Image recognition models using the generator trained on ```squeezenet``` discriminator and ```imagenet``` dataset:
+2. For attacking SiamRPN++ (M) tracker using the generator trained on ```SiamRPN++ (R)``` as discriminator and ```GOT10K``` dataset:
+   
    ```py
     python tta_attack.py   --tracker_name=siamrpn_mobilev2_l234_dwxcorr --dataset=OTB100 --case=1 --gpu=1 --model_iter=4_net_G.pth --attack_universal
    ```
+   
+
+### Results on ImageNet models
+
+1. We observe the following results as in Table 1.
+    | Success  | Precision | logfile
+    | :---:  | :---: | 
+    |  Ours| 0.212 | 0.275 |
+
