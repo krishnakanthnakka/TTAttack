@@ -1,0 +1,18 @@
+TEST:
+  # OTB2015:
+  #   penalty_k: 0.087
+  #   lr: 0.408
+  #   window_influence: 0.366
+  #   small_sz: 271
+  #   big_sz: 271
+
+  lasotON:
+    penalty_k: 0.087
+    lr: 0.408
+    window_influence: 0.366
+    small_sz: 255
+    online_ratio: 0.7
+    big_sz: 255
+
+
+
