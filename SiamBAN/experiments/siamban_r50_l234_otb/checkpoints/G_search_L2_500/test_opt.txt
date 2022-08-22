@@ -1,0 +1,62 @@
+----------------- Options ---------------
+             aspect_ratio: 1.0                           
+         attack_universal: True                          	[default: False]
+               batch_size: 1                             
+                     case: 54                            	[default: None]
+          checkpoints_dir: ./checkpoints                 
+                   config: tracker_weights/config.yaml   	[default: ]
+                crop_size: 256                           
+                 dataroot: ./pix2pix/datasets/facades    
+             dataset_mode: OTB100                        	[default: single]
+                    debug: 0                             
+                direction: AtoB                          
+               directions: 12                            
+          display_winsize: 256                           
+            driftdistance: 5                             
+                    epoch: latest                        
+                      eps: 8                             	[default: None]
+                     eval: False                         
+               exp_module: None                          
+                 exp_name: None                          
+                      gpu: None                          
+                  gpu_ids: 0                             
+                init_gain: 0.02                          
+                init_type: normal                        
+                 input_nc: 3                             
+                  isTrain: False                         	[default: None]
+               istargeted: False                         
+                load_iter: 0                             	[default: 0]
+                load_size: 256                           
+         max_dataset_size: inf                           
+                    model: test                          
+               model_iter: 4_net_G.pth                   	[default: None]
+             model_suffix:                               
+               n_layers_D: 3                             
+                     name: G_search_L2_500               
+                      ndf: 64                            
+                     netD: basic                         
+                     netG: unet_128                      
+                      ngf: 64                            
+               no_dropout: False                         
+                  no_flip: False                         
+                     norm: batch                         
+                    ntest: inf                           
+                 num_test: 50                            
+              num_threads: 4                             
+                  offsetx: None                          
+                  offsety: None                          
+                output_nc: 3                             
+                    phase: test                          
+               preprocess: resize_and_crop               
+              results_dir: ./results/                    
+           serial_batches: False                         
+                 snapshot: tracker_weights/model.pth     	[default: ]
+                   suffix:                               
+               targetcase: -2                            
+                  threads: 0                             
+             tracker_name: None                          
+                 trajcase: -2                            
+                  verbose: False                         
+                    video: None                          
+                      vis: False                         
+----------------- End -------------------
