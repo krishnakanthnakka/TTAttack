@@ -44,7 +44,8 @@ parser.add_argument('--dataset', default=dataset_name_, type=str, help='eval one
 parser.add_argument('--video', default="", type=str, help='eval one special video')
 parser.add_argument('--vis', default=False, action='store_true', help='whether visualzie result')
 parser.add_argument('--case', type=int, required=True)
-parser.add_argument('--gpu', type=str, help='gpu ids: e.g. 0  0,1,2, 0,2. use -1 for CPU')
+parser.add_argument('--gpu', type=str,
+                    help='gpu ids: e.g. 0  0,1,2, 0,2. use -1 for CPU')
 parser.add_argument('--model_iter', type=str)
 parser.add_argument('--eps', type=int)
 parser.add_argument('--istargeted', default=False, action='store_true',
@@ -70,25 +71,25 @@ def main(cmd_line):
     log('Ran experiment with command: "{}"'.format(cmd_line))
 
     results_dir = './results_universal' if args.attack_universal else 'results_TD'
-
     from GAN_utils_template_1 import get_model_GAN
-    GAN, opt = get_model_GAN(log)
 
+    GAN, opt = get_model_GAN(log)
     os.environ['CUDA_VISIBLE_DEVICES'] = opt.gpu
     model_name = opt.model + '_{}'.format(args.tracker_name)
     expcase = opt.case
     basedir = './visualizations/'
     model_epoch = opt.model_iter
 
-    log("Case: {}\nEpsilon: {}\nTracker: {}\nCheckpoint iter: {}\n".format(
+    log("Case: {}\nEpsilon: {}\nTracker: {}\nCheckpoint iteration: {}\n".format(
         args.case, opt.eps, args.tracker_name, args.model_iter))
+
     st_time = time.time()
     snapshot_path = os.path.join(project_path_, 'pysot/experiments/%s/model.pth' % args.tracker_name)
     config_path = os.path.join(project_path_, 'pysot/experiments/%s/config.yaml' % args.tracker_name)
 
-    print("Config path from eval file: {}".format(config_path))
-    print("snapshot path from eval file: {}".format(snapshot_path))
-    print("Dataset: {}".format(args.dataset))
+    print("Config path   : {}".format(config_path))
+    print("snapshot path : {}".format(snapshot_path))
+    print("Dataset       : {}".format(args.dataset))
 
     cfg.merge_from_file(config_path)
     dataset_root = os.path.join(dataset_root_, args.dataset)
@@ -100,24 +101,19 @@ def main(cmd_line):
         model = load_pretrain(model, snapshot_path).cuda().eval()
 
     tracker = build_tracker(model, args.dataset)
-    dataset = DatasetFactory.create_dataset(name=args.dataset, dataset_root=dataset_root,
-                                            load_img=False)
+    dataset = DatasetFactory.create_dataset(name=args.dataset, dataset_root=dataset_root, load_img=False)
 
     total_lost = 0
     mean_FPS, MAE_, SSIM_ = [], [], []
 
-    if args.dataset in ['VOT2016', 'VOT2018', 'VOT2019']:
+    if args.dataset in ['VOT2018']:
 
         for v_idx, video in enumerate(dataset):
 
-            savedir = os.path.join(basedir, args.dataset, video.name)
             savedir2 = os.path.join(basedir, args.dataset, str(args.case))
 
             if not os.path.isdir(savedir2):
                 os.makedirs(savedir2)
-
-            if not os.path.isdir(savedir):
-                os.makedirs(savedir)
 
             if args.video != '':
                 if video.name != args.video:
@@ -127,15 +123,13 @@ def main(cmd_line):
             lost_number = 0
             toc = 0
             pred_bboxes = []
-            MAE, SSIM, LINF = [], [], []
             dir_ = 0
 
             for idx, (img, gt_bbox) in enumerate(video):
 
                 if len(gt_bbox) == 4:
                     gt_bbox = [gt_bbox[0], gt_bbox[1], gt_bbox[0], gt_bbox[1] + gt_bbox[3] - 1,
-                               gt_bbox[0] + gt_bbox[2] - 1, gt_bbox[1] + gt_bbox[3] - 1,
-                               gt_bbox[0] + gt_bbox[2] - 1, gt_bbox[1]]
+                               gt_bbox[0] + gt_bbox[2] - 1, gt_bbox[1] + gt_bbox[3] - 1, gt_bbox[0] + gt_bbox[2] - 1, gt_bbox[1]]
                 tic = cv2.getTickCount()
 
                 if idx == frame_counter:
@@ -143,23 +137,19 @@ def main(cmd_line):
                     gt_bbox_ = [cx - (w - 1) / 2, cy - (h - 1) / 2, w, h]
                     recompute = False if idx != 0 else True
                     template = tracker.init_adv_T(img, gt_bbox_, GAN, recompute)[0]
-                    cv2.imwrite(os.path.join(savedir, str(idx) + "_template.png"), template)
 
                     if idx == 0 and args.vis:
                         fourcc = cv2.VideoWriter_fourcc(*'XVID')
                         w, h = img.shape[:2]
-                        video_out = cv2.VideoWriter(os.path.join(
-                            savedir2, video.name + ".avi"), fourcc, fps=20, frameSize=(h, w))
-                        video_search = cv2.VideoWriter(os.path.join(
-                            savedir2, video.name + "_search.avi"), fourcc, fps=20, frameSize=(255, 255))
+                        video_out = cv2.VideoWriter(os.path.join(savedir2, video.name + ".avi"),
+                                                    fourcc, fps=20, frameSize=(h, w))
+
                     pred_bbox = gt_bbox_
                     pred_bboxes.append(1)
 
                 elif idx > frame_counter:
                     outputs = tracker.track_advT(img, GAN, dir_, frame_index=idx)
                     pred_bbox = outputs['bbox']
-                    MAE.append(outputs['metrics']['MAE'].item())
-                    SSIM = outputs['metrics']['SSIM']
 
                     if cfg.MASK.MASK:
                         pred_bbox = outputs['polygon']
@@ -188,14 +178,12 @@ def main(cmd_line):
 
                     cv2.putText(img, str(idx), (40, 40), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 255, 255), 2)
                     cv2.putText(img, str(lost_number), (40, 80), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 255), 2)
-                    search_img = search_img.data.cpu().numpy()[0].transpose(1, 2, 0).astype('uint8')
 
                     video_out.write(img)
-                    video_search.write(search_img)
 
             toc /= cv2.getTickFrequency()
-            video_path = os.path.join(results_dir, args.dataset, model_name, 'baseline', str(expcase),
-                                      model_epoch, video.name)
+            video_path = os.path.join(results_dir, args.dataset, model_name, 'baseline',
+                                      str(expcase), model_epoch, video.name)
             if not os.path.isdir(video_path):
                 os.makedirs(video_path)
 
@@ -207,28 +195,24 @@ def main(cmd_line):
                     else:
                         f.write(','.join([vot_float2str("%.4f", i) for i in x]) + '\n')
 
-            MAE_.append(np.mean(MAE))
-            log('({:3d}) Video: {:12s} Time: {:4.1f}s Speed: {:6.1f} fps Lost: {:3d}, MAE: {:2.1f}, Avg. Mean: {:2.1f}'.format(
-                v_idx + 1, video.name, toc, idx / toc, lost_number, np.mean(MAE), np.mean(MAE_)))
+            log('({:3d}) Video: {:12s}, Time: {:4.1f}s, Speed: {:6.1f}fps,  Lost: {:3d}'.format(v_idx + 1, video.name,
+                                                                                                toc, idx / toc, lost_number))
             total_lost += lost_number
 
             if args.vis:
                 video_out.release()
 
-        log("Total time : {:.1f}s, Avg MAE : {:2.1f}".format(time.time() - st_time, np.mean(MAE_)))
-
+        log("Total time : {:.1f}s".format(time.time() - st_time))
         log("{:s} total lost: {:d}".format(model_name, total_lost))
+
     else:
 
         for v_idx, video in enumerate(dataset):
-            savedir = os.path.join(basedir, args.dataset, video.name)
+
             savedir2 = os.path.join(basedir, args.dataset, str(args.case))
 
             if not os.path.isdir(savedir2):
                 os.makedirs(savedir2)
-
-            if not os.path.isdir(savedir):
-                os.makedirs(savedir)
 
             if args.video != '':
                 if video.name != args.video:
@@ -243,7 +227,6 @@ def main(cmd_line):
 
             for idx, (img, gt_bbox) in (enumerate(video)):
 
-                MAE, SSIM, LINF = [], [], []
                 tic = cv2.getTickCount()
 
                 if idx == 0:
@@ -262,10 +245,6 @@ def main(cmd_line):
                         w, h = img.shape[:2]
                         video_out = cv2.VideoWriter(os.path.join(savedir2, video.name + ".avi"),
                                                     fourcc, fps=20, frameSize=(h, w))
-                        video_search = cv2.VideoWriter(os.path.join(savedir2, video.name + "_search.avi"),
-                                                       fourcc, fps=20, frameSize=(255, 255))
-                        video_perturb = cv2.VideoWriter(os.path.join(savedir2, video.name + "_perturb.avi"),
-                                                        fourcc, fps=20, frameSize=(255, 255))
 
                 else:
 
@@ -297,63 +276,21 @@ def main(cmd_line):
 
             if args.vis:
                 video_out.release()
-                video_search.release()
 
-            if 'VOT2018-LT' == args.dataset:
+            model_path = os.path.join(results_dir, args.dataset,
+                                      model_name, str(expcase), model_epoch)
+            if not os.path.isdir(model_path):
+                os.makedirs(model_path)
 
-                video_path = os.path.join(results_dir, args.dataset, model_name,
-                                          'longterm', str(expcase), model_epoch, video.name)
-                if not os.path.isdir(video_path):
-                    os.makedirs(video_path)
-                result_path = os.path.join(video_path, '{}_001.txt'.format(video.name))
+            result_path = os.path.join(model_path, '{}.txt'.format(video.name))
+            with open(result_path, 'w') as f:
+                for x in pred_bboxes:
+                    f.write(','.join([str(i) for i in x]) + '\n')
 
-                with open(result_path, 'w') as f:
-                    for x in pred_bboxes:
-                        f.write(','.join([str(i) for i in x]) + '\n')
-
-                result_path = os.path.join(video_path, '{}_001_confidence.value'.format(video.name))
-
-                with open(result_path, 'w') as f:
-                    for x in scores:
-                        f.write('\n') if x is None else f.write("{:.6f}\n".format(x))
-                result_path = os.path.join(video_path, '{}_time.txt'.format(video.name))
-
-                with open(result_path, 'w') as f:
-                    for x in track_times:
-                        f.write("{:.6f}\n".format(x))
-
-            elif 'GOT-10k' == args.dataset:
-                video_path = os.path.join(results_dir, args.dataset, model_name, video.name)
-                if not os.path.isdir(video_path):
-                    os.makedirs(video_path)
-                result_path = os.path.join(video_path, '{}_001.txt'.format(video.name))
-                with open(result_path, 'w') as f:
-                    for x in pred_bboxes:
-                        f.write(','.join([str(i) for i in x]) + '\n')
-                result_path = os.path.join(video_path, '{}_time.txt'.format(video.name))
-                with open(result_path, 'w') as f:
-                    for x in track_times:
-                        f.write("{:.6f}\n".format(x))
-
-            else:
-
-                # TEMP
-                if 1:
-                    model_path = os.path.join(results_dir, args.dataset,
-                                              model_name, str(expcase), model_epoch)
-                    if not os.path.isdir(model_path):
-                        os.makedirs(model_path)
-
-                    result_path = os.path.join(model_path, '{}.txt'.format(video.name))
-                    with open(result_path, 'w') as f:
-                        for x in pred_bboxes:
-                            f.write(','.join([str(i) for i in x]) + '\n')
-
-            MAE_.append(np.mean(MAE))
             mean_FPS.append(idx / toc)
 
-            log('({:3d}) Video: {:12s} Time: {:5.1f}s Speed: {:3.1f}fps, mean Speed: {:3.1f}fps MAE: {:2.1f}, Avg. Mean: {:2.1f}, '
-                ' Lost:{:4d}'.format(v_idx + 1, video.name, toc, idx / toc, np.mean(mean_FPS), np.mean(MAE), np.mean(MAE_), outputs['lost']))
+            log('({:3d}) Video: {:12s} Time: {:5.1f}s Speed: {:3.1f}fps, mean Speed: {:3.1f}fps, '
+                ' Lost:{:4d}'.format(v_idx + 1, video.name, toc, idx / toc, np.mean(mean_FPS), outputs['lost']))
 
     log("Total time : {:.1f}s, Avg MAE : {:2.1f}".format(time.time() - st_time, np.mean(MAE_)))
 
