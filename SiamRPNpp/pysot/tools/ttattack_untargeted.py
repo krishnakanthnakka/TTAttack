@@ -110,10 +110,10 @@ def main(cmd_line):
 
         for v_idx, video in enumerate(dataset):
 
-            savedir2 = os.path.join(basedir, args.dataset, str(args.case))
+            savedir = os.path.join(basedir, args.dataset, str(args.case))
 
-            if not os.path.isdir(savedir2):
-                os.makedirs(savedir2)
+            if not os.path.isdir(savedir):
+                os.makedirs(savedir)
 
             if args.video != '':
                 if video.name != args.video:
@@ -141,7 +141,7 @@ def main(cmd_line):
                     if idx == 0 and args.vis:
                         fourcc = cv2.VideoWriter_fourcc(*'XVID')
                         w, h = img.shape[:2]
-                        video_out = cv2.VideoWriter(os.path.join(savedir2, video.name + ".avi"),
+                        video_out = cv2.VideoWriter(os.path.join(savedir, video.name + ".avi"),
                                                     fourcc, fps=20, frameSize=(h, w))
 
                     pred_bbox = gt_bbox_
@@ -209,10 +209,10 @@ def main(cmd_line):
 
         for v_idx, video in enumerate(dataset):
 
-            savedir2 = os.path.join(basedir, args.dataset, str(args.case))
+            savedir = os.path.join(basedir, args.dataset, str(args.case))
 
-            if not os.path.isdir(savedir2):
-                os.makedirs(savedir2)
+            if not os.path.isdir(savedir):
+                os.makedirs(savedir)
 
             if args.video != '':
                 if video.name != args.video:
@@ -243,7 +243,7 @@ def main(cmd_line):
                     if args.vis:
                         fourcc = cv2.VideoWriter_fourcc(*'XVID')
                         w, h = img.shape[:2]
-                        video_out = cv2.VideoWriter(os.path.join(savedir2, video.name + ".avi"),
+                        video_out = cv2.VideoWriter(os.path.join(savedir, video.name + ".avi"),
                                                     fourcc, fps=20, frameSize=(h, w))
 
                 else:

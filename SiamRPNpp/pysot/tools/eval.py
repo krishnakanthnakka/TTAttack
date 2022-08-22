@@ -1,44 +1,7 @@
 """ For evluating the results on Untargeted Attacks.
 
-python eval.py --tracker_path=./results --dataset=OTB100 --model_epoch=4_net_G.pth --case=194  --tracker_prefix=G_template_L2_500_regress_siamrpn_r50_l234_dwxcorr
-python eval.py --tracker_path=./results --dataset=UAV123 --model_epoch=4_net_G.pth --case=130  --tracker_prefix=G_template_L2_500_regress_siamrpn_r50_l234_dwxcorr
-python eval.py --tracker_path=./results --dataset=lasot --model_epoch=8_net_G.pth --case=22  --tracker_prefix=G_template_L2_500_regress_siamrpn_r50_l234_dwxcorr
-python eval.py --tracker_path=./results --dataset=GOT10KVal --model_epoch=4_net_G.pth --case=54  --tracker_prefix=G_template_L2_500_regress_siamrpn_r50_l234_dwxcorr_otb
-python eval.py --tracker_path=./results --dataset=VOT2018 --model_epoch=4_net_G.pth --case=54  --tracker_prefix=G_template_L2_500_regress_siamrpn_r50_l234_dwxcorr
-
-
-
-python eval.py --tracker_path=./results_U --dataset=VOT2018 --model_epoch=8_net_G.pth --case=22  --tracker_prefix=G_template_L2_500_regress_siam_ocean_online
-python eval.py --tracker_path=./results_U --dataset=VOT2018 --model_epoch=4_net_G.pth --case=54  --tracker_prefix=G_template_L2_500_regress_siam_ocean_online
-python eval.py --tracker_path=./results_U --dataset=VOT2018 --model_epoch=8_net_G.pth --case=138  --tracker_prefix=G_template_L2_500_regress_siam_ocean_online
-python eval.py --tracker_path=./results_U --dataset=VOT2018 --model_epoch=4_net_G.pth --case=130  --tracker_prefix=G_template_L2_500_regress_siam_ocean_online
-
-
-python eval.py --tracker_path=./results --dataset=lasot --model_epoch=8_net_G.pth --case=22  --tracker_prefix=G_template_L2_500_regress_siam_ocean_online
-python eval.py --tracker_path=./results --dataset=lasot --model_epoch=8_net_G.pth --case=138  --tracker_prefix=G_template_L2_500_regress_siam_ocean_online
-
-
-
-python eval.py --tracker_path=./results_U --dataset=VOT2018 --model_epoch=8_net_G.pth --case=22  --tracker_prefix=G_template_L2_500_regress_siamrpn_r50_l234_dwxcorr
-python eval.py --tracker_path=./results_U --dataset=VOT2018 --model_epoch=4_net_G.pth --case=54  --tracker_prefix=G_template_L2_500_regress_siamrpn_r50_l234_dwxcorr
-python eval.py --tracker_path=./results_U --dataset=VOT2018 --model_epoch=8_net_G.pth --case=138  --tracker_prefix=G_template_L2_500_regress_siamrpn_r50_l234_dwxcorr
-python eval.py --tracker_path=./results_U --dataset=VOT2018 --model_epoch=4_net_G.pth --case=130  --tracker_prefix=G_template_L2_500_regress_siamrpn_r50_l234_dwxcorr
-
-
-python eval.py --tracker_path=./results_U --dataset=lasot --model_epoch=4_net_G.pth --case=54  --tracker_prefix=G_template_L2_500_regress_siamrpn_mobilev2_l234_dwxcorr
-
 python eval.py --tracker_path=./results_U --dataset=OTB100 --model_epoch=4_net_G.pth --case=54  --tracker_prefix=G_template_L2_500_regress_siamrpn_mobilev2_l234_dwxcorr
 
-
-
-# results_clean
-python eval.py --tracker_path=./results_clean --dataset=lasot --model_epoch=8_net_G.pth --case=22  --tracker_prefix=G_template_L2_500_regress_siam_ocean_online
-
-
-For plotting
-
-- VOT attributes:
-    python eval.py --tracker_path=./paper_plots --dataset=VOT2018 --model_epoch=4_net_G.pth --case=4
 """
 
 from __future__ import absolute_import
@@ -138,14 +101,6 @@ def main():
                     draw_success_precision(success_ret, name=dataset.name, videos=videos,
                                            attr=attr, precision_ret=precision_ret)
 
-        # ax.grid(b=True)
-        # ax.set_aspect(1)
-        # plt.xlabel('Overlap threshold')
-        # plt.ylabel('Success rate')
-        # fig.savefig('success.png',dpi=100, bbox_inches = 'tight')
-        # plt.close(fig)
-        # exit()
-
     elif 'LaSOT' == args.dataset:
         dataset = LaSOTDataset(args.dataset, root)
         dataset.set_tracker(tracker_dir, trackers)
@@ -220,20 +175,18 @@ def main():
         ar_benchmark.show_result(ar_result, eao_result, show_video_level=args.show_video_level,
                                  log=log)
 
-        # ar_benchmark.show_result(ar_result, eao_result, show_video_level=args.show_video_level)
-
         with open("VOT2018.pickle", "wb") as output_file:
             pickle.dump(eao_result, output_file)
 
-        # if args.vis:
-        #     for attr, videos in dataset.attr.items():
-        #         #print(attr)
-        #         if attr == 'ALL':
-        #             draw_success_precision(success_ret,
-        #                                    name=dataset.name,
-        #                                    videos=videos,
-        #                                    attr=attr,
-        #                                    precision_ret=precision_ret)
+        if args.vis:
+            for attr, videos in dataset.attr.items():
+                # print(attr)
+                if attr == 'ALL':
+                    draw_success_precision(success_ret,
+                                           name=dataset.name,
+                                           videos=videos,
+                                           attr=attr,
+                                           precision_ret=precision_ret)
 
     elif 'VOT2018-LT' == args.dataset:
         dataset = VOTLTDataset(args.dataset, root)
