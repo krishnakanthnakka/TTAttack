@@ -58,8 +58,8 @@ torch.set_num_threads(1)
 
 def main(cmd_line):
 
-    statsdir = './logs_and_metrics/{}/{}/{}/{}/'.format(args.dataset,
-                                                        args.tracker_name, args.case, args.model_iter)
+    statsdir = './logs_and_metrics/{}/{}/{}/{}/'.format(args.dataset, args.tracker_name,
+                                                        args.case, args.model_iter)
 
     if not os.path.exists(statsdir):
         os.makedirs(statsdir)
@@ -157,23 +157,18 @@ def main(cmd_line):
 
                 elif idx > frame_counter:
                     outputs = tracker.track_advT(img, GAN, dir_, frame_index=idx)
-
-                    #search_img = outputs['cropx']
                     pred_bbox = outputs['bbox']
                     MAE.append(outputs['metrics']['MAE'].item())
                     SSIM = outputs['metrics']['SSIM']
 
                     if cfg.MASK.MASK:
                         pred_bbox = outputs['polygon']
-                    overlap = vot_overlap(
-                        pred_bbox, gt_bbox, (img.shape[1], img.shape[0]))
+                    overlap = vot_overlap(pred_bbox, gt_bbox, (img.shape[1], img.shape[0]))
                     if overlap > 0:
-                        # not lost
                         pred_bboxes.append(pred_bbox)
                     else:
-                        # lost object
                         pred_bboxes.append(2)
-                        frame_counter = idx + 5  # skip 5 frames
+                        frame_counter = idx + 5
                         lost_number += 1
                 else:
                     pred_bboxes.append(0)
@@ -192,19 +187,11 @@ def main(cmd_line):
                                                                 bbox[1] + bbox[3]), (0, 255, 255), 3)
 
                     cv2.putText(img, str(idx), (40, 40), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 255, 255), 2)
-
                     cv2.putText(img, str(lost_number), (40, 80), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 255), 2)
-                    # cv2.imwrite(os.path.join(savedir, str(idx) + ".png"), img)
-
                     search_img = search_img.data.cpu().numpy()[0].transpose(1, 2, 0).astype('uint8')
-                    # cv2.putText(search_img, str(MAE) + " , " + str(SSIM), (40, 120),
-                    #             cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 255), 2)
 
                     video_out.write(img)
                     video_search.write(search_img)
-
-                    # search_img = search_img[:, [2, 1, 0], :, :]
-                    # save_image(search_img / 255, savedir + "/" + str(idx) + "_search.png")
 
             toc /= cv2.getTickFrequency()
             video_path = os.path.join(results_dir, args.dataset, model_name, 'baseline', str(expcase),
@@ -236,13 +223,6 @@ def main(cmd_line):
         for v_idx, video in enumerate(dataset):
             savedir = os.path.join(basedir, args.dataset, video.name)
             savedir2 = os.path.join(basedir, args.dataset, str(args.case))
-
-            # if v_idx < 140:
-            #     print(video.name, "returned")
-            #     continue
-
-            # if video.name == 'crab-18':
-            #     continue
 
             if not os.path.isdir(savedir2):
                 os.makedirs(savedir2)
@@ -280,27 +260,18 @@ def main(cmd_line):
                     if args.vis:
                         fourcc = cv2.VideoWriter_fourcc(*'XVID')
                         w, h = img.shape[:2]
-                        video_out = cv2.VideoWriter(os.path.join(
-                            savedir2, video.name + ".avi"), fourcc, fps=20, frameSize=(h, w))
-                        video_search = cv2.VideoWriter(os.path.join(
-                            savedir2, video.name + "_search.avi"), fourcc, fps=20, frameSize=(255, 255))
-                        video_perturb = cv2.VideoWriter(os.path.join(
-                            savedir2, video.name + "_perturb.avi"), fourcc, fps=20, frameSize=(255, 255))
+                        video_out = cv2.VideoWriter(os.path.join(savedir2, video.name + ".avi"),
+                                                    fourcc, fps=20, frameSize=(h, w))
+                        video_search = cv2.VideoWriter(os.path.join(savedir2, video.name + "_search.avi"),
+                                                       fourcc, fps=20, frameSize=(255, 255))
+                        video_perturb = cv2.VideoWriter(os.path.join(savedir2, video.name + "_perturb.avi"),
+                                                        fourcc, fps=20, frameSize=(255, 255))
 
                 else:
-                    # outputs = tracker.track(img)
-                    # outputs['lost'] = 0
 
                     outputs = tracker.track_advT(img, GAN, dir_, frame_index=idx)
-
-                    # print("Lost:", outputs['lost'], end="\r")
-                    #search_img = outputs['cropx']
-                    #perturb_img = outputs['perturb']
-                    # MAE.append(outputs['metrics']['MAE'].item())
-                    # SSIM = outputs['metrics']['SSIM']
                     pred_bbox = outputs['bbox']
                     pred_bboxes.append(pred_bbox)
-                    # scores.append(outputs['best_score'])
 
                 toc += cv2.getTickCount() - tic
                 track_times.append((cv2.getTickCount() - tic) / cv2.getTickFrequency())
@@ -314,27 +285,13 @@ def main(cmd_line):
 
                     gt_bbox = list(map(int, gt_bbox))
                     pred_bbox = list(map(int, pred_bbox))
-                    cv2.rectangle(img, (gt_bbox[0], gt_bbox[1]), (gt_bbox[0] +
-                                                                  gt_bbox[2], gt_bbox[1] + gt_bbox[3]), (0, 255, 0), 3)
-                    cv2.rectangle(img, (pred_bbox[0], pred_bbox[1]), (pred_bbox[0] +
-                                                                      pred_bbox[2], pred_bbox[1] + pred_bbox[3]), (0, 255, 255), 3)
+                    cv2.rectangle(img, (gt_bbox[0], gt_bbox[1]), (gt_bbox[0] + gt_bbox[2],
+                                                                  gt_bbox[1] + gt_bbox[3]), (0, 255, 0), 3)
+                    cv2.rectangle(img, (pred_bbox[0], pred_bbox[1]), (pred_bbox[0] + pred_bbox[2],
+                                                                      pred_bbox[1] + pred_bbox[3]), (0, 255, 255), 3)
                     cv2.putText(img, str(idx), (40, 40), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 255, 255), 2)
 
                     video_out.write(img)
-
-                    #search_img = search_img.data.cpu().numpy()[0].transpose(1, 2, 0).astype('uint8')
-                    #perturb_img = perturb_img.data.cpu().numpy()[0].transpose(1, 2, 0).astype('uint8')
-
-                    #search_img = cv2.cvtColor(search_img, cv2.COLOR_BGR2RGB)
-                    #search_img = cv2.cvtColor(search_img, cv2.COLOR_RGB2BGR)
-
-                    #cv2.putText(search_img, str(idx), (40, 40),  cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 255, 255), 2)
-                    # cv2.putText(search_img, str(MAE) + " , " + str(SSIM), (40, 120),  cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 255), 2)
-
-                    # video_search.write(search_img)
-                    # perturb_img = cv2.cvtColor(perturb_img, cv2.COLOR_BGR2RGB)
-                    # cv2.putText(perturb_img, str(idx), (40, 40), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 255, 255), 1)
-                    # video_perturb.write(perturb_img)
 
             toc /= cv2.getTickFrequency()
 
@@ -409,7 +366,4 @@ def main(cmd_line):
 
 if __name__ == '__main__':
     command_line = 'python ' + ' '.join(sys.argv)
-
     main(command_line)
-
-    exit()
