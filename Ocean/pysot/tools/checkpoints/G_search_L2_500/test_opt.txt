@@ -2,7 +2,7 @@
              aspect_ratio: 1.0                           
          attack_universal: True                          	[default: False]
                batch_size: 1                             
-                     case: 1                             	[default: None]
+                     case: 2                             	[default: None]
           checkpoints_dir: ./checkpoints                 
                    config:                               
                 crop_size: 256                           
@@ -18,7 +18,7 @@
                      eval: False                         
                exp_module: None                          
                  exp_name: None                          
-                      gpu: 0                             	[default: None]
+                      gpu: 1                             	[default: None]
                   gpu_ids: 0                             
                 init_gain: 0.02                          
                 init_type: normal                        
@@ -52,10 +52,10 @@
            serial_batches: False                         
                  snapshot:                               
                    suffix:                               
-               targetcase: -2                            
+               targetcase: 11                            	[default: -2]
                   threads: 0                             
              tracker_name: siam_ocean_online             	[default: None]
-                 trajcase: 0                             	[default: -2]
+                 trajcase: 11                            	[default: -2]
                   verbose: False                         
                     video: Biker                         	[default: None]
                       vis: False                         
