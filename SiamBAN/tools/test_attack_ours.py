@@ -1,4 +1,3 @@
-# Copyright (c) SenseTime. All Rights Reserved.
 
 from __future__ import absolute_import
 from __future__ import division
@@ -7,6 +6,7 @@ from __future__ import unicode_literals
 
 import argparse
 import os
+import subprocess
 
 import cv2
 import torch
@@ -48,7 +48,7 @@ if args.gpu_id != 'not_set':
 torch.set_num_threads(1)
 
 
-ckpt_root_dir = '/cvlabsrc1/home/krishna/TTA/TTAttack/SiamRPNpp'
+ckpt_root_dir = '../../../SiamRPNpp'
 
 
 def load_generator():
@@ -211,23 +211,24 @@ def main():
                     if args.vis:
                         fourcc = cv2.VideoWriter_fourcc(*'XVID')
                         w, h = img.shape[:2]
-                        video_out = cv2.VideoWriter(os.path.join(
-                            "/cvlabdata1/home/krishna/AttTracker/baselines/siamban/viz/", video.name + ".avi"), fourcc, fps=20, frameSize=(h, w))
-                        # video_search = cv2.VideoWriter(os.path.join("./viz/", video.name + "_search.avi"), fourcc, fps=20, frameSize=(255, 255))
-                        # video_perturb = cv2.VideoWriter(os.path.join("./viz/", video.name + "_perturb.avi"), fourcc, fps=20, frameSize=(255, 255))
+
+                        if args.vis:
+
+                            if not os.path.isdir("./viz/"):
+                                os.makedirs("./viz/")
+
+                            video_out = cv2.VideoWriter(os.path.join(
+                                "./viz/", video.name + ".avi"), fourcc, fps=20, frameSize=(h, w))
 
                 else:
 
-                    # outputs = tracker.track(img)
                     outputs = tracker.track_advT(img, GAN, 1, frame_id=idx)
-
                     pred_bbox = outputs['bbox']
                     pred_bboxes.append(pred_bbox)
                     scores.append(outputs['best_score'])
                 toc += cv2.getTickCount() - tic
                 track_times.append((cv2.getTickCount() - tic) / cv2.getTickFrequency())
-                # if idx == 0:
-                #     cv2.destroyAllWindows()
+
                 if args.vis and idx > 0:
                     gt_bbox = list(map(int, gt_bbox))
                     pred_bbox = list(map(int, pred_bbox))
@@ -247,9 +248,16 @@ def main():
             toc /= cv2.getTickFrequency()
 
             if args.attack_universal:
+                results_dir = 'results_Universal_{}_{}'.format(
+                    attack_method, expcase)
+
                 model_path = os.path.join('results_Universal_{}_{}'.format(
                     attack_method, expcase), args.dataset, model_name)
             else:
+
+                results_dir = 'results_TD_{}_{}'.format(
+                    attack_method, expcase)
+
                 model_path = os.path.join('results_TD_{}_{}'.format(
                     attack_method, expcase), args.dataset, model_name)
 
@@ -265,6 +273,11 @@ def main():
 
             print('({:3d}) Video: {:12s} Time: {:5.1f}s Speed: {:3.1f}fps, Avg. Speed: {:3.1f}fps'.format(
                 v_idx + 1, video.name, toc, idx / toc, np.mean(mean_FPS)))
+
+        result = subprocess.call(
+            ["sh", "-c", " ".join(
+                ['python', '-W ignore', '../../tools/eval.py', '--tracker_path', results_dir, '--dataset', args.dataset,
+                 '--tracker_prefix', 'model', '--num', str(1)])])
 
 
 if __name__ == '__main__':

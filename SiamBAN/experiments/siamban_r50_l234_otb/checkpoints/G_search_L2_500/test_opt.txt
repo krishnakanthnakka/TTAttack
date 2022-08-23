@@ -2,9 +2,9 @@
              aspect_ratio: 1.0                           
          attack_universal: True                          	[default: False]
                batch_size: 1                             
-                     case: 54                            	[default: None]
+                     case: 1                             	[default: None]
           checkpoints_dir: ./checkpoints                 
-                   config: tracker_weights/config.yaml   	[default: ]
+                   config: ../../../tracker_weights/siamban_r50_l234_otb/config.yaml	[default: ]
                 crop_size: 256                           
                  dataroot: ./pix2pix/datasets/facades    
              dataset_mode: OTB100                        	[default: single]
@@ -50,13 +50,13 @@
                preprocess: resize_and_crop               
               results_dir: ./results/                    
            serial_batches: False                         
-                 snapshot: tracker_weights/model.pth     	[default: ]
+                 snapshot: ../../../tracker_weights/siamban_r50_l234_otb/model.pth	[default: ]
                    suffix:                               
                targetcase: -2                            
                   threads: 0                             
              tracker_name: None                          
                  trajcase: -2                            
                   verbose: False                         
-                    video: None                          
-                      vis: False                         
+                    video: Biker                         	[default: None]
+                      vis: True                          	[default: False]
 ----------------- End -------------------
