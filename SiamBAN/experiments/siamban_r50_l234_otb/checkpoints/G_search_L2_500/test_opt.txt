@@ -57,6 +57,6 @@
              tracker_name: None                          
                  trajcase: -2                            
                   verbose: False                         
-                    video: Biker                         	[default: None]
-                      vis: True                          	[default: False]
+                    video: None                          
+                      vis: False                         
 ----------------- End -------------------
