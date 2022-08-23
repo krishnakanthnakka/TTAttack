@@ -157,7 +157,7 @@ Place the downloaded ```targeted_attacks_GT``` folder in the root folder
 2. Set all environmental paths and other packages in path by ```source envs.sh```
 
 3. For attacking SiamRPN++ (M)  tracker with ```trajcase``` argument set to ```SouthEast (SE)``` direction i.e., target trajectory  at an offset of (+80, +80) pixels  of the predicted trajectory on clean samples.
-    Other options for ```trajcase``` argument is ```SE```, ```NE```, ```NW```.
+    Other options for ```trajcase``` argument is ```SW```, ```NE```, ```NW```.
 
 
    ```py
