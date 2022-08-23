@@ -11,10 +11,9 @@ from glob import glob
 from tqdm import tqdm
 from multiprocessing import Pool
 from toolkit.datasets import OTBDataset, UAVDataset, LaSOTDataset, GOT10kDataset,\
-        VOTDataset, NFSDataset, VOTLTDataset
+    VOTDataset, NFSDataset, VOTLTDataset
 from toolkit.evaluation import OPEBenchmark, AccuracyRobustnessBenchmark, \
-        EAOBenchmark, F1Benchmark, OPEBenchmark_Targeted, OPEBenchmark_Targeted2
-
+    EAOBenchmark, F1Benchmark, OPEBenchmark_Targeted, OPEBenchmark_Targeted2
 
 
 parser = argparse.ArgumentParser(description='tracking evaluation')
@@ -33,17 +32,14 @@ parser.add_argument('--trajcase', type=int, required=True)
 args = parser.parse_args()
 
 
-
-
 def main():
 
     print(args.dataset)
 
     tracker_dir = os.path.join(args.tracker_path, args.dataset)
     trackers = glob(os.path.join(args.tracker_path,
-                                 args.dataset,str(args.trajcase),
-                                 args.tracker_prefix+'*'))
-
+                                 args.dataset, str(args.trajcase),
+                                 args.tracker_prefix + '*'))
 
     trackers = [x.split('/')[-1] for x in trackers]
 
@@ -51,39 +47,34 @@ def main():
     args.num = min(args.num, len(trackers))
 
     root = os.path.realpath(os.path.join(os.path.dirname(__file__),
-                            '../testing_dataset'))
+                                         '../../testing_dataset'))
     root = os.path.join(root, args.dataset)
 
     print("case: {}, traajcase:{}".format(args.tracker_path, args.trajcase))
 
-
     if 'OTB100' in args.dataset:
         dataset = OTBDataset(args.dataset, root)
         dataset.set_tracker(tracker_dir, trackers)
-        benchmark = OPEBenchmark_Targeted(dataset,  trajcase=args.trajcase)
+        benchmark = OPEBenchmark_Targeted(dataset, trajcase=args.trajcase)
         success_ret = {}
         with Pool(processes=args.num) as pool:
             for ret in tqdm(pool.imap_unordered(benchmark.eval_success,
-                trackers), desc='eval success', total=len(trackers), ncols=100):
+                                                trackers), desc='eval success', total=len(trackers), ncols=100):
                 success_ret.update(ret)
         precision_ret = {}
         with Pool(processes=args.num) as pool:
             for ret in tqdm(pool.imap_unordered(benchmark.eval_precision,
-                trackers), desc='eval precision', total=len(trackers), ncols=100):
+                                                trackers), desc='eval precision', total=len(trackers), ncols=100):
                 precision_ret.update(ret)
 
         norm_precision_ret = {}
         with Pool(processes=args.num) as pool:
             for ret in tqdm(pool.imap_unordered(benchmark.eval_norm_precision,
-                trackers), desc='eval norm precision', total=len(trackers), ncols=100):
+                                                trackers), desc='eval norm precision', total=len(trackers), ncols=100):
                 norm_precision_ret.update(ret)
 
-        benchmark.show_result(success_ret, precision_ret,norm_precision_ret,
-                show_video_level=args.show_video_level)
-
-
-
-
+        benchmark.show_result(success_ret, precision_ret, norm_precision_ret,
+                              show_video_level=args.show_video_level)
 
     if 'GOT-10k' == args.dataset:
         dataset = GOT10kDataset(args.dataset, root)
@@ -92,12 +83,12 @@ def main():
         success_ret = {}
         with Pool(processes=args.num) as pool:
             for ret in tqdm(pool.imap_unordered(benchmark.eval_success,
-                trackers), desc='eval success', total=len(trackers), ncols=100):
+                                                trackers), desc='eval success', total=len(trackers), ncols=100):
                 success_ret.update(ret)
         precision_ret = {}
         with Pool(processes=args.num) as pool:
             for ret in tqdm(pool.imap_unordered(benchmark.eval_precision,
-                trackers), desc='eval precision', total=len(trackers), ncols=100):
+                                                trackers), desc='eval precision', total=len(trackers), ncols=100):
                 precision_ret.update(ret)
         # benchmark.show_result(success_ret, precision_ret,
         #         show_video_level=args.show_video_level)
@@ -105,36 +96,32 @@ def main():
 
         with Pool(processes=args.num) as pool:
             for ret in tqdm(pool.imap_unordered(benchmark.eval_norm_precision,
-                trackers), desc='eval norm precision', total=len(trackers), ncols=100):
+                                                trackers), desc='eval norm precision', total=len(trackers), ncols=100):
                 norm_precision_ret.update(ret)
         benchmark.show_result(success_ret, precision_ret, norm_precision_ret,
-                show_video_level=args.show_video_level)
+                              show_video_level=args.show_video_level)
 
-
-
-
-
-    elif 'LaSOT' == args.dataset :
+    elif 'LaSOT' == args.dataset:
         dataset = LaSOTDataset(args.dataset, root)
         dataset.set_tracker(tracker_dir, trackers)
-        benchmark = OPEBenchmark_Targeted(dataset,  trajcase=args.trajcase)
+        benchmark = OPEBenchmark_Targeted(dataset, trajcase=args.trajcase)
         success_ret = {}
         with Pool(processes=args.num) as pool:
             for ret in tqdm(pool.imap_unordered(benchmark.eval_success,
-                trackers), desc='eval success', total=len(trackers), ncols=100):
+                                                trackers), desc='eval success', total=len(trackers), ncols=100):
                 success_ret.update(ret)
         precision_ret = {}
         with Pool(processes=args.num) as pool:
             for ret in tqdm(pool.imap_unordered(benchmark.eval_precision,
-                trackers), desc='eval precision', total=len(trackers), ncols=100):
+                                                trackers), desc='eval precision', total=len(trackers), ncols=100):
                 precision_ret.update(ret)
         norm_precision_ret = {}
         with Pool(processes=args.num) as pool:
             for ret in tqdm(pool.imap_unordered(benchmark.eval_norm_precision,
-                trackers), desc='eval norm precision', total=len(trackers), ncols=100):
+                                                trackers), desc='eval norm precision', total=len(trackers), ncols=100):
                 norm_precision_ret.update(ret)
         benchmark.show_result(success_ret, precision_ret, norm_precision_ret,
-                show_video_level=args.show_video_level)
+                              show_video_level=args.show_video_level)
     elif 'UAV' in args.dataset:
         dataset = UAVDataset(args.dataset, root)
         dataset.set_tracker(tracker_dir, trackers)
@@ -142,22 +129,22 @@ def main():
         success_ret = {}
         with Pool(processes=args.num) as pool:
             for ret in tqdm(pool.imap_unordered(benchmark.eval_success,
-                trackers), desc='eval success', total=len(trackers), ncols=100):
+                                                trackers), desc='eval success', total=len(trackers), ncols=100):
                 success_ret.update(ret)
         precision_ret = {}
         with Pool(processes=args.num) as pool:
             for ret in tqdm(pool.imap_unordered(benchmark.eval_precision,
-                trackers), desc='eval precision', total=len(trackers), ncols=100):
+                                                trackers), desc='eval precision', total=len(trackers), ncols=100):
                 precision_ret.update(ret)
 
         norm_precision_ret = {}
         with Pool(processes=args.num) as pool:
             for ret in tqdm(pool.imap_unordered(benchmark.eval_norm_precision,
-                trackers), desc='eval norm precision', total=len(trackers), ncols=100):
+                                                trackers), desc='eval norm precision', total=len(trackers), ncols=100):
                 norm_precision_ret.update(ret)
 
-        benchmark.show_result(success_ret, precision_ret,norm_precision_ret,
-                show_video_level=args.show_video_level)
+        benchmark.show_result(success_ret, precision_ret, norm_precision_ret,
+                              show_video_level=args.show_video_level)
     elif 'NFS' in args.dataset:
         dataset = NFSDataset(args.dataset, root)
         dataset.set_tracker(tracker_dir, trackers)
@@ -165,21 +152,21 @@ def main():
         success_ret = {}
         with Pool(processes=args.num) as pool:
             for ret in tqdm(pool.imap_unordered(benchmark.eval_success,
-                trackers), desc='eval success', total=len(trackers), ncols=100):
+                                                trackers), desc='eval success', total=len(trackers), ncols=100):
                 success_ret.update(ret)
         precision_ret = {}
         with Pool(processes=args.num) as pool:
             for ret in tqdm(pool.imap_unordered(benchmark.eval_precision,
-                trackers), desc='eval precision', total=len(trackers), ncols=100):
+                                                trackers), desc='eval precision', total=len(trackers), ncols=100):
                 precision_ret.update(ret)
         benchmark.show_result(success_ret, precision_ret,
-                show_video_level=args.show_video_level)
+                              show_video_level=args.show_video_level)
     elif args.dataset in ['VOT2016', 'VOT2017', 'VOT2018', 'VOT2019']:
         if True:
 
             dataset = VOTDataset('VOT2018', root)
             dataset.set_tracker(tracker_dir, trackers)
-            benchmark = OPEBenchmark_Targeted2(dataset,trajcase=args.trajcase)
+            benchmark = OPEBenchmark_Targeted2(dataset, trajcase=args.trajcase)
 
             success_ret = {}
             with Pool(processes=args.num) as pool:
@@ -200,10 +187,10 @@ def main():
         f1_result = {}
         with Pool(processes=args.num) as pool:
             for ret in tqdm(pool.imap_unordered(benchmark.eval,
-                trackers), desc='eval f1', total=len(trackers), ncols=100):
+                                                trackers), desc='eval f1', total=len(trackers), ncols=100):
                 f1_result.update(ret)
         benchmark.show_result(f1_result,
-                show_video_level=args.show_video_level)
+                              show_video_level=args.show_video_level)
 
 
 if __name__ == '__main__':
