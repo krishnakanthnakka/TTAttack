@@ -42,13 +42,13 @@ Please place the ```checkpoints``` folder inside the  ```./SiamRPNpp/``` folder.
   Place the downloaded ```tracker_weights``` folder in the root folder
 
 2. Create a folder named ```testing_dataset``` in  the root  folder and place all the datasets such as ```OTB100```, ```VOT2018```, ```UAV123```, ```LASOT``` inside it.The dataset should be organized as:
-```
-testing_dataset
- ├── OTB100
- ├── VOT2018
- ├── UAV123
- ├── lasot
-```
+    ```
+    testing_dataset
+     ├── OTB100
+     ├── VOT2018
+     ├── UAV123
+     ├── lasot
+    ```
 
 
 
