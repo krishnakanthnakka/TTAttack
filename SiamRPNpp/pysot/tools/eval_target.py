@@ -46,7 +46,7 @@ parser.add_argument('--show_video_level', '-s', dest='show_video_level',
 parser.add_argument('--model_epoch', '-m', type=str, help='depochmodel')
 parser.add_argument('--case', '-c', type=int, help='depochmodel')
 parser.add_argument('--vis', dest='vis', action='store_true')
-parser.add_argument('--trajcase', type=int, required=True)
+parser.add_argument('--trajcase', type=str, required=True)
 parser.add_argument('--logfilename', dest='logfilename', type=str, default='')
 
 parser.set_defaults(show_video_level=False)

@@ -1,0 +1,2 @@
+Logger saved at ./logs_and_metrics/OTB100/siamrpn_mobilev2_l234_dwxcorr/2/4_net_G.pth/log_20:30:00.txt
+Ran experiment with command: "python ttattack_targeted.py --tracker_name=siamrpn_mobilev2_l234_dwxcorr --dataset=OTB100 --case=2 --gpu=1 --model_iter=4_net_G.pth --trajcase=SE --targetcase=SE --attack_universal --vis --video=Bird2"

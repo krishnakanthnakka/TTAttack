@@ -36,8 +36,8 @@ parser.add_argument('--gpu', type=str, help='gpu ids: e.g. 0  0,1,2, 0,2. use -1
 parser.add_argument('--model_iter', type=str)
 parser.add_argument('--eps', type=int, default=0)
 parser.add_argument('--istargeted', default=False, action='store_true', help='whether visualzie result')
-parser.add_argument('--trajcase', type=int, required=True)
-parser.add_argument('--targetcase', type=int, required=True)
+parser.add_argument('--trajcase', type=str, required=True, help='SE | SW | NE | NW')
+parser.add_argument('--targetcase', type=str,)
 parser.add_argument('--attack_universal', default=False, action='store_true', help='whether visualzie result')
 parser.add_argument('--directions', type=int, default=12)
 parser.add_argument('--driftdistance', type=int, default=12)
@@ -91,6 +91,8 @@ def get_direction(cur_gt_bbox_, prev_gt_box_, idx):
 
 
 def main(cmd_line):
+
+    args.targetcase = args.trajcase
 
     statsdir = './logs_and_metrics/{}/{}/{}/{}/'.format(args.dataset,
                                                         args.tracker_name, args.case, args.model_iter)
