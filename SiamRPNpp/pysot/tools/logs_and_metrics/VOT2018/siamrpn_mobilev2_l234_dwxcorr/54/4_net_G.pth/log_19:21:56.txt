@@ -1,0 +1,39 @@
+Logger saved at ./logs_and_metrics/VOT2018/siamrpn_mobilev2_l234_dwxcorr/54/4_net_G.pth/log_19:21:56.txt
+Ran experiment with command: "python ttattack_untargeted.py --tracker_name=siamrpn_mobilev2_l234_dwxcorr --dataset=VOT2018 --case=54 --gpu=1 --model_iter=4_net_G.pth --attack_universal"
+Initializing vanilla Generator without extra channel
+Center point: [12, 12], Feature Map: [25, 25]
+Actual Epsilon: 8.0
+Isuntargeted Attack: True
+Universal perturb: True
+Case: 54
+Epsilon: 8
+Tracker: siamrpn_mobilev2_l234_dwxcorr
+Checkpoint iteration: 4_net_G.pth
+
+(  1) Video: ants1        Time:  3.1s Speed:  105.1 fps Lost:  27
+(  2) Video: ants3        Time:  4.3s Speed:  135.0 fps Lost:  52
+(  3) Video: bag          Time:  1.3s Speed:  144.6 fps Lost:  14
+(  4) Video: ball1        Time:  0.8s Speed:  136.7 fps Lost:  10
+(  5) Video: ball2        Time:  0.3s Speed:  129.6 fps Lost:   4
+(  6) Video: basketball   Time:  6.1s Speed:  118.7 fps Lost:  12
+(  7) Video: birds1       Time:  2.2s Speed:  152.9 fps Lost:  45
+(  8) Video: blanket      Time:  1.5s Speed:  145.0 fps Lost:  13
+(  9) Video: bmx          Time:  0.7s Speed:  100.6 fps Lost:   0
+( 10) Video: bolt1        Time:  3.0s Speed:  114.8 fps Lost:   4
+( 11) Video: bolt2        Time:  2.2s Speed:  132.9 fps Lost:  12
+( 12) Video: book         Time:  1.3s Speed:  137.5 fps Lost:  10
+( 13) Video: butterfly    Time:  1.3s Speed:  115.9 fps Lost:   4
+( 14) Video: car1         Time:  5.7s Speed:  130.0 fps Lost:  32
+( 15) Video: conduction1  Time:  2.4s Speed:  143.3 fps Lost:  36
+( 16) Video: crabs1       Time:  1.3s Speed:  120.0 fps Lost:   7
+( 17) Video: crossing     Time:  1.2s Speed:  105.7 fps Lost:   0
+( 18) Video: dinosaur     Time:  2.8s Speed:  115.8 fps Lost:   3
+( 19) Video: drone1       Time:  2.3s Speed:  155.2 fps Lost:  45
+( 20) Video: drone_across Time:  1.1s Speed:  138.5 fps Lost:  15
+( 21) Video: drone_flip   Time:  0.7s Speed:  155.0 fps Lost:  15
+( 22) Video: fernando     Time:  2.2s Speed:  131.1 fps Lost:  15
+( 23) Video: fish1        Time:  2.5s Speed:  145.1 fps Lost:  22
+( 24) Video: fish2        Time:  2.2s Speed:  138.0 fps Lost:  17
+( 25) Video: fish3        Time:  4.4s Speed:  116.7 fps Lost:  10
+( 26) Video: flamingo1    Time: 10.5s Speed:  131.1 fps Lost: 103
+( 27) Video: frisbee      Time:  2.4s Speed:  102.5 fps Lost:  22

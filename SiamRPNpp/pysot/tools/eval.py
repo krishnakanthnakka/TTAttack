@@ -1,6 +1,6 @@
 """ For evluating the results on Untargeted Attacks.
 
-python eval.py --tracker_path=./results_U --dataset=OTB100 --model_epoch=4_net_G.pth --case=54  --tracker_prefix=G_template_L2_500_regress_siamrpn_mobilev2_l234_dwxcorr
+python eval.py --tracker_path=./results_universal --dataset=OTB100 --model_epoch=4_net_G.pth --case=1  --tracker_prefix=G_template_L2_500_regress_siamrpn_mobilev2_l234_dwxcorr
 
 """
 
@@ -55,11 +55,11 @@ def main():
     assert len(trackers) > 0
 
     args.num = min(args.num, len(trackers))
-    root = os.path.realpath(os.path.join(os.path.dirname(__file__), '../testing_dataset'))
+    root = os.path.realpath(os.path.join(os.path.dirname(__file__), '../../../testing_dataset'))
     root = os.path.join(root, args.dataset)
 
     if args.logfilename == '':
-        log, logclose = create_logger(log_filename=os.path.join('./logs/{}/'.format(args.dataset), 'log_{}.txt'
+        log, logclose = create_logger(log_filename=os.path.join('./logs_and_metrics/{}/'.format(args.dataset), 'log_{}.txt'
                                                                 .format(datetime.datetime.now().strftime("%H:%M:%S"))))
 
     else:

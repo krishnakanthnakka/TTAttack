@@ -12,42 +12,40 @@ from utils_TTA import ssim
 from torchvision.utils import save_image
 cls_thres = 0.7
 
+
 def get_all_points(opt):
 
+    # print(opt.tracker_name)
+    # exit()
 
-    #print(opt.tracker_name)
-    #exit()
-
-    if opt.directions==23:
+    if opt.directions == 23:
 
         # HAACK FOR INFERENCE TIME FOR Siam_ocean nd SIam_mobile. Please double check for training white box for them.
         if opt.tracker_name in ['siamrpn_r50_l234_dwxcorr', 'siamrpn_r50_l234_dwxcorr_otb', 'siamrpn_r50_l234_dwxcorr_lt', 'siamrpn_r50_l234_dwxcorr2', 'siamrpn_r50_l234_dwxcorr_lt2', 'siamban', 'siam_ocean_online', 'siamrpn_mobilev2_l234_dwxcorr']:
-            pts_23 = [(4, 0), (-3, -3), (0, -4), (-3, 3), (2, -4), (-4, -2), (-4, 1), (-2, 4), (-1, 4), (3, -3), (4, 2), (3, 3), (1, -4), (2, 4), (0, 4), (-4, 0), (4, -1), (4, -2), (4, 1), (1, 4), (-1, -4), (-4, 2), (-2, -4)]
+            pts_23 = [(4, 0), (-3, -3), (0, -4), (-3, 3), (2, -4), (-4, -2), (-4, 1), (-2, 4), (-1, 4), (3, -3), (4, 2),
+                      (3, 3), (1, -4), (2, 4), (0, 4), (-4, 0), (4, -1), (4, -2), (4, 1), (1, 4), (-1, -4), (-4, 2), (-2, -4)]
         return pts_23
 
-    if opt.directions==12:
-         # HAACK FOR INFERENCE TIME FOR Siam_ocean nd SIam_mobile. Please double check for training white box for them.
+    if opt.directions == 12:
+        # HAACK FOR INFERENCE TIME FOR Siam_ocean nd SIam_mobile. Please double check for training white box for them.
         if opt.tracker_name in ['siamrpn_r50_l234_dwxcorr', 'siamrpn_r50_l234_dwxcorr_otb', 'siamrpn_r50_l234_dwxcorr_lt', 'siamrpn_r50_l234_dwxcorr2', 'siamrpn_r50_l234_dwxcorr_lt2', 'siamban', 'siam_ocean_online', 'siamrpn_mobilev2_l234_dwxcorr']:
-            pts_12 = [(0, 4), (2, 4), (3, 3), (4, 0), (0, -4), (2, -4), (3, -3), (-2, 4), (-3, 3), (-4, 0), (-2, -4), (-3, -3)]
+            pts_12 = [(0, 4), (2, 4), (3, 3), (4, 0), (0, -4), (2, -4),
+                      (3, -3), (-2, 4), (-3, 3), (-4, 0), (-2, -4), (-3, -3)]
         return pts_12
 
-    elif opt.directions ==4:
+    elif opt.directions == 4:
 
         #print("Calculating 4 directional perturbations!!")
         if opt.tracker_name in ['siamrpn_r50_l234_dwxcorr', 'siamrpn_r50_l234_dwxcorr_otb', 'siamrpn_r50_l234_dwxcorr_lt', 'siamrpn_r50_l234_dwxcorr2', 'siamrpn_r50_l234_dwxcorr_lt2', 'siamban', 'siam_ocean_online', 'siamrpn_mobilev2_l234_dwxcorr']:
-            pts_4 = [(0, 4),  (4, 0), (0, -4),  (-4, 0)]
+            pts_4 = [(0, 4), (4, 0), (0, -4), (-4, 0)]
 
         return pts_4
 
-    elif opt.directions ==8:
+    elif opt.directions == 8:
 
         if opt.tracker_name in ['siamrpn_r50_l234_dwxcorr', 'siamrpn_r50_l234_dwxcorr_otb', 'siamrpn_r50_l234_dwxcorr_lt', 'siamrpn_r50_l234_dwxcorr2', 'siamrpn_r50_l234_dwxcorr_lt2', 'siamban', 'siam_ocean_online', 'siamrpn_mobilev2_l234_dwxcorr']:
             pts_8 = [(0, 4), (2, 4), (4, 0), (0, -4), (2, -4), (-2, 4), (-4, 0), (-2, -4)]
         return pts_8
-
-
-
-
 
 
 # def get_closest_point(x, y):
@@ -83,7 +81,6 @@ def get_all_points(opt):
 #         return pts_8[index]
 
 
-
 def get_center(opt):
 
     if opt.tracker_name in ['siamrpn_r50_l234_dwxcorr', 'siamrpn_r50_l234_dwxcorr_otb', 'siamrpn_r50_l234_dwxcorr_lt', 'siamrpn_r50_l234_dwxcorr2', 'siamrpn_r50_l234_dwxcorr_lt2', 'siamrpn_mobilev2_l234_dwxcorr']:
@@ -93,9 +90,9 @@ def get_center(opt):
         return [8, 8], [17, 17]
 
     if opt.tracker_name in ['siam_ocean', 'siam_ocean_online']:
-        return [12, 12], [25,25]  # THIS IS A HACK USED AT INFERENCE
+        return [12, 12], [25, 25]  # THIS IS A HACK USED AT INFERENCE
 
-    if opt.tracker_name in ['dimp']:
+    if opt.tracker_name in ['dimp', 'siamban']:
         # DUMMY
         return [2, 2], None
     else:
@@ -125,7 +122,8 @@ class GtemplateL2500regressModel(BaseModel):
 
         self.UNTARGETED = not opt.istargeted
         n_inputch = 3 if self.UNTARGETED else 4
-        self.netG = networks.define_G(n_inputch, 3, opt.ngf, opt.netG, opt.norm, not opt.no_dropout, opt.init_type, opt.init_gain, self.gpu_ids)
+        self.netG = networks.define_G(n_inputch, 3, opt.ngf, opt.netG, opt.norm,
+                                      not opt.no_dropout, opt.init_type, opt.init_gain, self.gpu_ids)
 
         if self.isTrain:
             self.criterionL2 = torch.nn.MSELoss()
@@ -165,29 +163,20 @@ class GtemplateL2500regressModel(BaseModel):
         self.universal_flag = True
         log("Universal perturb: {}".format(self.universal_perturb))
 
-
         if not self.UNTARGETED:
 
             self.TARGETED_ATTACK_RADIUS = 5
             log("Targted attack radius: {}".format(self.TARGETED_ATTACK_RADIUS))
 
-
-
-        #exit()
-        if  self.UNTARGETED and (opt.tracker_name == 'dimp' or opt.tracker_name == 'siam_ocean' or opt.tracker_name == 'siam_ocean_online'):
+        # exit()
+        if self.UNTARGETED and (opt.tracker_name == 'dimp' or opt.tracker_name == 'siam_ocean' or opt.tracker_name == 'siam_ocean_online'):
             return
 
-
-
         self.anchors_box, self.anchors_center = self.siam.generate_all_anchors().all_anchors
-        #print(self.anchors_box.shape)
-        #exit()
-
-
+        # print(self.anchors_box.shape)
+        # exit()
 
         assert self.anchors_box.shape[2] == feature_map_size[0], 'Incorrect anchors selected!'
-
-
 
     def logparams(self, log):
         log("cls_margin   :  {}".format(self.cls_margin))
@@ -228,7 +217,6 @@ class GtemplateL2500regressModel(BaseModel):
         pos = [2, self.center_point[0] + y, self.center_point[1] + x]
         x1, y1, x2, y2 = [int(self.anchors_box[i, pos[0], pos[1], pos[2]] + 127) for i in range(4)]
 
-
         # Add this at training time for long-term tracker to target larger box
         if False:
             enhance = 8
@@ -253,8 +241,8 @@ class GtemplateL2500regressModel(BaseModel):
     def forward(self, frame_index, target_sz=(255, 255), dir_=0, enhance=False):
 
         self.enhance = enhance
-        template128_clean = torch.nn.functional.interpolate(self.template_clean1, size=(512, 512), mode='bilinear').cuda()
-
+        template128_clean = torch.nn.functional.interpolate(
+            self.template_clean1, size=(512, 512), mode='bilinear').cuda()
 
         if self.UNTARGETED:
 
@@ -269,7 +257,7 @@ class GtemplateL2500regressModel(BaseModel):
                 if self.universal_flag is True:
                     self.perturb = self.netG(template128_clean)
                     perturb = self.perturb.clone()
-                    self.universal_flag =  False
+                    self.universal_flag = False
                     print("calculating the perturbation for first frame")
 
                     # torch.save(self.perturb, "./univ.pth")
@@ -286,21 +274,20 @@ class GtemplateL2500regressModel(BaseModel):
             # mask = torch.nn.functional.interpolate(mask, size=(512, 512), mode='nearest')
             # perturb = self.netG(torch.cat((template128_clean, mask), dim=1))
 
-
             if not self.universal_perturb:
                 if frame_index == 1:
                     self.directional_pertub_dict = self.compute_directional_perturbations(template128_clean)
-                    perturb  = self.get_closest_directional_perturbation(self.directional_pertub_dict, dir_)
+                    perturb = self.get_closest_directional_perturbation(self.directional_pertub_dict, dir_)
                     print("calculating the video dependent directional perturbation at frame {}".format(frame_index))
 
                 else:
-                    perturb  = self.get_closest_directional_perturbation(self.directional_pertub_dict, dir_)
+                    perturb = self.get_closest_directional_perturbation(self.directional_pertub_dict, dir_)
 
             else:
                 if self.universal_flag is True:
                     self.directional_pertub_dict = self.compute_directional_perturbations(template128_clean)
-                    perturb  = self.get_closest_directional_perturbation(self.directional_pertub_dict, dir_)
-                    self.universal_flag =  False
+                    perturb = self.get_closest_directional_perturbation(self.directional_pertub_dict, dir_)
+                    self.universal_flag = False
                     print("calculating {}  universal directional perturbations once".format(self.opt.directions))
                     # torch.save(self.directional_pertub_dict, "./dir_univ.pth")
                     # exit()
@@ -308,16 +295,18 @@ class GtemplateL2500regressModel(BaseModel):
                     # exit()
 
                 else:
-                    perturb  = self.get_closest_directional_perturbation(self.directional_pertub_dict, dir_).clone().cuda()
+                    perturb = self.get_closest_directional_perturbation(
+                        self.directional_pertub_dict, dir_).clone().cuda()
 
         perturb = torch.nn.functional.interpolate(perturb, size=target_sz, mode='bilinear')
         self.search_adv1 = self.search_clean1 + perturb
-        self.search_adv1 = torch.min(torch.max(self.search_adv1, self.search_clean1 - self.eps), self.search_clean1 + self.eps)
+        self.search_adv1 = torch.min(
+            torch.max(self.search_adv1, self.search_clean1 - self.eps), self.search_clean1 + self.eps)
         self.search_adv1 = torch.clamp(self.search_adv1, -1.0, 1.0)
         self.search_adv255 = self.search_adv1 * 127.5 + 127.5
         self.frame += 1
 
-        return {"target_bbox": [0, 0, 10, 10], "metrics": {"MAE": torch.tensor(0.0), "Linf": self.eps/2, "SSIM": 100.0}}
+        return {"target_bbox": [0, 0, 10, 10], "metrics": {"MAE": torch.tensor(0.0), "Linf": self.eps / 2, "SSIM": 100.0}}
 
         # "target_bbox": self.target_bbox}
         # temp = self.search_clean1 * 127.5 + 127.5
@@ -331,9 +320,9 @@ class GtemplateL2500regressModel(BaseModel):
         # self.perturbmetrics = {"metrics": {"MAE": mae, "Linf": linf, "SSIM": ssimscore}, "target_bbox": self.target_bbox}
         # return self.perturbmetrics
 
-    def  compute_directional_perturbations(self, template128_clean):
+    def compute_directional_perturbations(self, template128_clean):
 
-        pts_x_y_all =  get_all_points(self.opt)
+        pts_x_y_all = get_all_points(self.opt)
         directional_pertub_dict = {}
 
         for index, point in enumerate(pts_x_y_all):
@@ -356,7 +345,7 @@ class GtemplateL2500regressModel(BaseModel):
         x = int(dist * math.cos(dir_))
         y = -int(dist * math.sin(dir_))
         test_node = (x, y)
-        pts_x_y_all =  get_all_points(self.opt)
+        pts_x_y_all = get_all_points(self.opt)
         nodes = np.asarray(pts_x_y_all)
         dist_2 = np.sum((nodes - test_node)**2, axis=1)
         index = np.argmin(dist_2)
@@ -364,11 +353,11 @@ class GtemplateL2500regressModel(BaseModel):
 
     def visualize(self, target_sz=(255, 255)):
 
-
         self.siam.model.template(self.template_clean255)
         self.template_clean1 = normalize(self.template_clean255)
 
-        template128_clean = torch.nn.functional.interpolate(self.template_clean1, size=(512, 512), mode='bilinear').cuda()
+        template128_clean = torch.nn.functional.interpolate(
+            self.template_clean1, size=(512, 512), mode='bilinear').cuda()
 
         if self.UNTARGETED:
             perturb = self.netG(template128_clean)
@@ -379,13 +368,15 @@ class GtemplateL2500regressModel(BaseModel):
 
         perturb = torch.nn.functional.interpolate(perturb, size=target_sz, mode='bilinear')
         search_adv1 = self.search_clean1 + perturb
-        search_adv1 = torch.min(torch.max(search_adv1, self.search_clean1 - self.eps), self.search_clean1 + self.eps)
+        search_adv1 = torch.min(torch.max(search_adv1, self.search_clean1 - self.eps),
+                                self.search_clean1 + self.eps)
         search_adv1 = torch.clamp(search_adv1, -1.0, 1.0)
         search_adv255 = search_adv1 * 127.5 + 127.5
         temp = self.search_clean1 * 127.5 + 127.5
         self.siam.visualize(search_adv255, self.index)
         loss = torch.nn.L1Loss()
-        print("VMAE:{:.4f}, L-inf Norm:{:.4f}".format(loss(search_adv255, temp), torch.max(torch.abs(search_adv255 - temp))), end="\r")
+        print("VMAE:{:.4f}, L-inf Norm:{:.4f}".format(loss(search_adv255, temp),
+                                                      torch.max(torch.abs(search_adv255 - temp))), end="\r")
         self.index += 1
 
     def backward_G(self):
@@ -405,7 +396,8 @@ class GtemplateL2500regressModel(BaseModel):
             if 1:
                 score_map_adv_att = self.score_maps_adv[attention_mask]
                 reg_adv_att = self.reg_res_adv[2:4, attention_mask]
-                self.loss_cls = torch.mean(torch.clamp(score_map_adv_att[:, 1] - score_map_adv_att[:, 0], min=self.cls_margin)) * self.weight_cls
+                self.loss_cls = torch.mean(torch.clamp(
+                    score_map_adv_att[:, 1] - score_map_adv_att[:, 0], min=self.cls_margin)) * self.weight_cls
                 self.loss_reg = (torch.mean(torch.clamp(reg_adv_att[0, :], min=self.side_margin1)) +
                                  torch.mean(torch.clamp(reg_adv_att[1, :], min=self.side_margin2))) * self.weight_reg
             # combine loss and calculate gradients
@@ -414,7 +406,8 @@ class GtemplateL2500regressModel(BaseModel):
             # -------------------------------- CHANGED --------------------------------  No. 1
             if 1:
 
-                self.loss_cls_T, self.loss_reg_T = self.siam.get_target_cls_reg(self.search_adv255, self.shift, self.center_point)
+                self.loss_cls_T, self.loss_reg_T = self.siam.get_target_cls_reg(
+                    self.search_adv255, self.shift, self.center_point)
                 # (5HWN,2)without softmax,(5HWN,4)
                 # self.loss_cls_T, self.loss_reg_T = self.siam.get_target_cls_reg_adaptive(self.search_adv255)  # (5HWN,2)without softmax,(5HWN,4)
 

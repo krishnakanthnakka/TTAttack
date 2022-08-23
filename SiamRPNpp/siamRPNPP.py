@@ -100,11 +100,11 @@ class SiamRPNPP():
 
             elif tracker_name in ['siamrpn_mobilev2_l234_dwxcorr']:
                 cfg_file = os.path.join(
-                    project_path_, 'pysot/experiments/siamrpn_mobilev2_l234_dwxcorr/config.yaml')
+                    project_path_, '../tracker_weights/siamrpn_mobilev2_l234_dwxcorr/config.yaml')
                 snapshot = os.path.join(
-                    project_path_, 'pysot/experiments/siamrpn_mobilev2_l234_dwxcorr/model.pth')
+                    project_path_, '../tracker_weights/siamrpn_mobilev2_l234_dwxcorr/model.pth')
 
-            elif tracker_name in ['dimp']:
+            elif tracker_name in ['dimp', 'siamban']:
                 return
 
             elif tracker_name in ['siam_ocean', 'siam_ocean_online']:

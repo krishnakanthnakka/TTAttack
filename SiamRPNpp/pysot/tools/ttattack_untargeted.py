@@ -84,8 +84,8 @@ def main(cmd_line):
         args.case, opt.eps, args.tracker_name, args.model_iter))
 
     st_time = time.time()
-    snapshot_path = os.path.join(project_path_, 'pysot/experiments/%s/model.pth' % args.tracker_name)
-    config_path = os.path.join(project_path_, 'pysot/experiments/%s/config.yaml' % args.tracker_name)
+    snapshot_path = os.path.join(project_path_, '../tracker_weights/%s/model.pth' % args.tracker_name)
+    config_path = os.path.join(project_path_, '../tracker_weights/%s/config.yaml' % args.tracker_name)
 
     print("Config path   : {}".format(config_path))
     print("snapshot path : {}".format(snapshot_path))

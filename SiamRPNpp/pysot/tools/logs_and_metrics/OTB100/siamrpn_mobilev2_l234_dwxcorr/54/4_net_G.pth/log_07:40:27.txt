@@ -1,0 +1,231 @@
+Logger saved at ./logs_and_metrics/OTB100/siamrpn_mobilev2_l234_dwxcorr/54/4_net_G.pth/log_07:40:27.txt
+Ran experiment with command: "python ttattack_untargeted.py --tracker_name=siamrpn_mobilev2_l234_dwxcorr --dataset=OTB100 --case=54 --gpu=1 --model_iter=4_net_G.pth"
+Initializing vanilla Generator without extra channel
+Center point: [12, 12], Feature Map: [25, 25]
+Actual Epsilon: 8.0
+Isuntargeted Attack: True
+Universal perturb: False
+Case: 54
+Epsilon: 8
+Tracker: siamrpn_mobilev2_l234_dwxcorr
+Checkpoint iter: 4_net_G.pth
+
+(  1) Video: Basketball   Time:   7.1s Speed: 101.5fps, mean Speed: 101.5fps MAE: nan, Avg. Mean: nan,  Lost:   0
+(  2) Video: Biker        Time:   1.3s Speed: 109.3fps, mean Speed: 105.4fps MAE: nan, Avg. Mean: nan,  Lost:   0
+(  3) Video: Bird1        Time:   3.6s Speed: 112.4fps, mean Speed: 107.7fps MAE: nan, Avg. Mean: nan,  Lost:   0
+(  4) Video: Bird2        Time:   0.9s Speed: 108.9fps, mean Speed: 108.0fps MAE: nan, Avg. Mean: nan,  Lost:   0
+(  5) Video: BlurBody     Time:   3.4s Speed: 96.8fps, mean Speed: 105.8fps MAE: nan, Avg. Mean: nan,  Lost:   0
+(  6) Video: BlurCar1     Time:   6.9s Speed: 107.6fps, mean Speed: 106.1fps MAE: nan, Avg. Mean: nan,  Lost:   0
+(  7) Video: BlurCar2     Time:   5.3s Speed: 109.6fps, mean Speed: 106.6fps MAE: nan, Avg. Mean: nan,  Lost:   0
+(  8) Video: BlurCar3     Time:   3.2s Speed: 111.3fps, mean Speed: 107.2fps MAE: nan, Avg. Mean: nan,  Lost:   0
+(  9) Video: BlurCar4     Time:   3.5s Speed: 107.7fps, mean Speed: 107.2fps MAE: nan, Avg. Mean: nan,  Lost:   0
+( 10) Video: BlurFace     Time:   4.6s Speed: 107.5fps, mean Speed: 107.2fps MAE: nan, Avg. Mean: nan,  Lost:   0
+( 11) Video: BlurOwl      Time:   5.8s Speed: 109.4fps, mean Speed: 107.4fps MAE: nan, Avg. Mean: nan,  Lost:   0
+( 12) Video: Board        Time:   6.7s Speed: 103.3fps, mean Speed: 107.1fps MAE: nan, Avg. Mean: nan,  Lost:   0
+( 13) Video: Bolt         Time:   3.1s Speed: 112.8fps, mean Speed: 107.5fps MAE: nan, Avg. Mean: nan,  Lost:   0
+( 14) Video: Bolt2        Time:   2.6s Speed: 112.2fps, mean Speed: 107.9fps MAE: nan, Avg. Mean: nan,  Lost:   0
+( 15) Video: Box          Time:  11.6s Speed: 99.9fps, mean Speed: 107.3fps MAE: nan, Avg. Mean: nan,  Lost:   0
+( 16) Video: Boy          Time:   6.3s Speed: 95.8fps, mean Speed: 106.6fps MAE: nan, Avg. Mean: nan,  Lost:   0
+( 17) Video: Car1         Time:   9.4s Speed: 108.6fps, mean Speed: 106.7fps MAE: nan, Avg. Mean: nan,  Lost:   0
+( 18) Video: Car2         Time:   8.0s Speed: 113.9fps, mean Speed: 107.1fps MAE: nan, Avg. Mean: nan,  Lost:   0
+( 19) Video: Car24        Time:  26.6s Speed: 114.8fps, mean Speed: 107.5fps MAE: nan, Avg. Mean: nan,  Lost:   0
+( 20) Video: Car4         Time:   5.8s Speed: 113.8fps, mean Speed: 107.9fps MAE: nan, Avg. Mean: nan,  Lost:   0
+( 21) Video: CarDark      Time:   3.4s Speed: 113.7fps, mean Speed: 108.1fps MAE: nan, Avg. Mean: nan,  Lost:   0
+( 22) Video: CarScale     Time:   2.3s Speed: 110.7fps, mean Speed: 108.3fps MAE: nan, Avg. Mean: nan,  Lost:   0
+( 23) Video: ClifBar      Time:   4.7s Speed: 100.9fps, mean Speed: 107.9fps MAE: nan, Avg. Mean: nan,  Lost:   0
+( 24) Video: Coke         Time:   2.6s Speed: 113.3fps, mean Speed: 108.2fps MAE: nan, Avg. Mean: nan,  Lost:   0
+( 25) Video: Couple       Time:   1.3s Speed: 111.2fps, mean Speed: 108.3fps MAE: nan, Avg. Mean: nan,  Lost:   0
+( 26) Video: Coupon       Time:   2.9s Speed: 111.3fps, mean Speed: 108.4fps MAE: nan, Avg. Mean: nan,  Lost:   0
+( 27) Video: Crossing     Time:   1.1s Speed: 107.9fps, mean Speed: 108.4fps MAE: nan, Avg. Mean: nan,  Lost:   0
+( 28) Video: Crowds       Time:   3.1s Speed: 110.7fps, mean Speed: 108.5fps MAE: nan, Avg. Mean: nan,  Lost:   0
+( 29) Video: Dancer       Time:   2.0s Speed: 110.4fps, mean Speed: 108.5fps MAE: nan, Avg. Mean: nan,  Lost:   0
+( 30) Video: Dancer2      Time:   1.4s Speed: 110.3fps, mean Speed: 108.6fps MAE: nan, Avg. Mean: nan,  Lost:   0
+( 31) Video: David        Time:   4.1s Speed: 114.1fps, mean Speed: 108.8fps MAE: nan, Avg. Mean: nan,  Lost:   0
+( 32) Video: David2       Time:   4.7s Speed: 113.3fps, mean Speed: 108.9fps MAE: nan, Avg. Mean: nan,  Lost:   0
+( 33) Video: David3       Time:   2.2s Speed: 112.7fps, mean Speed: 109.0fps MAE: nan, Avg. Mean: nan,  Lost:   0
+( 34) Video: Deer         Time:   0.7s Speed: 102.4fps, mean Speed: 108.8fps MAE: nan, Avg. Mean: nan,  Lost:   0
+( 35) Video: Diving       Time:   1.9s Speed: 113.0fps, mean Speed: 108.9fps MAE: nan, Avg. Mean: nan,  Lost:   0
+( 36) Video: Dog          Time:   1.1s Speed: 109.7fps, mean Speed: 109.0fps MAE: nan, Avg. Mean: nan,  Lost:   0
+( 37) Video: Dog1         Time:  12.5s Speed: 108.0fps, mean Speed: 108.9fps MAE: nan, Avg. Mean: nan,  Lost:   0
+( 38) Video: Doll         Time:  34.9s Speed: 110.8fps, mean Speed: 109.0fps MAE: nan, Avg. Mean: nan,  Lost:   0
+( 39) Video: DragonBaby   Time:   1.0s Speed: 109.0fps, mean Speed: 109.0fps MAE: nan, Avg. Mean: nan,  Lost:   0
+( 40) Video: Dudek        Time:  10.7s Speed: 107.0fps, mean Speed: 108.9fps MAE: nan, Avg. Mean: nan,  Lost:   0
+( 41) Video: FaceOcc1     Time:   8.1s Speed: 110.2fps, mean Speed: 109.0fps MAE: nan, Avg. Mean: nan,  Lost:   0
+( 42) Video: FaceOcc2     Time:   7.3s Speed: 111.5fps, mean Speed: 109.0fps MAE: nan, Avg. Mean: nan,  Lost:   0
+( 43) Video: Fish         Time:   4.2s Speed: 113.6fps, mean Speed: 109.1fps MAE: nan, Avg. Mean: nan,  Lost:   0
+( 44) Video: FleetFace    Time:   6.5s Speed: 108.9fps, mean Speed: 109.1fps MAE: nan, Avg. Mean: nan,  Lost:   0
+( 45) Video: Football     Time:   3.2s Speed: 114.0fps, mean Speed: 109.2fps MAE: nan, Avg. Mean: nan,  Lost:   0
+( 46) Video: Football1    Time:   0.6s Speed: 112.5fps, mean Speed: 109.3fps MAE: nan, Avg. Mean: nan,  Lost:   0
+( 47) Video: Freeman1     Time:   2.9s Speed: 113.3fps, mean Speed: 109.4fps MAE: nan, Avg. Mean: nan,  Lost:   0
+( 48) Video: Freeman3     Time:   4.0s Speed: 113.8fps, mean Speed: 109.5fps MAE: nan, Avg. Mean: nan,  Lost:   0
+( 49) Video: Freeman4     Time:   2.4s Speed: 116.4fps, mean Speed: 109.6fps MAE: nan, Avg. Mean: nan,  Lost:   0
+( 50) Video: Girl         Time:   4.2s Speed: 117.6fps, mean Speed: 109.8fps MAE: nan, Avg. Mean: nan,  Lost:   0
+( 51) Video: Girl2        Time:  13.3s Speed: 112.7fps, mean Speed: 109.8fps MAE: nan, Avg. Mean: nan,  Lost:   0
+( 52) Video: Gym          Time:   6.9s Speed: 111.1fps, mean Speed: 109.9fps MAE: nan, Avg. Mean: nan,  Lost:   0
+( 53) Video: Human2       Time:  11.7s Speed: 96.5fps, mean Speed: 109.6fps MAE: nan, Avg. Mean: nan,  Lost:   0
+( 54) Video: Human3       Time:  15.8s Speed: 107.1fps, mean Speed: 109.6fps MAE: nan, Avg. Mean: nan,  Lost:   0
+( 55) Video: Human4-2     Time:   6.2s Speed: 107.6fps, mean Speed: 109.5fps MAE: nan, Avg. Mean: nan,  Lost:   0
+( 56) Video: Human5       Time:   6.2s Speed: 114.4fps, mean Speed: 109.6fps MAE: nan, Avg. Mean: nan,  Lost:   0
+( 57) Video: Human6       Time:   7.0s Speed: 113.0fps, mean Speed: 109.7fps MAE: nan, Avg. Mean: nan,  Lost:   0
+( 58) Video: Human7       Time:   2.2s Speed: 114.0fps, mean Speed: 109.8fps MAE: nan, Avg. Mean: nan,  Lost:   0
+( 59) Video: Human8       Time:   1.1s Speed: 113.4fps, mean Speed: 109.8fps MAE: nan, Avg. Mean: nan,  Lost:   0
+( 60) Video: Human9       Time:   2.6s Speed: 115.3fps, mean Speed: 109.9fps MAE: nan, Avg. Mean: nan,  Lost:   0
+( 61) Video: Ironman      Time:   1.5s Speed: 112.3fps, mean Speed: 109.9fps MAE: nan, Avg. Mean: nan,  Lost:   0
+( 62) Video: Jogging-1    Time:   2.7s Speed: 113.6fps, mean Speed: 110.0fps MAE: nan, Avg. Mean: nan,  Lost:   0
+( 63) Video: Jogging-2    Time:   3.1s Speed: 97.5fps, mean Speed: 109.8fps MAE: nan, Avg. Mean: nan,  Lost:   0
+( 64) Video: Jump         Time:   1.3s Speed: 93.7fps, mean Speed: 109.6fps MAE: nan, Avg. Mean: nan,  Lost:   0
+( 65) Video: Jumping      Time:   3.0s Speed: 102.7fps, mean Speed: 109.4fps MAE: nan, Avg. Mean: nan,  Lost:   0
+( 66) Video: KiteSurf     Time:   0.7s Speed: 114.0fps, mean Speed: 109.5fps MAE: nan, Avg. Mean: nan,  Lost:   0
+( 67) Video: Lemming      Time:  11.6s Speed: 114.9fps, mean Speed: 109.6fps MAE: nan, Avg. Mean: nan,  Lost:   0
+( 68) Video: Liquor       Time:  15.4s Speed: 112.7fps, mean Speed: 109.6fps MAE: nan, Avg. Mean: nan,  Lost:   0
+( 69) Video: Man          Time:   1.2s Speed: 115.2fps, mean Speed: 109.7fps MAE: nan, Avg. Mean: nan,  Lost:   0
+( 70) Video: Matrix       Time:   0.9s Speed: 113.4fps, mean Speed: 109.8fps MAE: nan, Avg. Mean: nan,  Lost:   0
+( 71) Video: Mhyang       Time:  13.2s Speed: 113.0fps, mean Speed: 109.8fps MAE: nan, Avg. Mean: nan,  Lost:   0
+( 72) Video: MotorRolling Time:   1.5s Speed: 110.5fps, mean Speed: 109.8fps MAE: nan, Avg. Mean: nan,  Lost:   0
+( 73) Video: MountainBike Time:   2.0s Speed: 113.7fps, mean Speed: 109.9fps MAE: nan, Avg. Mean: nan,  Lost:   0
+( 74) Video: Panda        Time:   8.7s Speed: 114.4fps, mean Speed: 109.9fps MAE: nan, Avg. Mean: nan,  Lost:   0
+( 75) Video: RedTeam      Time:  16.7s Speed: 114.6fps, mean Speed: 110.0fps MAE: nan, Avg. Mean: nan,  Lost:   0
+( 76) Video: Rubik        Time:  17.6s Speed: 113.7fps, mean Speed: 110.1fps MAE: nan, Avg. Mean: nan,  Lost:   0
+( 77) Video: Shaking      Time:   3.3s Speed: 111.4fps, mean Speed: 110.1fps MAE: nan, Avg. Mean: nan,  Lost:   0
+( 78) Video: Singer1      Time:   3.2s Speed: 107.9fps, mean Speed: 110.0fps MAE: nan, Avg. Mean: nan,  Lost:   0
+( 79) Video: Singer2      Time:   3.3s Speed: 110.3fps, mean Speed: 110.0fps MAE: nan, Avg. Mean: nan,  Lost:   0
+( 80) Video: Skater       Time:   1.4s Speed: 110.2fps, mean Speed: 110.1fps MAE: nan, Avg. Mean: nan,  Lost:   0
+( 81) Video: Skater2      Time:   3.8s Speed: 113.2fps, mean Speed: 110.1fps MAE: nan, Avg. Mean: nan,  Lost:   0
+( 82) Video: Skating1     Time:   3.5s Speed: 112.6fps, mean Speed: 110.1fps MAE: nan, Avg. Mean: nan,  Lost:   0
+( 83) Video: Skating2-1   Time:   4.4s Speed: 108.4fps, mean Speed: 110.1fps MAE: nan, Avg. Mean: nan,  Lost:   0
+( 84) Video: Skating2-2   Time:   4.4s Speed: 107.4fps, mean Speed: 110.1fps MAE: nan, Avg. Mean: nan,  Lost:   0
+( 85) Video: Skiing       Time:   0.7s Speed: 110.4fps, mean Speed: 110.1fps MAE: nan, Avg. Mean: nan,  Lost:   0
+( 86) Video: Soccer       Time:   3.5s Speed: 112.4fps, mean Speed: 110.1fps MAE: nan, Avg. Mean: nan,  Lost:   0
+( 87) Video: Subway       Time:   1.6s Speed: 110.4fps, mean Speed: 110.1fps MAE: nan, Avg. Mean: nan,  Lost:   0
+( 88) Video: Surfer       Time:   3.3s Speed: 114.4fps, mean Speed: 110.1fps MAE: nan, Avg. Mean: nan,  Lost:   0
+( 89) Video: Suv          Time:   9.0s Speed: 104.7fps, mean Speed: 110.1fps MAE: nan, Avg. Mean: nan,  Lost:   0
+( 90) Video: Sylvester    Time:  12.1s Speed: 111.2fps, mean Speed: 110.1fps MAE: nan, Avg. Mean: nan,  Lost:   0
+( 91) Video: Tiger1       Time:   3.3s Speed: 104.9fps, mean Speed: 110.0fps MAE: nan, Avg. Mean: nan,  Lost:   0
+( 92) Video: Tiger2       Time:   3.2s Speed: 114.9fps, mean Speed: 110.1fps MAE: nan, Avg. Mean: nan,  Lost:   0
+( 93) Video: Toy          Time:   2.4s Speed: 111.8fps, mean Speed: 110.1fps MAE: nan, Avg. Mean: nan,  Lost:   0
+( 94) Video: Trans        Time:   1.2s Speed: 101.0fps, mean Speed: 110.0fps MAE: nan, Avg. Mean: nan,  Lost:   0
+( 95) Video: Trellis      Time:   5.1s Speed: 112.4fps, mean Speed: 110.0fps MAE: nan, Avg. Mean: nan,  Lost:   0
+( 96) Video: Twinnings    Time:   4.2s Speed: 112.7fps, mean Speed: 110.1fps MAE: nan, Avg. Mean: nan,  Lost:   0
+( 97) Video: Vase         Time:   2.4s Speed: 112.1fps, mean Speed: 110.1fps MAE: nan, Avg. Mean: nan,  Lost:   0
+( 98) Video: Walking      Time:   3.6s Speed: 115.0fps, mean Speed: 110.1fps MAE: nan, Avg. Mean: nan,  Lost:   0
+( 99) Video: Walking2     Time:   4.4s Speed: 113.8fps, mean Speed: 110.2fps MAE: nan, Avg. Mean: nan,  Lost:   0
+(100) Video: Woman        Time:   5.2s Speed: 114.1fps, mean Speed: 110.2fps MAE: nan, Avg. Mean: nan,  Lost:   0
+Total time : 734.1s, Avg MAE : nan
+Trackers: ['G_template_L2_500_regress_siamrpn_mobilev2_l234_dwxcorr']
+Case: 54
+Checkpoint: 4_net_G.pth
+Dataset: OTB100
+--------------------------------------------------------------------------------------------------
+|                      Tracker name                       | Success | Norm Precision | Precision |
+--------------------------------------------------------------------------------------------------
+| G_template_L2_500_regress_siamrpn_mobilev2_l234_dwxcorr |  0.217  |     0.263      |   0.281   |
+--------------------------------------------------------------------------------------------------
+
+
+
+-------------------------------------------------------------------------------
+|    Tracker name     |G_template_L2_500_regress_siamrpn_mobilev2_l234_dwxcorr|
+-------------------------------------------------------------------------------
+|     Video name      | success | precision |
+-------------------------------------------------------------------------------
+|     Basketball      |[31m  0.011  [0m|[31m   0.013   [0m|
+|        Biker        |[31m  0.070  [0m|[31m   0.156   [0m|
+|        Bird1        |[31m  0.012  [0m|[31m   0.022   [0m|
+|        Bird2        |[31m  0.539  [0m|   0.730   |
+|      BlurBody       |  0.643  |   0.634   |
+|      BlurCar1       |[31m  0.233  [0m|[31m   0.262   [0m|
+|      BlurCar2       |  0.818  |   0.901   |
+|      BlurCar3       |[31m  0.072  [0m|[31m   0.101   [0m|
+|      BlurCar4       |[31m  0.033  [0m|[31m   0.027   [0m|
+|      BlurFace       |[31m  0.074  [0m|[31m   0.092   [0m|
+|       BlurOwl       |[31m  0.238  [0m|[31m   0.255   [0m|
+|        Board        |  0.623  |   0.655   |
+|        Bolt         |[31m  0.122  [0m|[31m   0.193   [0m|
+|        Bolt2        |[31m  0.019  [0m|[31m   0.025   [0m|
+|         Box         |  0.715  |   0.837   |
+|         Boy         |[31m  0.090  [0m|[31m   0.119   [0m|
+|        Car1         |[31m  0.086  [0m|[31m   0.131   [0m|
+|        Car2         |[31m  0.345  [0m|[31m   0.434   [0m|
+|        Car24        |[31m  0.001  [0m|[31m   0.002   [0m|
+|        Car4         |  0.671  |   0.834   |
+|       CarDark       |[31m  0.010  [0m|[31m   0.016   [0m|
+|      CarScale       |[31m  0.021  [0m|[31m   0.031   [0m|
+|       ClifBar       |[31m  0.171  [0m|[31m   0.264   [0m|
+|        Coke         |[31m  0.532  [0m|   0.735   |
+|       Couple        |  0.731  |   0.897   |
+|       Coupon        |[31m  0.315  [0m|[31m   0.344   [0m|
+|      Crossing       |[31m  0.041  [0m|[31m   0.067   [0m|
+|       Crowds        |[31m  0.020  [0m|[31m   0.026   [0m|
+|       Dancer        |[31m  0.037  [0m|[31m   0.038   [0m|
+|       Dancer2       |[31m  0.207  [0m|[31m   0.261   [0m|
+|        David        |[31m  0.026  [0m|[31m   0.041   [0m|
+|       David2        |[31m  0.002  [0m|[31m   0.004   [0m|
+|       David3        |  0.742  |   0.894   |
+|        Deer         |[31m  0.060  [0m|[31m   0.066   [0m|
+|       Diving        |[31m  0.191  [0m|[31m   0.288   [0m|
+|         Dog         |[31m  0.059  [0m|[31m   0.083   [0m|
+|        Dog1         |[31m  0.007  [0m|[31m   0.010   [0m|
+|        Doll         |[31m  0.036  [0m|[31m   0.050   [0m|
+|     DragonBaby      |[31m  0.049  [0m|[31m   0.060   [0m|
+|        Dudek        |  0.768  |   0.832   |
+|      FaceOcc1       |[31m  0.069  [0m|[31m   0.077   [0m|
+|      FaceOcc2       |[31m  0.063  [0m|[31m   0.070   [0m|
+|        Fish         |[31m  0.100  [0m|[31m   0.139   [0m|
+|      FleetFace      |[31m  0.505  [0m|[31m   0.534   [0m|
+|      Football       |[31m  0.170  [0m|[31m   0.194   [0m|
+|      Football1      |[31m  0.113  [0m|[31m   0.165   [0m|
+|      Freeman1       |[31m  0.005  [0m|[31m   0.009   [0m|
+|      Freeman3       |[31m  0.002  [0m|[31m   0.009   [0m|
+|      Freeman4       |[31m  0.004  [0m|[31m   0.012   [0m|
+|        Girl         |[31m  0.025  [0m|[31m   0.048   [0m|
+|        Girl2        |[31m  0.593  [0m|   0.688   |
+|         Gym         |[31m  0.079  [0m|[31m   0.130   [0m|
+|       Human2        |  0.662  |   0.740   |
+|       Human3        |[31m  0.004  [0m|[31m   0.005   [0m|
+|      Human4-2       |[31m  0.116  [0m|[31m   0.169   [0m|
+|       Human5        |[31m  0.028  [0m|[31m   0.044   [0m|
+|       Human6        |[31m  0.177  [0m|[31m   0.218   [0m|
+|       Human7        |  0.821  |   0.953   |
+|       Human8        |[31m  0.579  [0m|   0.740   |
+|       Human9        |  0.771  |   0.925   |
+|       Ironman       |[31m  0.012  [0m|[31m   0.014   [0m|
+|      Jogging-1      |[31m  0.180  [0m|[31m   0.210   [0m|
+|      Jogging-2      |  0.802  |   0.901   |
+|        Jump         |[31m  0.087  [0m|[31m   0.081   [0m|
+|       Jumping       |[31m  0.020  [0m|[31m   0.030   [0m|
+|      KiteSurf       |[31m  0.016  [0m|[31m   0.029   [0m|
+|       Lemming       |[31m  0.207  [0m|[31m   0.232   [0m|
+|       Liquor        |[31m  0.395  [0m|[31m   0.488   [0m|
+|         Man         |[31m  0.011  [0m|[31m   0.016   [0m|
+|       Matrix        |[31m  0.022  [0m|[31m   0.029   [0m|
+|       Mhyang        |[31m  0.013  [0m|[31m   0.021   [0m|
+|    MotorRolling     |[31m  0.281  [0m|[31m   0.330   [0m|
+|    MountainBike     |[31m  0.141  [0m|[31m   0.295   [0m|
+|        Panda        |[31m  0.005  [0m|[31m   0.008   [0m|
+|       RedTeam       |[31m  0.005  [0m|[31m   0.012   [0m|
+|        Rubik        |[31m  0.017  [0m|[31m   0.022   [0m|
+|       Shaking       |[31m  0.024  [0m|[31m   0.028   [0m|
+|       Singer1       |  0.770  |   0.831   |
+|       Singer2       |[31m  0.023  [0m|[31m   0.026   [0m|
+|       Skater        |[31m  0.307  [0m|[31m   0.347   [0m|
+|       Skater2       |[31m  0.362  [0m|[31m   0.439   [0m|
+|      Skating1       |[31m  0.092  [0m|[31m   0.149   [0m|
+|     Skating2-1      |[31m  0.435  [0m|[31m   0.517   [0m|
+|     Skating2-2      |[31m  0.493  [0m|[31m   0.494   [0m|
+|       Skiing        |[31m  0.012  [0m|[31m   0.020   [0m|
+|       Soccer        |[31m  0.047  [0m|[31m   0.052   [0m|
+|       Subway        |[31m  0.008  [0m|[31m   0.011   [0m|
+|       Surfer        |[31m  0.003  [0m|[31m   0.007   [0m|
+|         Suv         |[31m  0.033  [0m|[31m   0.049   [0m|
+|      Sylvester      |[31m  0.057  [0m|[31m   0.094   [0m|
+|       Tiger1        |[31m  0.088  [0m|[31m   0.134   [0m|
+|       Tiger2        |[31m  0.053  [0m|[31m   0.083   [0m|
+|         Toy         |[31m  0.079  [0m|[31m   0.149   [0m|
+|        Trans        |[31m  0.517  [0m|[31m   0.417   [0m|
+|       Trellis       |[31m  0.157  [0m|[31m   0.287   [0m|
+|      Twinnings      |[31m  0.330  [0m|[31m   0.384   [0m|
+|        Vase         |[31m  0.461  [0m|   0.666   |
+|       Walking       |[31m  0.410  [0m|   0.623   |
+|      Walking2       |[31m  0.306  [0m|[31m   0.366   [0m|
+|        Woman        |[31m  0.082  [0m|[31m   0.101   [0m|
+-------------------------------------------------------------------------------

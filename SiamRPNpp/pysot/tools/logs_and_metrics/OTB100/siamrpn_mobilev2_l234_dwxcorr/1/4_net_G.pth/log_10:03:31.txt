@@ -1,0 +1,117 @@
+Logger saved at ./logs_and_metrics/OTB100/siamrpn_mobilev2_l234_dwxcorr/1/4_net_G.pth/log_10:03:31.txt
+Ran experiment with command: "python ttattack_untargeted.py --tracker_name=siamrpn_mobilev2_l234_dwxcorr --dataset=OTB100 --case=1 --gpu=1 --model_iter=4_net_G.pth --attack_universal"
+Initializing vanilla Generator without extra channel
+Center point: [12, 12], Feature Map: [25, 25]
+Actual Epsilon: 8.0
+Isuntargeted Attack: True
+Universal perturb: True
+Case: 1
+Epsilon: 8
+Tracker: siamrpn_mobilev2_l234_dwxcorr
+Checkpoint iteration: 4_net_G.pth
+
+(  1) Video: Basketball   Time:   6.6s Speed: 109.1fps, mean Speed: 109.1fps,  Lost:   0
+(  2) Video: Biker        Time:   1.2s Speed: 117.9fps, mean Speed: 113.5fps,  Lost:   0
+(  3) Video: Bird1        Time:   3.5s Speed: 117.2fps, mean Speed: 114.7fps,  Lost:   0
+(  4) Video: Bird2        Time:   0.8s Speed: 117.1fps, mean Speed: 115.3fps,  Lost:   0
+(  5) Video: BlurBody     Time:   3.3s Speed: 101.6fps, mean Speed: 112.6fps,  Lost:   0
+(  6) Video: BlurCar1     Time:   6.8s Speed: 109.6fps, mean Speed: 112.1fps,  Lost:   0
+(  7) Video: BlurCar2     Time:   5.0s Speed: 117.2fps, mean Speed: 112.8fps,  Lost:   0
+(  8) Video: BlurCar3     Time:   3.0s Speed: 117.8fps, mean Speed: 113.4fps,  Lost:   0
+(  9) Video: BlurCar4     Time:   3.3s Speed: 114.6fps, mean Speed: 113.6fps,  Lost:   0
+( 10) Video: BlurFace     Time:   4.4s Speed: 111.3fps, mean Speed: 113.3fps,  Lost:   0
+( 11) Video: BlurOwl      Time:   5.5s Speed: 115.0fps, mean Speed: 113.5fps,  Lost:   0
+( 12) Video: Board        Time:   6.5s Speed: 107.3fps, mean Speed: 113.0fps,  Lost:   0
+( 13) Video: Bolt         Time:   3.0s Speed: 117.8fps, mean Speed: 113.4fps,  Lost:   0
+( 14) Video: Bolt2        Time:   2.5s Speed: 117.3fps, mean Speed: 113.6fps,  Lost:   0
+( 15) Video: Box          Time:  10.3s Speed: 113.1fps, mean Speed: 113.6fps,  Lost:   0
+( 16) Video: Boy          Time:   5.4s Speed: 112.3fps, mean Speed: 113.5fps,  Lost:   0
+( 17) Video: Car1         Time:   8.9s Speed: 114.5fps, mean Speed: 113.6fps,  Lost:   0
+( 18) Video: Car2         Time:   8.2s Speed: 110.6fps, mean Speed: 113.4fps,  Lost:   0
+( 19) Video: Car24        Time:  27.7s Speed: 110.5fps, mean Speed: 113.3fps,  Lost:   0
+( 20) Video: Car4         Time:   5.8s Speed: 114.1fps, mean Speed: 113.3fps,  Lost:   0
+( 21) Video: CarDark      Time:   3.4s Speed: 113.8fps, mean Speed: 113.3fps,  Lost:   0
+( 22) Video: CarScale     Time:   2.2s Speed: 113.4fps, mean Speed: 113.3fps,  Lost:   0
+( 23) Video: ClifBar      Time:   4.2s Speed: 113.3fps, mean Speed: 113.3fps,  Lost:   0
+( 24) Video: Coke         Time:   2.5s Speed: 115.5fps, mean Speed: 113.4fps,  Lost:   0
+( 25) Video: Couple       Time:   1.2s Speed: 112.0fps, mean Speed: 113.4fps,  Lost:   0
+( 26) Video: Coupon       Time:   3.0s Speed: 109.7fps, mean Speed: 113.2fps,  Lost:   0
+( 27) Video: Crossing     Time:   1.0s Speed: 114.2fps, mean Speed: 113.3fps,  Lost:   0
+( 28) Video: Crowds       Time:   3.0s Speed: 115.6fps, mean Speed: 113.3fps,  Lost:   0
+( 29) Video: Dancer       Time:   2.0s Speed: 113.2fps, mean Speed: 113.3fps,  Lost:   0
+( 30) Video: Dancer2      Time:   1.3s Speed: 114.5fps, mean Speed: 113.4fps,  Lost:   0
+( 31) Video: David        Time:   4.1s Speed: 114.3fps, mean Speed: 113.4fps,  Lost:   0
+( 32) Video: David2       Time:   4.7s Speed: 114.4fps, mean Speed: 113.4fps,  Lost:   0
+( 33) Video: David3       Time:   2.2s Speed: 115.0fps, mean Speed: 113.5fps,  Lost:   0
+( 34) Video: Deer         Time:   0.7s Speed: 104.0fps, mean Speed: 113.2fps,  Lost:   0
+( 35) Video: Diving       Time:   1.9s Speed: 112.5fps, mean Speed: 113.2fps,  Lost:   0
+( 36) Video: Dog          Time:   1.1s Speed: 112.1fps, mean Speed: 113.2fps,  Lost:   0
+( 37) Video: Dog1         Time:  11.6s Speed: 116.7fps, mean Speed: 113.3fps,  Lost:   0
+( 38) Video: Doll         Time:  34.9s Speed: 110.8fps, mean Speed: 113.2fps,  Lost:   0
+( 39) Video: DragonBaby   Time:   0.9s Speed: 118.2fps, mean Speed: 113.3fps,  Lost:   0
+( 40) Video: Dudek        Time:  10.4s Speed: 109.9fps, mean Speed: 113.2fps,  Lost:   0
+( 41) Video: FaceOcc1     Time:   7.8s Speed: 113.8fps, mean Speed: 113.2fps,  Lost:   0
+( 42) Video: FaceOcc2     Time:   7.1s Speed: 114.9fps, mean Speed: 113.3fps,  Lost:   0
+( 43) Video: Fish         Time:   4.1s Speed: 115.9fps, mean Speed: 113.3fps,  Lost:   0
+( 44) Video: FleetFace    Time:   6.3s Speed: 112.1fps, mean Speed: 113.3fps,  Lost:   0
+( 45) Video: Football     Time:   3.1s Speed: 117.7fps, mean Speed: 113.4fps,  Lost:   0
+( 46) Video: Football1    Time:   0.6s Speed: 117.5fps, mean Speed: 113.5fps,  Lost:   0
+( 47) Video: Freeman1     Time:   2.8s Speed: 117.6fps, mean Speed: 113.6fps,  Lost:   0
+( 48) Video: Freeman3     Time:   3.9s Speed: 118.1fps, mean Speed: 113.7fps,  Lost:   0
+( 49) Video: Freeman4     Time:   2.4s Speed: 117.5fps, mean Speed: 113.8fps,  Lost:   0
+( 50) Video: Girl         Time:   4.2s Speed: 119.4fps, mean Speed: 113.9fps,  Lost:   0
+( 51) Video: Girl2        Time:  13.0s Speed: 115.6fps, mean Speed: 113.9fps,  Lost:   0
+( 52) Video: Gym          Time:   6.4s Speed: 119.1fps, mean Speed: 114.0fps,  Lost:   0
+( 53) Video: Human2       Time:  10.3s Speed: 109.6fps, mean Speed: 113.9fps,  Lost:   0
+( 54) Video: Human3       Time:  14.4s Speed: 117.6fps, mean Speed: 114.0fps,  Lost:   0
+( 55) Video: Human4-2     Time:   6.0s Speed: 111.5fps, mean Speed: 113.9fps,  Lost:   0
+( 56) Video: Human5       Time:   6.2s Speed: 115.6fps, mean Speed: 114.0fps,  Lost:   0
+( 57) Video: Human6       Time:   6.8s Speed: 116.9fps, mean Speed: 114.0fps,  Lost:   0
+( 58) Video: Human7       Time:   2.1s Speed: 118.1fps, mean Speed: 114.1fps,  Lost:   0
+( 59) Video: Human8       Time:   1.1s Speed: 120.2fps, mean Speed: 114.2fps,  Lost:   0
+( 60) Video: Human9       Time:   2.5s Speed: 120.1fps, mean Speed: 114.3fps,  Lost:   0
+( 61) Video: Ironman      Time:   1.4s Speed: 115.6fps, mean Speed: 114.3fps,  Lost:   0
+( 62) Video: Jogging-1    Time:   2.6s Speed: 117.5fps, mean Speed: 114.4fps,  Lost:   0
+( 63) Video: Jogging-2    Time:   2.9s Speed: 104.3fps, mean Speed: 114.2fps,  Lost:   0
+( 64) Video: Jump         Time:   1.3s Speed: 94.2fps, mean Speed: 113.9fps,  Lost:   0
+( 65) Video: Jumping      Time:   3.3s Speed: 95.6fps, mean Speed: 113.6fps,  Lost:   0
+( 66) Video: KiteSurf     Time:   0.9s Speed: 96.7fps, mean Speed: 113.4fps,  Lost:   0
+( 67) Video: Lemming      Time:  12.0s Speed: 111.7fps, mean Speed: 113.3fps,  Lost:   0
+( 68) Video: Liquor       Time:  15.1s Speed: 115.2fps, mean Speed: 113.4fps,  Lost:   0
+( 69) Video: Man          Time:   1.1s Speed: 118.7fps, mean Speed: 113.4fps,  Lost:   0
+( 70) Video: Matrix       Time:   0.9s Speed: 115.7fps, mean Speed: 113.5fps,  Lost:   0
+( 71) Video: Mhyang       Time:  13.0s Speed: 114.3fps, mean Speed: 113.5fps,  Lost:   0
+( 72) Video: MotorRolling Time:   1.4s Speed: 114.7fps, mean Speed: 113.5fps,  Lost:   0
+( 73) Video: MountainBike Time:   1.9s Speed: 118.7fps, mean Speed: 113.6fps,  Lost:   0
+( 74) Video: Panda        Time:   8.5s Speed: 118.0fps, mean Speed: 113.6fps,  Lost:   0
+( 75) Video: RedTeam      Time:  16.1s Speed: 119.0fps, mean Speed: 113.7fps,  Lost:   0
+( 76) Video: Rubik        Time:  17.0s Speed: 117.2fps, mean Speed: 113.8fps,  Lost:   0
+( 77) Video: Shaking      Time:   3.1s Speed: 118.3fps, mean Speed: 113.8fps,  Lost:   0
+( 78) Video: Singer1      Time:   3.1s Speed: 111.9fps, mean Speed: 113.8fps,  Lost:   0
+( 79) Video: Singer2      Time:   3.2s Speed: 114.2fps, mean Speed: 113.8fps,  Lost:   0
+( 80) Video: Skater       Time:   1.4s Speed: 114.4fps, mean Speed: 113.8fps,  Lost:   0
+( 81) Video: Skater2      Time:   3.8s Speed: 113.1fps, mean Speed: 113.8fps,  Lost:   0
+( 82) Video: Skating1     Time:   3.5s Speed: 114.8fps, mean Speed: 113.8fps,  Lost:   0
+( 83) Video: Skating2-1   Time:   4.2s Speed: 111.1fps, mean Speed: 113.8fps,  Lost:   0
+( 84) Video: Skating2-2   Time:   4.4s Speed: 108.0fps, mean Speed: 113.7fps,  Lost:   0
+( 85) Video: Skiing       Time:   0.7s Speed: 115.8fps, mean Speed: 113.7fps,  Lost:   0
+( 86) Video: Soccer       Time:   3.4s Speed: 116.1fps, mean Speed: 113.8fps,  Lost:   0
+( 87) Video: Subway       Time:   1.5s Speed: 115.2fps, mean Speed: 113.8fps,  Lost:   0
+( 88) Video: Surfer       Time:   3.2s Speed: 117.3fps, mean Speed: 113.8fps,  Lost:   0
+( 89) Video: Suv          Time:   8.4s Speed: 112.2fps, mean Speed: 113.8fps,  Lost:   0
+( 90) Video: Sylvester    Time:  11.7s Speed: 114.6fps, mean Speed: 113.8fps,  Lost:   0
+( 91) Video: Tiger1       Time:   3.0s Speed: 116.6fps, mean Speed: 113.8fps,  Lost:   0
+( 92) Video: Tiger2       Time:   3.1s Speed: 115.6fps, mean Speed: 113.8fps,  Lost:   0
+( 93) Video: Toy          Time:   2.3s Speed: 116.3fps, mean Speed: 113.9fps,  Lost:   0
+( 94) Video: Trans        Time:   1.2s Speed: 104.2fps, mean Speed: 113.8fps,  Lost:   0
+( 95) Video: Trellis      Time:   5.1s Speed: 111.4fps, mean Speed: 113.7fps,  Lost:   0
+( 96) Video: Twinnings    Time:   4.1s Speed: 115.0fps, mean Speed: 113.8fps,  Lost:   0
+( 97) Video: Vase         Time:   2.4s Speed: 113.5fps, mean Speed: 113.8fps,  Lost:   0
+( 98) Video: Walking      Time:   3.5s Speed: 118.3fps, mean Speed: 113.8fps,  Lost:   0
+( 99) Video: Walking2     Time:   4.2s Speed: 118.2fps, mean Speed: 113.8fps,  Lost:   0
+(100) Video: Woman        Time:   5.1s Speed: 116.9fps, mean Speed: 113.9fps,  Lost:   0
+Total time : 760.5s, Avg MAE : nan
+Trackers: ['G_template_L2_500_regress_siamrpn_mobilev2_l234_dwxcorr']
+Case: 1
+Checkpoint: 4_net_G.pth
+Dataset: OTB100
