@@ -1,0 +1,132 @@
+Logger saved at ./logs_and_metrics/OTB100/siamrpn_mobilev2_l234_dwxcorr/1/4_net_G.pth/log_10:21:56.txt
+Ran experiment with command: "python ttattack_untargeted.py --tracker_name=siamrpn_mobilev2_l234_dwxcorr --dataset=OTB100 --case=1 --gpu=1 --model_iter=4_net_G.pth --attack_universal --video=Biker"
+Initializing vanilla Generator without extra channel
+Center point: [12, 12], Feature Map: [25, 25]
+Actual Epsilon: 8.0
+Isuntargeted Attack: True
+Universal perturb: True
+Case: 1
+Epsilon: 8
+Tracker: siamrpn_mobilev2_l234_dwxcorr
+Checkpoint iteration: 4_net_G.pth
+
+(  2) Video: Biker        Time:   1.7s Speed: 83.1fps, mean Speed: 83.1fps,  Lost:   0
+Total time : 3.2s, Avg MAE : nan
+Trackers: ['G_template_L2_500_regress_siamrpn_mobilev2_l234_dwxcorr']
+Case: 1
+Checkpoint: 4_net_G.pth
+Dataset: OTB100
+--------------------------------------------------------------------------------------------------
+|                      Tracker name                       | Success | Norm Precision | Precision |
+--------------------------------------------------------------------------------------------------
+| G_template_L2_500_regress_siamrpn_mobilev2_l234_dwxcorr |  0.214  |     0.257      |   0.275   |
+--------------------------------------------------------------------------------------------------
+
+
+
+-------------------------------------------------------------------------------
+|    Tracker name     |G_template_L2_500_regress_siamrpn_mobilev2_l234_dwxcorr|
+-------------------------------------------------------------------------------
+|     Video name      | success | precision |
+-------------------------------------------------------------------------------
+|     Basketball      |[31m  0.011  [0m|[31m   0.013   [0m|
+|        Biker        |[31m  0.070  [0m|[31m   0.156   [0m|
+|        Bird1        |[31m  0.014  [0m|[31m   0.027   [0m|
+|        Bird2        |[31m  0.526  [0m|   0.724   |
+|      BlurBody       |  0.617  |   0.609   |
+|      BlurCar1       |[31m  0.094  [0m|[31m   0.104   [0m|
+|      BlurCar2       |  0.813  |   0.899   |
+|      BlurCar3       |[31m  0.062  [0m|[31m   0.087   [0m|
+|      BlurCar4       |[31m  0.037  [0m|[31m   0.032   [0m|
+|      BlurFace       |[31m  0.055  [0m|[31m   0.072   [0m|
+|       BlurOwl       |[31m  0.174  [0m|[31m   0.191   [0m|
+|        Board        |  0.632  |   0.666   |
+|        Bolt         |[31m  0.073  [0m|[31m   0.093   [0m|
+|        Bolt2        |[31m  0.043  [0m|[31m   0.058   [0m|
+|         Box         |[31m  0.331  [0m|[31m   0.373   [0m|
+|         Boy         |[31m  0.096  [0m|[31m   0.121   [0m|
+|        Car1         |[31m  0.088  [0m|[31m   0.130   [0m|
+|        Car2         |[31m  0.332  [0m|[31m   0.425   [0m|
+|        Car24        |[31m  0.002  [0m|[31m   0.004   [0m|
+|        Car4         |[31m  0.588  [0m|   0.751   |
+|       CarDark       |[31m  0.010  [0m|[31m   0.016   [0m|
+|      CarScale       |[31m  0.024  [0m|[31m   0.033   [0m|
+|       ClifBar       |[31m  0.088  [0m|[31m   0.138   [0m|
+|        Coke         |[31m  0.506  [0m|   0.710   |
+|       Couple        |  0.729  |   0.900   |
+|       Coupon        |[31m  0.317  [0m|[31m   0.344   [0m|
+|      Crossing       |[31m  0.050  [0m|[31m   0.086   [0m|
+|       Crowds        |[31m  0.014  [0m|[31m   0.018   [0m|
+|       Dancer        |[31m  0.104  [0m|[31m   0.116   [0m|
+|       Dancer2       |[31m  0.187  [0m|[31m   0.229   [0m|
+|        David        |[31m  0.021  [0m|[31m   0.033   [0m|
+|       David2        |[31m  0.002  [0m|[31m   0.004   [0m|
+|       David3        |  0.748  |   0.899   |
+|        Deer         |[31m  0.059  [0m|[31m   0.066   [0m|
+|       Diving        |[31m  0.186  [0m|[31m   0.292   [0m|
+|         Dog         |[31m  0.060  [0m|[31m   0.081   [0m|
+|        Dog1         |[31m  0.007  [0m|[31m   0.010   [0m|
+|        Doll         |[31m  0.039  [0m|[31m   0.056   [0m|
+|     DragonBaby      |[31m  0.053  [0m|[31m   0.066   [0m|
+|        Dudek        |  0.751  |   0.801   |
+|      FaceOcc1       |[31m  0.101  [0m|[31m   0.136   [0m|
+|      FaceOcc2       |[31m  0.062  [0m|[31m   0.072   [0m|
+|        Fish         |[31m  0.101  [0m|[31m   0.140   [0m|
+|      FleetFace      |[31m  0.510  [0m|[31m   0.541   [0m|
+|      Football       |[31m  0.194  [0m|[31m   0.234   [0m|
+|      Football1      |[31m  0.114  [0m|[31m   0.165   [0m|
+|      Freeman1       |[31m  0.005  [0m|[31m   0.009   [0m|
+|      Freeman3       |[31m  0.002  [0m|[31m   0.009   [0m|
+|      Freeman4       |[31m  0.004  [0m|[31m   0.012   [0m|
+|        Girl         |[31m  0.020  [0m|[31m   0.038   [0m|
+|        Girl2        |[31m  0.593  [0m|   0.688   |
+|         Gym         |[31m  0.083  [0m|[31m   0.139   [0m|
+|       Human2        |  0.686  |   0.661   |
+|       Human3        |[31m  0.004  [0m|[31m   0.005   [0m|
+|      Human4-2       |[31m  0.047  [0m|[31m   0.065   [0m|
+|       Human5        |[31m  0.027  [0m|[31m   0.040   [0m|
+|       Human6        |[31m  0.171  [0m|[31m   0.219   [0m|
+|       Human7        |  0.819  |   0.950   |
+|       Human8        |  0.694  |   0.863   |
+|       Human9        |  0.792  |   0.936   |
+|       Ironman       |[31m  0.012  [0m|[31m   0.014   [0m|
+|      Jogging-1      |[31m  0.181  [0m|[31m   0.210   [0m|
+|      Jogging-2      |  0.802  |   0.902   |
+|        Jump         |[31m  0.087  [0m|[31m   0.082   [0m|
+|       Jumping       |[31m  0.018  [0m|[31m   0.029   [0m|
+|      KiteSurf       |[31m  0.016  [0m|[31m   0.029   [0m|
+|       Lemming       |[31m  0.549  [0m|[31m   0.591   [0m|
+|       Liquor        |[31m  0.398  [0m|[31m   0.483   [0m|
+|         Man         |[31m  0.011  [0m|[31m   0.016   [0m|
+|       Matrix        |[31m  0.019  [0m|[31m   0.023   [0m|
+|       Mhyang        |[31m  0.016  [0m|[31m   0.027   [0m|
+|    MotorRolling     |[31m  0.279  [0m|[31m   0.333   [0m|
+|    MountainBike     |[31m  0.154  [0m|[31m   0.333   [0m|
+|        Panda        |[31m  0.003  [0m|[31m   0.006   [0m|
+|       RedTeam       |[31m  0.005  [0m|[31m   0.011   [0m|
+|        Rubik        |[31m  0.018  [0m|[31m   0.024   [0m|
+|       Shaking       |[31m  0.026  [0m|[31m   0.031   [0m|
+|       Singer1       |  0.775  |   0.828   |
+|       Singer2       |[31m  0.023  [0m|[31m   0.025   [0m|
+|       Skater        |[31m  0.330  [0m|[31m   0.359   [0m|
+|       Skater2       |[31m  0.363  [0m|[31m   0.451   [0m|
+|      Skating1       |[31m  0.069  [0m|[31m   0.112   [0m|
+|     Skating2-1      |[31m  0.444  [0m|[31m   0.527   [0m|
+|     Skating2-2      |[31m  0.510  [0m|[31m   0.514   [0m|
+|       Skiing        |[31m  0.012  [0m|[31m   0.020   [0m|
+|       Soccer        |[31m  0.045  [0m|[31m   0.051   [0m|
+|       Subway        |[31m  0.008  [0m|[31m   0.011   [0m|
+|       Surfer        |[31m  0.003  [0m|[31m   0.007   [0m|
+|         Suv         |[31m  0.058  [0m|[31m   0.093   [0m|
+|      Sylvester      |[31m  0.048  [0m|[31m   0.072   [0m|
+|       Tiger1        |[31m  0.078  [0m|[31m   0.117   [0m|
+|       Tiger2        |[31m  0.063  [0m|[31m   0.103   [0m|
+|         Toy         |[31m  0.059  [0m|[31m   0.090   [0m|
+|        Trans        |[31m  0.527  [0m|[31m   0.420   [0m|
+|       Trellis       |[31m  0.017  [0m|[31m   0.021   [0m|
+|      Twinnings      |[31m  0.405  [0m|[31m   0.529   [0m|
+|        Vase         |[31m  0.476  [0m|   0.668   |
+|       Walking       |[31m  0.427  [0m|   0.640   |
+|      Walking2       |[31m  0.312  [0m|[31m   0.365   [0m|
+|        Woman        |[31m  0.087  [0m|[31m   0.111   [0m|
+-------------------------------------------------------------------------------
