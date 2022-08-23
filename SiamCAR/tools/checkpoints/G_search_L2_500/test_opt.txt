@@ -58,5 +58,5 @@
                  trajcase: -2                            
                   verbose: False                         
                     video: Biker                         	[default: None]
-                      vis: False                         
+                      vis: True                          	[default: False]
 ----------------- End -------------------

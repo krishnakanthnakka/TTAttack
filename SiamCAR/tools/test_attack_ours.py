@@ -91,7 +91,7 @@ def main():
     hp = {'lr': params[0], 'penalty_k': params[1], 'window_lr': params[2]}
 
     cur_dir = os.path.dirname(os.path.realpath(__file__))
-    dataset_root = os.path.join(cur_dir, '../testing_dataset', args.dataset)
+    dataset_root = os.path.join(cur_dir, '../../testing_dataset', args.dataset)
 
     model = ModelBuilder()
 
@@ -224,6 +224,8 @@ def main():
                     w, h = img.shape[:2]
 
                     if args.vis:
+                         if not os.path.isdir("./viz/"):
+                            os.makedirs("./viz/")
                         video_out = cv2.VideoWriter(os.path.join(
                             "./viz/", video.name + ".avi"), fourcc, fps=20, frameSize=(h, w))
                 else:
