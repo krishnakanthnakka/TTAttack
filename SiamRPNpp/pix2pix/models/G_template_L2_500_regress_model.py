@@ -15,85 +15,53 @@ cls_thres = 0.7
 
 def get_all_points(opt):
 
-    # print(opt.tracker_name)
-    # exit()
-
     if opt.directions == 23:
 
-        # HAACK FOR INFERENCE TIME FOR Siam_ocean nd SIam_mobile. Please double check for training white box for them.
-        if opt.tracker_name in ['siamrpn_r50_l234_dwxcorr', 'siamrpn_r50_l234_dwxcorr_otb', 'siamrpn_r50_l234_dwxcorr_lt', 'siamrpn_r50_l234_dwxcorr2', 'siamrpn_r50_l234_dwxcorr_lt2', 'siamban', 'siam_ocean_online', 'siamrpn_mobilev2_l234_dwxcorr']:
+        # HAACK FOR INFERENCE TIME FOR Siam_ocean nd Siam_mobilenet. Please double check for training white box for them.
+        if opt.tracker_name in ['siamrpn_r50_l234_dwxcorr', 'siamrpn_r50_l234_dwxcorr_otb', 'siamrpn_r50_l234_dwxcorr_lt',
+                                'siamrpn_r50_l234_dwxcorr2', 'siamrpn_r50_l234_dwxcorr_lt2', 'siamban', 'siam_ocean_online', 'siamrpn_mobilev2_l234_dwxcorr']:
             pts_23 = [(4, 0), (-3, -3), (0, -4), (-3, 3), (2, -4), (-4, -2), (-4, 1), (-2, 4), (-1, 4), (3, -3), (4, 2),
                       (3, 3), (1, -4), (2, 4), (0, 4), (-4, 0), (4, -1), (4, -2), (4, 1), (1, 4), (-1, -4), (-4, 2), (-2, -4)]
         return pts_23
 
     if opt.directions == 12:
-        # HAACK FOR INFERENCE TIME FOR Siam_ocean nd SIam_mobile. Please double check for training white box for them.
-        if opt.tracker_name in ['siamrpn_r50_l234_dwxcorr', 'siamrpn_r50_l234_dwxcorr_otb', 'siamrpn_r50_l234_dwxcorr_lt', 'siamrpn_r50_l234_dwxcorr2', 'siamrpn_r50_l234_dwxcorr_lt2', 'siamban', 'siam_ocean_online', 'siamrpn_mobilev2_l234_dwxcorr']:
+        # HAACK FOR INFERENCE TIME FOR Siam_ocean nd Siam_mobilenet. Please double check for training white box for them.
+        if opt.tracker_name in ['siamrpn_r50_l234_dwxcorr', 'siamrpn_r50_l234_dwxcorr_otb', 'siamrpn_r50_l234_dwxcorr_lt',
+                                'siamrpn_r50_l234_dwxcorr2', 'siamrpn_r50_l234_dwxcorr_lt2', 'siamban', 'siam_ocean_online', 'siamrpn_mobilev2_l234_dwxcorr']:
             pts_12 = [(0, 4), (2, 4), (3, 3), (4, 0), (0, -4), (2, -4),
                       (3, -3), (-2, 4), (-3, 3), (-4, 0), (-2, -4), (-3, -3)]
         return pts_12
 
     elif opt.directions == 4:
 
-        #print("Calculating 4 directional perturbations!!")
-        if opt.tracker_name in ['siamrpn_r50_l234_dwxcorr', 'siamrpn_r50_l234_dwxcorr_otb', 'siamrpn_r50_l234_dwxcorr_lt', 'siamrpn_r50_l234_dwxcorr2', 'siamrpn_r50_l234_dwxcorr_lt2', 'siamban', 'siam_ocean_online', 'siamrpn_mobilev2_l234_dwxcorr']:
+        if opt.tracker_name in ['siamrpn_r50_l234_dwxcorr', 'siamrpn_r50_l234_dwxcorr_otb', 'siamrpn_r50_l234_dwxcorr_lt', 'siamrpn_r50_l234_dwxcorr2',
+                                'siamrpn_r50_l234_dwxcorr_lt2', 'siamban', 'siam_ocean_online', 'siamrpn_mobilev2_l234_dwxcorr']:
             pts_4 = [(0, 4), (4, 0), (0, -4), (-4, 0)]
 
         return pts_4
 
     elif opt.directions == 8:
 
-        if opt.tracker_name in ['siamrpn_r50_l234_dwxcorr', 'siamrpn_r50_l234_dwxcorr_otb', 'siamrpn_r50_l234_dwxcorr_lt', 'siamrpn_r50_l234_dwxcorr2', 'siamrpn_r50_l234_dwxcorr_lt2', 'siamban', 'siam_ocean_online', 'siamrpn_mobilev2_l234_dwxcorr']:
+        if opt.tracker_name in ['siamrpn_r50_l234_dwxcorr', 'siamrpn_r50_l234_dwxcorr_otb', 'siamrpn_r50_l234_dwxcorr_lt', 'siamrpn_r50_l234_dwxcorr2',
+                                'siamrpn_r50_l234_dwxcorr_lt2', 'siamban', 'siam_ocean_online', 'siamrpn_mobilev2_l234_dwxcorr']:
             pts_8 = [(0, 4), (2, 4), (4, 0), (0, -4), (2, -4), (-2, 4), (-4, 0), (-2, -4)]
         return pts_8
 
 
-# def get_closest_point(x, y):
-#     K = 12
-#     if K == 12:
-#         # wih radius 4 for SIAMRPN++
-#         pts_12 = [(0, 4), (2, 4), (3, 3), (4, 0), (0, -4), (2, -4), (3, -3), (-2, 4), (-3, 3), (-4, 0), (-2, -4), (-3, -3)]
-
-#         # FOR SIAMRPN
-#         # pts_12 = [(2, -2), (-2, -2), (2, 1), (-2, -1), (2, 0), (1, -2), (-2, 0), (-2, 2), (0, 2), (2, 2), (-1, 2), (0, -2)]
-
-#         nodes = np.asarray(pts_12)
-#         node = (x, y)
-#         dist_2 = np.sum((nodes - node)**2, axis=1)
-#         index = np.argmin(dist_2)
-#         return pts_12[index]
-
-#     if K == 8:
-#         pts_8 = [(0, 4), (2, 4), (4, 0), (0, -4), (2, -4), (-2, 4), (-4, 0), (-2, -4)]
-#         nodes = np.asarray(pts_8)
-#         node = (x, y)
-#         dist_2 = np.sum((nodes - node)**2, axis=1)
-#         index = np.argmin(dist_2)
-#         return pts_8[index]
-
-#     if K == 4:
-#         # exit()
-#         pts_8 = [(0, 4), (4, 0), (0, -4), (-4, 0)]
-#         nodes = np.asarray(pts_8)
-#         node = (x, y)
-#         dist_2 = np.sum((nodes - node)**2, axis=1)
-#         index = np.argmin(dist_2)
-#         return pts_8[index]
-
-
 def get_center(opt):
 
-    if opt.tracker_name in ['siamrpn_r50_l234_dwxcorr', 'siamrpn_r50_l234_dwxcorr_otb', 'siamrpn_r50_l234_dwxcorr_lt', 'siamrpn_r50_l234_dwxcorr2', 'siamrpn_r50_l234_dwxcorr_lt2', 'siamrpn_mobilev2_l234_dwxcorr']:
+    if opt.tracker_name in ['siamrpn_r50_l234_dwxcorr', 'siamrpn_r50_l234_dwxcorr_otb', 'siamrpn_r50_l234_dwxcorr_lt', 'siamrpn_r50_l234_dwxcorr2',
+                            'siamrpn_r50_l234_dwxcorr_lt2', 'siamrpn_mobilev2_l234_dwxcorr']:
         return [12, 12], [25, 25]
 
     if opt.tracker_name in ['siamrpn_alex_dwxcorr_otb', 'siamrpn_alex_dwxcorr', 'DAsiamrpn_alex_dwxcorr_lt', 'DAsiamrpn_alex_dwxcorr']:
         return [8, 8], [17, 17]
 
+    # THIS IS A HACK USED AT INFERENCE
     if opt.tracker_name in ['siam_ocean', 'siam_ocean_online']:
-        return [12, 12], [25, 25]  # THIS IS A HACK USED AT INFERENCE
+        return [12, 12], [25, 25]
 
     if opt.tracker_name in ['dimp', 'siamban']:
-        # DUMMY
         return [2, 2], None
     else:
         assert False, 'implement center point function'
@@ -142,13 +110,15 @@ class GtemplateL2500regressModel(BaseModel):
             self.optimizers.append(self.optimizer_G)
 
         self.siam = SiamRPNPP(tracker_name=opt.tracker_name, istrain=self.isTrain)
+
+        # since input is [-1, 1] range. We multiply by 2
         self.eps = float(opt.eps * 2) / 255.0
         self.center_point, feature_map_size = get_center(opt)
 
         if self.UNTARGETED:
-            log("Initializing vanilla Generator without extra channel")
+            log("Initializing the vanilla Generator without extra channel")
         else:
-            log("Initializing conditional Generator with extra channel")
+            log("Initializing the conditional Generator with extra channel")
 
         log("Center point: {}, Feature Map: {}".format(self.center_point, feature_map_size))
         log("Actual Epsilon: {}".format(self.eps * 255 * 0.5))
@@ -164,18 +134,13 @@ class GtemplateL2500regressModel(BaseModel):
         log("Universal perturb: {}".format(self.universal_perturb))
 
         if not self.UNTARGETED:
-
             self.TARGETED_ATTACK_RADIUS = 5
             log("Targted attack radius: {}".format(self.TARGETED_ATTACK_RADIUS))
 
-        # exit()
         if self.UNTARGETED and (opt.tracker_name == 'dimp' or opt.tracker_name == 'siam_ocean' or opt.tracker_name == 'siam_ocean_online'):
             return
 
         self.anchors_box, self.anchors_center = self.siam.generate_all_anchors().all_anchors
-        # print(self.anchors_box.shape)
-        # exit()
-
         assert self.anchors_box.shape[2] == feature_map_size[0], 'Incorrect anchors selected!'
 
     def logparams(self, log):
@@ -208,7 +173,6 @@ class GtemplateL2500regressModel(BaseModel):
             x = int(dist * math.cos(self.dir_))
             y = -int(dist * math.sin(self.dir_))
 
-            # exit()
             # Uncomment below line to get the K=12 diverse perturbations
             #x, y = get_closest_point(x, y)
             # print("get nearest directional perturbation!")
@@ -217,25 +181,12 @@ class GtemplateL2500regressModel(BaseModel):
         pos = [2, self.center_point[0] + y, self.center_point[1] + x]
         x1, y1, x2, y2 = [int(self.anchors_box[i, pos[0], pos[1], pos[2]] + 127) for i in range(4)]
 
-        # Add this at training time for long-term tracker to target larger box
-        if False:
-            enhance = 8
-            x1, y1, x2, y2 = x1 - enhance, y1 - enhance, x2 + enhance, y2 + enhance
-            # print(" x1: {}, y1: {}, x2: {}, y2: {}".format(x1, y1, x2, y2))
-
-        # Add this at inference time for LT tracker
-        if False and self.enhance and self.frame > 100:
-            print("Enhanced")
-            enhance = 1
-            x1, y1, x2, y2 = x1 - enhance, y1 - enhance, x2 + enhance, y2 + enhance
-
         self.target_bbox = [(x1 + x2) / 2 - 127, (y1 + y2) / 2 - 127, x2 - x1, y2 - y1]
 
         mask = np.zeros((255, 255), dtype=np.float32)
         mask[y1:y2, x1:x2] = 1.0
         if 0:
             cv2.imwrite('mask.png', 255 * mask)
-
         return torch.from_numpy(mask).unsqueeze(0).unsqueeze(0).cuda()
 
     def forward(self, frame_index, target_sz=(255, 255), dir_=0, enhance=False):
@@ -268,12 +219,6 @@ class GtemplateL2500regressModel(BaseModel):
 
         else:
 
-            # old code
-            # self.dir_ = dir_
-            # mask = self.get_mask()
-            # mask = torch.nn.functional.interpolate(mask, size=(512, 512), mode='nearest')
-            # perturb = self.netG(torch.cat((template128_clean, mask), dim=1))
-
             if not self.universal_perturb:
                 if frame_index == 1:
                     self.directional_pertub_dict = self.compute_directional_perturbations(template128_clean)
@@ -291,8 +236,6 @@ class GtemplateL2500regressModel(BaseModel):
                     print("calculating {}  universal directional perturbations once".format(self.opt.directions))
                     # torch.save(self.directional_pertub_dict, "./dir_univ.pth")
                     # exit()
-                    # torch.save(self.directional_pertub_dict, "./dir_univ.pth")
-                    # exit()
 
                 else:
                     perturb = self.get_closest_directional_perturbation(
@@ -306,19 +249,8 @@ class GtemplateL2500regressModel(BaseModel):
         self.search_adv255 = self.search_adv1 * 127.5 + 127.5
         self.frame += 1
 
+        # dummy metrics
         return {"target_bbox": [0, 0, 10, 10], "metrics": {"MAE": torch.tensor(0.0), "Linf": self.eps / 2, "SSIM": 100.0}}
-
-        # "target_bbox": self.target_bbox}
-        # temp = self.search_clean1 * 127.5 + 127.5
-        # loss = torch.nn.L1Loss()
-        # mae = loss(self.search_adv255, temp)
-        # linf = torch.max(torch.abs(self.search_adv255 - temp))
-        # ssimscore = 100 * (ssim.ssim(temp, self.search_adv255)).item()
-        # print(" MAE:{:.4f}, L-inf Norm:{:.4f}, SSIM:{:.1f}".format(mae, linf, ssimscore), end="\r")
-        # if self.UNTARGETED:
-        #     self.target_bbox = [0, 0, 10, 10]
-        # self.perturbmetrics = {"metrics": {"MAE": mae, "Linf": linf, "SSIM": ssimscore}, "target_bbox": self.target_bbox}
-        # return self.perturbmetrics
 
     def compute_directional_perturbations(self, template128_clean):
 
