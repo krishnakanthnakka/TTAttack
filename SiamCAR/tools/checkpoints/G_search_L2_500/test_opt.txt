@@ -2,7 +2,7 @@
              aspect_ratio: 1.0                           
          attack_universal: True                          	[default: False]
                batch_size: 1                             
-                     case: 54                            	[default: None]
+                     case: 1                             	[default: None]
           checkpoints_dir: ./checkpoints                 
                    config:                               
                 crop_size: 256                           
@@ -50,13 +50,13 @@
                preprocess: resize_and_crop               
               results_dir: ./results/                    
            serial_batches: False                         
-                 snapshot: ../tracker_weights/model_general.pth	[default: ]
+                 snapshot: ../../tracker_weights/siamcar_general/model_general.pth	[default: ]
                    suffix:                               
                targetcase: -2                            
                   threads: 0                             
              tracker_name: None                          
                  trajcase: -2                            
                   verbose: False                         
-                    video: None                          
+                    video: Biker                         	[default: None]
                       vis: False                         
 ----------------- End -------------------

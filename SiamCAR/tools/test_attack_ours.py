@@ -5,6 +5,7 @@ from __future__ import unicode_literals
 
 import argparse
 import os
+import subprocess
 
 import cv2
 import torch
@@ -105,8 +106,8 @@ def main():
                                             dataset_root=dataset_root,
                                             load_img=False)
 
-    model_name = args.snapshot.split('/')[-2] + str(hp['lr']) + '_' + \
-        str(hp['penalty_k']) + '_' + str(hp['window_lr'])
+    model_name = args.snapshot.split('/')[-1]
+
     total_lost = 0
 
     mean_FPS = []
@@ -144,7 +145,7 @@ def main():
 
                 elif idx > frame_counter:
 
-                    #outputs = tracker.track(img, hp)
+                    # outputs = tracker.track(img, hp)
                     outputs = tracker.track_advT(img, hp, GAN, 1, frame_id=idx)
 
                     pred_bbox = outputs['bbox']
@@ -227,7 +228,7 @@ def main():
                             "./viz/", video.name + ".avi"), fourcc, fps=20, frameSize=(h, w))
                 else:
 
-                    #outputs = tracker.track(img, hp)
+                    # outputs = tracker.track(img, hp)
                     outputs = tracker.track_advT(img, hp, GAN, 1, frame_id=idx)
 
                     pred_bbox = outputs['bbox']
@@ -252,13 +253,18 @@ def main():
             if args.vis:
                 video_out.release()
 
-            # save results
-            #model_path = os.path.join('results', args.dataset, model_name)
-
             if args.attack_universal:
+
+                results_dir = 'results_Universal_{}_{}'.format(
+                    attack_method, expcase)
+
                 model_path = os.path.join('results_Universal_{}_{}'.format(
                     attack_method, expcase), args.dataset, model_name)
             else:
+
+                results_dir = 'results_TD_{}_{}'.format(
+                    attack_method, expcase)
+
                 model_path = os.path.join('results_TD_{}_{}'.format(
                     attack_method, expcase), args.dataset, model_name)
 
@@ -273,6 +279,11 @@ def main():
 
             print('({:3d}) Video: {:12s} Time: {:5.1f}s Speed: {:3.1f}fps, Mean Speed: {:3.1f}'.format(
                 v_idx + 1, video.name, toc, idx / toc, np.mean(mean_FPS)))
+
+        result = subprocess.call(
+            ["sh", "-c", " ".join(
+                ['python', '-W ignore', 'eval.py', '--tracker_path', results_dir, '--dataset', args.dataset,
+                 '--tracker_prefix', 'model_general'])])
 
         os.chdir(model_path)
         save_file = '../%s' % dataset
