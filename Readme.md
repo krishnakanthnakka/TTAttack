@@ -30,8 +30,6 @@ This is an official release of the paper **Universal, Transferable Adversarial P
     git clone https://github.com/krishnakanthnakka/TTAttack.git
    ```
 
-
-
 ## Setting the datasets and tracker checkpoints
 
 1. Please download the weights of different trackers on [GoogleDrive](https://drive.google.com/drive/folders/1CawsQuwFiGlHxqLYM2BOOF9NxxI-U_m4?usp=sharing). These are taken from the original repositories of the respective papers.
@@ -150,13 +148,16 @@ This is an official release of the paper **Universal, Transferable Adversarial P
 
 
 
+
+
+
 ## Citation
 ```
 @article{nakka2022Universal,
-         title={Universal, Transferable Adversarial Perturbations for Visual Object Trackers},
-         author={Krishna Kanth Nakka and Mathieu Salzmann},
-         year={2022},
-        booktitle = {Proceedings of the Adversarial Robustness Workshop, European Conference on Computer Vision (ECCV) 2022},
-        month     = {October},
+    title={Universal, Transferable Adversarial Perturbations for Visual Object Trackers},
+    author={Krishna Kanth Nakka and Mathieu Salzmann},
+    booktitle={Proceedings of the Adversarial Robustness Workshop, European Conference on Computer Vision (ECCV) 2022},
+    month={October},
+    year={2022},
 }
 ```
