@@ -165,7 +165,7 @@ Place the downloaded ```targeted_attacks_GT``` folder in the root folder
 
     ```
 4. For attacking SiamRPN++ (M)  tracker using the generator trained on ```SiamRPN++ (R)``` as discriminator and ```GOT10K``` dataset with ```trajcase``` set ```D45``` direction i.e., target trajectory is at an angle of 45 degrees fixed direction.
-    Other options for ```trajcase``` argument is ```D135```, ```D235```, ```D325```.
+    Other options for ```trajcase``` argument is ```D135```, ```D225```, ```D315```.
 
    ```py
 
