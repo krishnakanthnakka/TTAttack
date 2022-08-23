@@ -147,6 +147,38 @@ This is an official release of the paper **Universal, Transferable Adversarial P
 
 
 
+## Targeted attack on SiamRPN++ (M)
+
+1. Enter the directory of ```SiamRPNpp``` tracker by ```cd SiamRPNpp```
+
+2. Set all environmental paths and other packages in path by ```source envs.sh```
+
+3. For attacking SiamRPN++ (M)  tracker ```trajcase``` set to ```SouthEast (SE)``` direction at an offset of 80 pixels of the predicted trajectory on clean samples.
+    Other options for ```trajcase``` argument is ```SE```, ```NE```, ```NW```.
+
+
+   ```py
+
+    cd pysot/tools
+
+    # universal attack (Ours) on  OTB100 with  SiamRPN++ (M) tracker
+    python ttattack_targeted.py --tracker_name=siamrpn_mobilev2_l234_dwxcorr --dataset=OTB100 --case=2 --gpu=1 --model_iter=4_net_G.pth --trajcase=SE  --attack_universal
+
+    ```
+4. For attacking SiamRPN++ (M)  tracker using the generator trained on ```SiamRPN++ (R)``` as discriminator and ```GOT10K``` dataset with ```trajcase``` set ```D45``` direction.
+    Other options for ```trajcase``` argument is ```D135```, ```D235```, ```D325```.
+
+   ```py
+
+    cd pysot/tools
+
+    # universal attack (Ours) on  OTB100 with  SiamRPN++ (M) tracker
+    python ttattack_targeted.py --tracker_name=siamrpn_mobilev2_l234_dwxcorr --dataset=OTB100 --case=2 --gpu=1 --model_iter=4_net_G.pth --trajcase=D45  --attack_universal
+
+    ```
+
+
+
 
 
 
