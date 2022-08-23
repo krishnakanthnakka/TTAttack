@@ -30,14 +30,16 @@ This is an official release of the paper **Universal, Transferable Adversarial P
     git clone https://github.com/krishnakanthnakka/TTAttack.git
    ```
 
-3. We release  ```pretrained generator checkpoints``` on SiamRPN++ (R) on [GoogleDrive](https://drive.google.com/drive/folders/1CawsQuwFiGlHxqLYM2BOOF9NxxI-U_m4?usp=sharing). Please place them in the root folder.
+3. We release  the pretrained perturbation generators against SiamRPN++ (R) on [GoogleDrive](https://drive.google.com/drive/folders/1CawsQuwFiGlHxqLYM2BOOF9NxxI-U_m4?usp=sharing).
+Please place the ```checkpoints``` folder inside the  ```./SiamRPNpp/``` folder.
 
 
 
 
 ## Setting the datasets and tracker checkpoints
 
-1. Please download the weights of different trackers on [GoogleDrive](). These are taken from the original repositories of the respective papers
+1. Please download the weights of different trackers on [GoogleDrive](https://drive.google.com/drive/folders/1CawsQuwFiGlHxqLYM2BOOF9NxxI-U_m4?usp=sharing). These are taken from the original repositories of the respective papers.
+  Place the downloaded ```tracker_weights``` folder in the root folder
 
 2.
 
@@ -61,10 +63,7 @@ This is an official release of the paper **Universal, Transferable Adversarial P
 
     # template dependent attack (Ours (TD)) on  OTB100 with  SiamRPN++ (M) tracker
     python tta_attack.py   --tracker_name=siamrpn_mobilev2_l234_dwxcorr --dataset=OTB100 --case=1 --gpu=1 --model_iter=4_net_G.pth
-
-
    ```
-
 
 #### Results on SiamRPN++ (M) tracker
 
@@ -97,8 +96,6 @@ This is an official release of the paper **Universal, Transferable Adversarial P
 
    ```
 
-
-
 ## Untargeted attack on SiamCAR
 
 1. Enter the directory of ```SiamCAR``` tracker by ```cd SiamCAR```
@@ -121,8 +118,7 @@ This is an official release of the paper **Universal, Transferable Adversarial P
    ```
 
 
-
-## Untargeted attack on OCean
+## Untargeted attack on Ocean (Online)
 
 1. Enter the directory of ```Ocean``` tracker by ```cd Ocean```
 
