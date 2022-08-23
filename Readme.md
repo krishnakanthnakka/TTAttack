@@ -41,7 +41,9 @@ Please place the ```checkpoints``` folder inside the  ```./SiamRPNpp/``` folder.
 1. Please download the weights of different trackers on [GoogleDrive](https://drive.google.com/drive/folders/1CawsQuwFiGlHxqLYM2BOOF9NxxI-U_m4?usp=sharing). These are taken from the original repositories of the respective papers.
   Place the downloaded ```tracker_weights``` folder in the root folder
 
-2.
+2. Create a folder named ```testing_dataset``` in  the root  folder and place all the datasets such as ```OTB100```, ```VOT2018```, ```UAV123```, ```LASOT``` inside it.
+
+
 
 
 
