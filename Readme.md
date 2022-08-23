@@ -56,10 +56,10 @@ This is an official release of the paper **Universal, Transferable Adversarial P
 
     cd pysot/tools
 
-    # universal attack (Ours) on SiamRPN++ (M) tracker with OTB100
+    # universal attack (Ours) on  OTB100 with  SiamRPN++ (M) tracker
     python tta_attack.py   --tracker_name=siamrpn_mobilev2_l234_dwxcorr --dataset=OTB100 --case=1 --gpu=1 --model_iter=4_net_G.pth --attack_universal
 
-    # template dependent attack (Ours (TD)) on SiamRPN++ (M) tracker with OTB100
+    # template dependent attack (Ours (TD)) on  OTB100 with  SiamRPN++ (M) tracker
     python tta_attack.py   --tracker_name=siamrpn_mobilev2_l234_dwxcorr --dataset=OTB100 --case=1 --gpu=1 --model_iter=4_net_G.pth
 
 
@@ -76,6 +76,29 @@ This is an official release of the paper **Universal, Transferable Adversarial P
     |  Ours  | 0.212     | 0.275     |
 
 
+## Testing on SiamBAN
+
+1. Enter the directory of ```SiamBAN``` tracker by ```cd SiamBAN```
+
+2. Set all environmental paths and other packages in path by ```source envs.sh```
+
+3. For attacking SiamBAN tracker using the generator trained on ```SiamRPN++ (R)``` as discriminator and ```GOT10K``` dataset:
+
+   ```py
+
+    # universal attack (Ours)  on  OTB100 with SiamBAN tracker
+    cd experiments/siamban_r50_l234_otb
+    python -u ../../tools/test_attack_ours.py --snapshot ../../../tracker_weights/siamban_r50_l234_otb/model.pth  --dataset OTB100 --config ../../../tracker_weights/siamban_r50_l234_otb/config.yaml  --model_iter=4_net_G.pth --case=1 --eps=8  --attack_universal
+
+
+    # template dependent attack (Ours (TD))  on  OTB100 with SiamBAN tracker
+    cd experiments/siamban_r50_l234_otb
+    python -u ../../tools/test_attack_ours.py --snapshot ../../../tracker_weights/siamban_r50_l234_otb/model.pth  --dataset OTB100 --config ../../../tracker_weights/siamban_r50_l234_otb/config.yaml  --model_iter=4_net_G.pth --case=1 --eps=8
+
+   ```
+
+
+
 ## Testing on SiamCAR
 
 1. Enter the directory of ```SiamCAR``` tracker by ```cd SiamCAR```
@@ -88,20 +111,35 @@ This is an official release of the paper **Universal, Transferable Adversarial P
 
     cd tools
 
-    # universal attack (Ours) on SiamRPN++ (M) tracker with OTB100
+    # universal attack (Ours) on  OTB100 with SiamCAR tracker
     python test_attack_ours.py  --dataset OTB100  --snapshot ../../tracker_weights/siamcar_general/model_general.pth   --model_iter=4_net_G.pth --case=1 --eps=8  --attack_universal
 
 
-    # template dependent attack (Ours (TD)) on SiamRPN++ (M) tracker with OTB100
+    # template dependent attack (Ours (TD)) on  OTB100 with SiamCAR tracker
     python test_attack_ours.py  --dataset OTB100  --snapshot ../../tracker_weights/siamcar_general/model_general.pth   --model_iter=4_net_G.pth --case=1 --eps=8
 
    ```
 
 
-4. We observe the following results as in Table 1 of the SiamCAR column.
-    | Method | Success  | Precision |
-    | :---:  | :---:     | :---:    |
-    |  Normal | 0.657     | 0.862    |
-    |  Ours (TD)  | xx  | xx     |
-    |  Ours  | 0.292    | 0.374   |
+
+## Testing on OCean
+
+1. Enter the directory of ```Ocean``` tracker by ```cd Ocean```
+
+2. Set all environmental paths and other packages in path by ```source envs.sh```
+
+3. For attacking Ocean (online) tracker using the generator trained on ```SiamRPN++ (R)``` as discriminator and ```GOT10K``` dataset:
+
+   ```py
+
+    cd tools
+
+    # universal attack (Ours) on  OTB100 with Ocean tracker
+    python ttattack_untargeted.py --dataset=OTB100  --tracker_name=siam_ocean_online --case=1  --model_iter=4_net_G.pth --gpu=0  --attack_universal
+
+
+    # template dependent attack (Ours (TD)) on  OTB100 with Ocean tracker
+    python ttattack_untargeted.py --dataset=OTB100  --tracker_name=siam_ocean_online --case=1  --model_iter=4_net_G.pth --gpu=0
+
+   ```
 
