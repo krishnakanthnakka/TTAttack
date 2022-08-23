@@ -158,13 +158,9 @@ Place the downloaded ```targeted_attacks_GT``` folder in the root folder
 
 3. For attacking SiamRPN++ (M)  tracker with ```trajcase``` argument set to ```SouthEast (SE)``` direction i.e., target trajectory  at an offset of (+80, +80) pixels  of the predicted trajectory on clean samples.
     Other options for ```trajcase``` argument is ```SW```, ```NE```, ```NW```.
-
-
    ```py
 
     cd pysot/tools
-
-    # universal attack (Ours) on  OTB100 with  SiamRPN++ (M) tracker
     python ttattack_targeted.py --tracker_name=siamrpn_mobilev2_l234_dwxcorr --dataset=OTB100 --case=2 --gpu=1 --model_iter=4_net_G.pth --trajcase=SE  --attack_universal
 
     ```
@@ -174,8 +170,6 @@ Place the downloaded ```targeted_attacks_GT``` folder in the root folder
    ```py
 
     cd pysot/tools
-
-    # universal attack (Ours) on  OTB100 with  SiamRPN++ (M) tracker
     python ttattack_targeted.py --tracker_name=siamrpn_mobilev2_l234_dwxcorr --dataset=OTB100 --case=2 --gpu=1 --model_iter=4_net_G.pth --trajcase=D45  --attack_universal
 
     ```
