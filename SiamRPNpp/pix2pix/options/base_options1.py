@@ -28,15 +28,18 @@ class BaseOptions():
         # basic parameters
         parser.add_argument('--dataroot', default='./pix2pix/datasets/facades',
                             help='path to images (should have subfolders trainA, trainB, valA, valB, etc)')
-        parser.add_argument('--gpu_ids', type=str, default='0', help='gpu ids: e.g. 0  0,1,2, 0,2. use -1 for CPU')
-        parser.add_argument('--checkpoints_dir', type=str, default='./checkpoints', help='models are saved here')
+        parser.add_argument('--gpu_ids', type=str, default='0',
+                            help='gpu ids: e.g. 0  0,1,2, 0,2. use -1 for CPU')
+        parser.add_argument('--checkpoints_dir', type=str,
+                            default='./checkpoints', help='models are saved here')
         # model parameters
         parser.add_argument('--input_nc', type=int, default=3,
                             help='# of input image channels: 3 for RGB and 1 for grayscale')
         parser.add_argument('--output_nc', type=int, default=3,
                             help='# of output image channels: 3 for RGB and 1 for grayscale')
         parser.add_argument('--ngf', type=int, default=64, help='# of gen filters in the last conv layer')
-        parser.add_argument('--ndf', type=int, default=64, help='# of discrim filters in the first conv layer')
+        parser.add_argument('--ndf', type=int, default=64,
+                            help='# of discrim filters in the first conv layer')
         parser.add_argument('--netD', type=str, default='basic',
                             help='specify discriminator architecture [basic | n_layers | pixel]. The basic model is a 70x70 PatchGAN. n_layers allows you to specify the layers in the discriminator')
         parser.add_argument('--netG', type=str, default='unet_128',
@@ -72,7 +75,8 @@ class BaseOptions():
                             help='which epoch to load? set to latest to use latest cached model')
         parser.add_argument('--load_iter', type=int, default='0',
                             help='which iteration to load? if load_iter > 0, the code will load models by iter_[load_iter]; otherwise, the code will load models by [epoch]')
-        parser.add_argument('--verbose', action='store_true', help='if specified, print more debugging information')
+        parser.add_argument('--verbose', action='store_true',
+                            help='if specified, print more debugging information')
         parser.add_argument('--suffix', default='', type=str,
                             help='customized suffix: opt.name = opt.name + suffix: e.g., {model}_{netG}_size{load_size}')
 
@@ -80,7 +84,6 @@ class BaseOptions():
         parser.add_argument('--eps', type=int)
         parser.add_argument('--istargeted', default=False, action='store_true',
                             help='whether visualzie result')
-
 
         self.initialized = True
         return parser
@@ -131,13 +134,15 @@ class BaseOptions():
 
         log(message)
 
-        # save to the disk
-        expr_dir = os.path.join(opt.checkpoints_dir, opt.name)
-        util.mkdirs(expr_dir)
-        file_name = os.path.join(expr_dir, '{}_opt.txt'.format(opt.phase))
-        with open(file_name, 'wt') as opt_file:
-            opt_file.write(message)
-            opt_file.write('\n')
+        if 0:
+
+            # save to the disk
+            expr_dir = os.path.join(opt.checkpoints_dir, opt.name)
+            util.mkdirs(expr_dir)
+            file_name = os.path.join(expr_dir, '{}_opt.txt'.format(opt.phase))
+            with open(file_name, 'wt') as opt_file:
+                opt_file.write(message)
+                opt_file.write('\n')
 
     def parse(self, log=None):
         """Parse our options, create checkpoints directory suffix, and set up gpu device."""
