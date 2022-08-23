@@ -30,10 +30,6 @@ This is an official release of the paper **Universal, Transferable Adversarial P
     git clone https://github.com/krishnakanthnakka/TTAttack.git
    ```
 
-3. We release  the pretrained perturbation generators against SiamRPN++ (R) on [GoogleDrive](https://drive.google.com/drive/folders/1CawsQuwFiGlHxqLYM2BOOF9NxxI-U_m4?usp=sharing).
-Please place the ```checkpoints``` folder inside the  ```./SiamRPNpp/``` folder.
-
-
 
 
 ## Setting the datasets and tracker checkpoints
@@ -51,6 +47,8 @@ Please place the ```checkpoints``` folder inside the  ```./SiamRPNpp/``` folder.
     ```
 
 
+3. We release  the pretrained perturbation generators against SiamRPN++ (R) on [GoogleDrive](https://drive.google.com/drive/folders/1CawsQuwFiGlHxqLYM2BOOF9NxxI-U_m4?usp=sharing) to reproduce the main results of the paper.
+    Please place the ```checkpoints``` folder inside the  ```./SiamRPNpp/``` folder.
 
 
 
