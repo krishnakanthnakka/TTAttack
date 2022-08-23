@@ -1,0 +1,16 @@
+Logger saved at ./logs_and_metrics/OTB100/siamrpn_mobilev2_l234_dwxcorr/2/4_net_G.pth/log_21:04:36.txt
+Ran experiment with command: "python ttattack_targeted.py --tracker_name=siamrpn_mobilev2_l234_dwxcorr --dataset=OTB100 --case=2 --gpu=1 --model_iter=4_net_G.pth --trajcase=D45 --attack_universal --vis --video=Biker"
+Initializing the conditional Generator with extra channel
+Center point: [12, 12], Feature Map: [25, 25]
+Actual Epsilon: 16.0
+Isuntargeted Attack: False
+Universal perturb: True
+Targted attack radius: 5
+Eps: 16
+Tracker: siamrpn_mobilev2_l234_dwxcorr
+Model: 4_net_G.pth
+Traj case: D45, Target case: D45, no. of directions: 12, drift distance: 12
+Config path: /cvlabsrc1/home/krishna/TTA/TTAttack/SiamRPNpp/../tracker_weights//siamrpn_mobilev2_l234_dwxcorr/config.yaml
+Snapshot path: /cvlabsrc1/home/krishna/TTA/TTAttack/SiamRPNpp/../tracker_weights//siamrpn_mobilev2_l234_dwxcorr/model.pth
+(  2) Video: Biker        Time:   2.1s Speed: 68.1fps, MAE: nan, Avg. Mean: nan, Lost:   0
+Total time : 3.6s, Avg MAE : nan
