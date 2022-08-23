@@ -73,7 +73,7 @@ Please place the ```checkpoints``` folder inside the  ```./SiamRPNpp/``` folder.
     | Method | Success  | Precision |
     | :---:  | :---:     | :---:    |
     |  Normal | 0.657     | 0.862    |
-    |  Ours (TD)  | xx  | xx     |
+    |  Ours (TD)  | 0.217  | 0.281    |
     |  Ours  | 0.212     | 0.275     |
 
 
