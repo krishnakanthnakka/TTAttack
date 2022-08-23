@@ -153,7 +153,7 @@ This is an official release of the paper **Universal, Transferable Adversarial P
 
 2. Set all environmental paths and other packages in path by ```source envs.sh```
 
-3. For attacking SiamRPN++ (M)  tracker ```trajcase``` set to ```SouthEast (SE)``` direction at an offset of 80 pixels of the predicted trajectory on clean samples.
+3. For attacking SiamRPN++ (M)  tracker with ```trajcase``` argument set to ```SouthEast (SE)``` direction i.e., tracker is set to target at an offset of (+80, +80) pixels  of the predicted trajectory on clean samples.
     Other options for ```trajcase``` argument is ```SE```, ```NE```, ```NW```.
 
 
@@ -165,7 +165,7 @@ This is an official release of the paper **Universal, Transferable Adversarial P
     python ttattack_targeted.py --tracker_name=siamrpn_mobilev2_l234_dwxcorr --dataset=OTB100 --case=2 --gpu=1 --model_iter=4_net_G.pth --trajcase=SE  --attack_universal
 
     ```
-4. For attacking SiamRPN++ (M)  tracker using the generator trained on ```SiamRPN++ (R)``` as discriminator and ```GOT10K``` dataset with ```trajcase``` set ```D45``` direction.
+4. For attacking SiamRPN++ (M)  tracker using the generator trained on ```SiamRPN++ (R)``` as discriminator and ```GOT10K``` dataset with ```trajcase``` set ```D45``` direction i.e., tracker is set to target at an angle of 45 degrees with a step of 3 pixels per frame.
     Other options for ```trajcase``` argument is ```D135```, ```D235```, ```D325```.
 
    ```py
