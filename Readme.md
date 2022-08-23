@@ -44,7 +44,7 @@ This is an official release of the paper **Universal, Transferable Adversarial P
 
 
 
-## Testing on SiamRPN++ (M)
+## Untargeted attack on SiamRPN++ (M)
 
 1. Enter the directory of ```SiamRPNpp``` tracker by ```cd SiamRPNpp```
 
@@ -76,7 +76,7 @@ This is an official release of the paper **Universal, Transferable Adversarial P
     |  Ours  | 0.212     | 0.275     |
 
 
-## Testing on SiamBAN
+## Untargeted attack on SiamBAN
 
 1. Enter the directory of ```SiamBAN``` tracker by ```cd SiamBAN```
 
@@ -99,7 +99,7 @@ This is an official release of the paper **Universal, Transferable Adversarial P
 
 
 
-## Testing on SiamCAR
+## Untargeted attack on SiamCAR
 
 1. Enter the directory of ```SiamCAR``` tracker by ```cd SiamCAR```
 
@@ -122,7 +122,7 @@ This is an official release of the paper **Universal, Transferable Adversarial P
 
 
 
-## Testing on OCean
+## Untargeted attack on OCean
 
 1. Enter the directory of ```Ocean``` tracker by ```cd Ocean```
 
