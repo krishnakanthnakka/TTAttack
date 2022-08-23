@@ -146,3 +146,17 @@ This is an official release of the paper **Universal, Transferable Adversarial P
 
    ```
 
+
+
+
+
+## Citation
+```
+@article{nakka2022Universal,
+         title={Universal, Transferable Adversarial Perturbations for Visual Object Trackers},
+         author={Shuxuan Guo and Jose M. Alvarez and Mathieu Salzmann},
+         year={2022},
+        booktitle = {Proceedings of the Adversarial Robustness Workshop, European Conference on Computer Vision (ECCV) 2022},
+        month     = {October},
+}
+```
