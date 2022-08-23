@@ -165,7 +165,7 @@ This is an official release of the paper **Universal, Transferable Adversarial P
     python ttattack_targeted.py --tracker_name=siamrpn_mobilev2_l234_dwxcorr --dataset=OTB100 --case=2 --gpu=1 --model_iter=4_net_G.pth --trajcase=SE  --attack_universal
 
     ```
-4. For attacking SiamRPN++ (M)  tracker using the generator trained on ```SiamRPN++ (R)``` as discriminator and ```GOT10K``` dataset with ```trajcase``` set ```D45``` direction i.e., tracker is set to target at an angle of 45 degrees with a step of 3 pixels per frame.
+4. For attacking SiamRPN++ (M)  tracker using the generator trained on ```SiamRPN++ (R)``` as discriminator and ```GOT10K``` dataset with ```trajcase``` set ```D45``` direction i.e., target trajectory is at an angle of 45 degrees fixed direction.
     Other options for ```trajcase``` argument is ```D135```, ```D235```, ```D325```.
 
    ```py
