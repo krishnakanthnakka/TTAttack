@@ -153,7 +153,7 @@ This is an official release of the paper **Universal, Transferable Adversarial P
 
 2. Set all environmental paths and other packages in path by ```source envs.sh```
 
-3. For attacking SiamRPN++ (M)  tracker with ```trajcase``` argument set to ```SouthEast (SE)``` direction i.e., tracker is set to target at an offset of (+80, +80) pixels  of the predicted trajectory on clean samples.
+3. For attacking SiamRPN++ (M)  tracker with ```trajcase``` argument set to ```SouthEast (SE)``` direction i.e., target trajectory  at an offset of (+80, +80) pixels  of the predicted trajectory on clean samples.
     Other options for ```trajcase``` argument is ```SE```, ```NE```, ```NW```.
 
 
