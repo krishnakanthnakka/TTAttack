@@ -172,7 +172,8 @@ def main():
             pred_bboxes2 = []
             target_bboxes = []
             target_bboxes_rect = []
-            traj_file = os.path.join("/cvlabdata1/home/krishna/AttTracker/pysot/tools/results_paper/{}/G_template_L2_500_regress_siamrpn_r50_l234_dwxcorr/baseline/133/4_net_G.pth/{}/{}".
+
+            traj_file = os.path.join(root_dir, "../../", "targeted_attacks_GT", "{}/{}/{}/".
                                      format(args.dataset, args.targetcase, video.name), video.name + '_001_target.txt')
             with open(traj_file, 'r') as f:
                 target_traj = [list(map(float, x.strip().split(','))) for x in f.readlines()]
@@ -239,10 +240,10 @@ def main():
                 video_out.release()
 
             if args.attack_universal:
-                video_path = os.path.join('results_U_{}_{}'.format(attack_method, expcase), args.dataset, str(
+                video_path = os.path.join('results_Universal_Targeted_{}_{}'.format(attack_method, expcase), args.dataset, str(
                     args.targetcase), model_name, 'baseline', video.name)
             else:
-                video_path = os.path.join('results_{}_{}'.format(attack_method, expcase), args.dataset, str(
+                video_path = os.path.join('results_Targeted_{}_{}'.format(attack_method, expcase), args.dataset, str(
                     args.targetcase), model_name, 'baseline', video.name)
 
             # save results
