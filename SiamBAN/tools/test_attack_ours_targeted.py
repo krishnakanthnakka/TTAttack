@@ -155,6 +155,16 @@ def main():
     if args.dataset in ['VOT2016', 'VOT2018', 'VOT2019']:
         # restart tracking
         for v_idx, video in enumerate(dataset):
+
+            savedir2 = os.path.join(basedir, args.dataset, str(
+                args.case), str(args.trajcase))
+
+            # if v_idx< 160:
+            #     continue
+
+            if args.vis and not os.path.isdir(savedir2):
+                os.makedirs(savedir2)
+
             if args.video != '':
                 # test one special video
                 if video.name != args.video:
@@ -167,11 +177,9 @@ def main():
             target_bboxes_rect = []
             target_bboxes = []
 
-            if args.case == 133 and args.trajcase in [11, 12, 13, 14, 21, 22, 23, 24]:
-                assert False, "DONT RUN THIS"
-
-            traj_file = os.path.join("/cvlabdata1/home/krishna/AttTracker/pysot/tools/results_paper/{}/G_template_L2_500_regress_siamrpn_r50_l234_dwxcorr/baseline/133/4_net_G.pth/{}/{}".
+            traj_file = os.path.join(root_dir, "../../", "targeted_attacks_GT", "{}/{}/{}/".
                                      format(args.dataset, args.targetcase, video.name), video.name + '_001_target.txt')
+
             with open(traj_file, 'r') as f:
                 target_traj = [list(map(float, x.strip().split(','))) for x in f.readlines()]
             target_traj = np.array(target_traj)
@@ -205,16 +213,14 @@ def main():
                     if idx == 0 and args.vis:
                         fourcc = cv2.VideoWriter_fourcc(*'XVID')
                         w, h = img.shape[:2]
+
                         video_out = cv2.VideoWriter(os.path.join(
-                            "/cvlabdata1/home/krishna/AttTracker/baselines/siamban/viz/", video.name + ".avi"), fourcc, fps=20, frameSize=(h, w))
-                        #video_search = cv2.VideoWriter(os.path.join(savedir2, video.name + "_search.avi"), fourcc, fps=20, frameSize=(255, 255))
+                            savedir2, video.name + ".avi"), fourcc, fps=20, frameSize=(h, w))
 
                 elif idx > frame_counter:
 
-                    #outputs = tracker.track(img)
                     direction = get_direction(target_bbox_rect, prev_predbbox, idx)[0]
                     outputs = tracker.track_advT(img, GAN, direction, frame_id=idx)
-
                     pred_bbox = outputs['bbox']
                     prev_predbbox = pred_bbox
 
@@ -238,16 +244,18 @@ def main():
                     video_out.write(img)
 
             toc /= cv2.getTickFrequency()
-            # save results
-
-            # video_path = os.path.join('results_{}_{}'.format(attack_method, expcase), args.dataset, model_name,
-            #         'baseline', video.name)
 
             if args.attack_universal:
-                video_path = os.path.join('results_U_{}_{}'.format(attack_method, expcase), args.dataset, str(
+
+                results_dir = 'results_Universal_Targeted_{}_{}'.format(
+                    attack_method, expcase)
+                video_path = os.path.join('results_Universal_Targeted_{}_{}'.format(attack_method, expcase), args.dataset, str(
                     args.targetcase), model_name, 'baseline', video.name)
             else:
-                video_path = os.path.join('results_{}_{}'.format(attack_method, expcase), args.dataset, str(
+
+                results_dir = 'results_Targeted_{}_{}'.format(
+                    attack_method, expcase)
+                video_path = os.path.join('results__Targeted_{}_{}'.format(attack_method, expcase), args.dataset, str(
                     args.targetcase), model_name, 'baseline', video.name)
 
             if not os.path.isdir(video_path):

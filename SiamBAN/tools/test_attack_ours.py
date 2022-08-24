@@ -131,6 +131,19 @@ def main():
                     tracker.init(img, gt_bbox_)
                     pred_bbox = gt_bbox_
                     pred_bboxes.append(1)
+
+                    if args.vis and idx == 0:
+                        fourcc = cv2.VideoWriter_fourcc(*'XVID')
+                        w, h = img.shape[:2]
+
+                        if args.vis:
+
+                            if not os.path.isdir("./viz/"):
+                                os.makedirs("./viz/")
+
+                            video_out = cv2.VideoWriter(os.path.join(
+                                "./viz/", video.name + ".avi"), fourcc, fps=20, frameSize=(h, w))
+
                 elif idx > frame_counter:
 
                     # outputs = tracker.track(img)
@@ -158,14 +171,22 @@ def main():
                                   (bbox[0] + bbox[2], bbox[1] + bbox[3]), (0, 255, 255), 3)
                     cv2.putText(img, str(idx), (40, 40), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 255, 255), 2)
                     cv2.putText(img, str(lost_number), (40, 80), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 255), 2)
-                    cv2.imshow(video.name, img)
-                    cv2.waitKey(1)
+                    video_out.write(img)
+
             toc /= cv2.getTickFrequency()
 
+            if args.vis:
+                video_out.release()
+
             if args.attack_universal:
+
+                results_dir = 'results_Universal_{}_{}'.format(
+                    attack_method, expcase)
                 video_path = os.path.join('results_Universal_{}_{}'.format(
                     attack_method, expcase), args.dataset, model_name, 'baseline', video.name)
             else:
+                results_dir = 'results_TD_{}_{}'.format(
+                    attack_method, expcase)
                 video_path = os.path.join('results_TD_{}_{}'.format(attack_method, expcase),
                                           args.dataset, model_name, 'baseline', video.name)
 
@@ -274,10 +295,10 @@ def main():
             print('({:3d}) Video: {:12s} Time: {:5.1f}s Speed: {:3.1f}fps, Avg. Speed: {:3.1f}fps'.format(
                 v_idx + 1, video.name, toc, idx / toc, np.mean(mean_FPS)))
 
-        result = subprocess.call(
-            ["sh", "-c", " ".join(
-                ['python', '-W ignore', '../../tools/eval.py', '--tracker_path', results_dir, '--dataset', args.dataset,
-                 '--tracker_prefix', 'model', '--num', str(1)])])
+    result = subprocess.call(
+        ["sh", "-c", " ".join(
+            ['python', '-W ignore', '../../tools/eval.py', '--tracker_path', results_dir, '--dataset', args.dataset,
+             '--tracker_prefix', 'model', '--num', str(1)])])
 
 
 if __name__ == '__main__':
