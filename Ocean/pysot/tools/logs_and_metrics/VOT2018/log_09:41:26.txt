@@ -1,0 +1,4 @@
+Trackers: ['G_template_L2_500_regress_siam_ocean_online']
+Case: 1
+Checkpoint: 4_net_G.pth
+Dataset: VOT2018

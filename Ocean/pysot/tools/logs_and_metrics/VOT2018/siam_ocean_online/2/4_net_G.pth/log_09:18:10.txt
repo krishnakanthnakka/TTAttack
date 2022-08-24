@@ -1,0 +1,74 @@
+Logger saved at ./logs_and_metrics/VOT2018/siam_ocean_online/2/4_net_G.pth/log_09:18:10.txt
+Ran experiment with command: "python tt_attack_targeted.py --tracker_name=siam_ocean_online --dataset=VOT2018 --case=2 --gpu=1 --model_iter=4_net_G.pth --trajcase=SE --attack_universal"
+Initializing the conditional Generator with extra channel
+Center point: [12, 12], Feature Map: [25, 25]
+Actual Epsilon: 16.0
+Isuntargeted Attack: False
+Universal perturb: True
+Targted attack radius: 5
+Eps: 16
+Tracker:siam_ocean_online
+Model:4_net_G.pth
+
+(  1) Video: ants1        Time: 10.3s Speed: 31.3fps Lost: 0
+(  2) Video: ants3        Time: 16.5s Speed: 35.0fps Lost: 0
+(  3) Video: bag          Time:  4.5s Speed: 43.8fps Lost: 0
+(  4) Video: ball1        Time:  4.1s Speed: 25.6fps Lost: 0
+(  5) Video: ball2        Time:  1.6s Speed: 24.5fps Lost: 0
+(  6) Video: basketball   Time: 14.8s Speed: 49.1fps Lost: 0
+(  7) Video: birds1       Time: 11.6s Speed: 29.2fps Lost: 0
+(  8) Video: blanket      Time:  4.6s Speed: 48.5fps Lost: 0
+(  9) Video: bmx          Time:  2.8s Speed: 27.2fps Lost: 0
+( 10) Video: bolt1        Time:  7.1s Speed: 49.1fps Lost: 0
+( 11) Video: bolt2        Time:  5.9s Speed: 49.7fps Lost: 0
+( 12) Video: book         Time:  4.0s Speed: 43.2fps Lost: 0
+( 13) Video: butterfly    Time:  3.6s Speed: 41.7fps Lost: 0
+( 14) Video: car1         Time: 15.9s Speed: 46.5fps Lost: 0
+( 15) Video: conduction1  Time: 10.9s Speed: 31.5fps Lost: 0
+( 16) Video: crabs1       Time:  6.0s Speed: 26.5fps Lost: 0
+( 17) Video: crossing     Time:  3.8s Speed: 33.8fps Lost: 0
+( 18) Video: dinosaur     Time:  6.4s Speed: 50.9fps Lost: 0
+( 19) Video: drone1       Time: 10.5s Speed: 33.8fps Lost: 0
+( 20) Video: drone_across Time:  4.6s Speed: 31.6fps Lost: 0
+( 21) Video: drone_flip   Time:  3.5s Speed: 31.9fps Lost: 0
+( 22) Video: fernando     Time:  6.2s Speed: 46.6fps Lost: 0
+( 23) Video: fish1        Time:  7.6s Speed: 48.0fps Lost: 0
+( 24) Video: fish2        Time:  7.3s Speed: 42.4fps Lost: 0
+( 25) Video: fish3        Time: 11.8s Speed: 43.8fps Lost: 0
+( 26) Video: flamingo1    Time: 39.7s Speed: 34.7fps Lost: 0
+( 27) Video: frisbee      Time: 11.0s Speed: 22.5fps Lost: 0
+( 28) Video: girl         Time: 30.0s Speed: 50.0fps Lost: 0
+( 29) Video: glove        Time:  3.2s Speed: 37.0fps Lost: 0
+( 30) Video: godfather    Time:  7.0s Speed: 51.9fps Lost: 0
+( 31) Video: graduate     Time: 20.4s Speed: 41.4fps Lost: 0
+( 32) Video: gymnastics1  Time: 12.2s Speed: 46.5fps Lost: 0
+( 33) Video: gymnastics2  Time:  7.0s Speed: 33.9fps Lost: 0
+( 34) Video: gymnastics3  Time:  3.7s Speed: 31.8fps Lost: 0
+( 35) Video: hand         Time:  5.3s Speed: 50.1fps Lost: 0
+( 36) Video: handball1    Time:  7.8s Speed: 48.4fps Lost: 0
+( 37) Video: handball2    Time:  8.8s Speed: 45.7fps Lost: 0
+( 38) Video: helicopter   Time: 14.9s Speed: 47.5fps Lost: 0
+( 39) Video: iceskater1   Time: 13.0s Speed: 50.9fps Lost: 0
+( 40) Video: iceskater2   Time: 15.3s Speed: 46.0fps Lost: 0
+( 41) Video: leaves       Time:  2.3s Speed: 27.1fps Lost: 0
+( 42) Video: matrix       Time:  2.7s Speed: 36.3fps Lost: 0
+( 43) Video: motocross1   Time:  3.8s Speed: 43.3fps Lost: 0
+( 44) Video: motocross2   Time:  2.0s Speed: 30.0fps Lost: 0
+( 45) Video: nature       Time: 23.7s Speed: 42.1fps Lost: 0
+( 46) Video: pedestrian1  Time:  2.9s Speed: 48.3fps Lost: 0
+( 47) Video: rabbit       Time:  4.2s Speed: 37.6fps Lost: 0
+( 48) Video: racing       Time:  3.7s Speed: 41.5fps Lost: 0
+( 49) Video: road         Time: 18.2s Speed: 30.6fps Lost: 0
+( 50) Video: shaking      Time:  8.1s Speed: 44.8fps Lost: 0
+( 51) Video: sheep        Time:  5.1s Speed: 49.0fps Lost: 0
+( 52) Video: singer2      Time:  7.5s Speed: 48.6fps Lost: 0
+( 53) Video: singer3      Time:  3.4s Speed: 37.9fps Lost: 0
+( 54) Video: soccer1      Time: 10.3s Speed: 38.1fps Lost: 0
+( 55) Video: soccer2      Time:  3.9s Speed: 32.6fps Lost: 0
+( 56) Video: soldier      Time:  4.3s Speed: 31.8fps Lost: 0
+( 57) Video: tiger        Time:  7.6s Speed: 48.0fps Lost: 0
+( 58) Video: traffic      Time:  5.4s Speed: 35.4fps Lost: 0
+( 59) Video: wiper        Time:  8.0s Speed: 42.3fps Lost: 0
+( 60) Video: zebrafish1   Time: 17.4s Speed: 22.9fps Lost: 0
+G_template_L2_500_regress_siam_ocean_online total lost: 0
+Total time : 690.4s, Avg MAE : nan

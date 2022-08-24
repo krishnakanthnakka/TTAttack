@@ -224,7 +224,7 @@ def main():
                     w, h = img.shape[:2]
 
                     if args.vis:
-                         if not os.path.isdir("./viz/"):
+                        if not os.path.isdir("./viz/"):
                             os.makedirs("./viz/")
                         video_out = cv2.VideoWriter(os.path.join(
                             "./viz/", video.name + ".avi"), fourcc, fps=20, frameSize=(h, w))

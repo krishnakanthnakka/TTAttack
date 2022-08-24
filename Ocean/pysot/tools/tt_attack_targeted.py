@@ -1,6 +1,7 @@
 """ Usage
 
 python tt_attack_targeted.py  --tracker_name=siam_ocean_online --dataset=OTB100 --case=2 --gpu=1 --model_iter=4_net_G.pth  --trajcase=SE  --attack_universal
+python tt_attack_targeted.py  --tracker_name=siam_ocean_online --dataset=VOT2018 --case=2 --gpu=1 --model_iter=4_net_G.pth  --trajcase=SE  --attack_universal
 
 
 """
@@ -143,14 +144,14 @@ def main(cmd_line):
     if args.dataset in ['VOT2016', 'VOT2018', 'VOT2019']:
 
         for v_idx, video in enumerate(dataset):
-            savedir = os.path.join(basedir, args.dataset, video.name)
+            #savedir = os.path.join(basedir, args.dataset, video.name)
             savedir2 = os.path.join(basedir, args.dataset, str(args.case))
 
             if not os.path.isdir(savedir2):
                 os.makedirs(savedir2)
 
-            if not os.path.isdir(savedir):
-                os.makedirs(savedir)
+            # if not os.path.isdir(savedir):
+            #     os.makedirs(savedir)
 
             if args.video != '':
                 if video.name != args.video:
@@ -160,15 +161,17 @@ def main(cmd_line):
             toc = 0
             pred_bboxes = []
 
-            MAE, SSIM, LINF = [], [], []
-
             dir_ = 0
             target_bboxes = []
             target_bboxes_rect = []
             pred_bboxes2 = []
 
-            traj_file = os.path.join("/cvlabdata1/home/krishna/AttTracker/pysot/tools/results_paper/{}/G_template_L2_500_regress_siamrpn_r50_l234_dwxcorr/baseline/133/4_net_G.pth/{}/{}".
+            # traj_file = os.path.join("/cvlabdata1/home/krishna/AttTracker/pysot/tools/results_paper/{}/G_template_L2_500_regress_siamrpn_r50_l234_dwxcorr/baseline/133/4_net_G.pth/{}/{}".
+            #                          format(args.dataset, args.targetcase, video.name), video.name + '_001_target.txt')
+
+            traj_file = os.path.join(root_dir, "../", "targeted_attacks_GT", "{}/{}/{}/".
                                      format(args.dataset, args.targetcase, video.name), video.name + '_001_target.txt')
+
             with open(traj_file, 'r') as f:
                 target_traj = [list(map(float, x.strip().split(','))) for x in f.readlines()]
             target_traj = np.array(target_traj)
@@ -196,9 +199,9 @@ def main(cmd_line):
 
                     template, state = tracker.init_adv_T(img, gt_bbox_, GAN)
                     online_tracker.init_adv_T(img, tracker.siam_net, gt_bbox_, True,
-                                              dataname=args.dataset, resume='snapshot/{}'.format(ckpt_dict[args.dataset]))
+                                              dataname=args.dataset, resume='{}'.format(ckpt_dict[args.dataset]))
 
-                    cv2.imwrite(os.path.join(savedir, str(idx) + "_template.png"), template)
+                    #cv2.imwrite(os.path.join(savedir, str(idx) + "_template.png"), template)
 
                     if idx == 0 and args.vis:
                         fourcc = cv2.VideoWriter_fourcc(*'XVID')
@@ -206,8 +209,6 @@ def main(cmd_line):
 
                         video_out = cv2.VideoWriter(os.path.join(
                             savedir2, video.name + ".avi"), fourcc, fps=20, frameSize=(h, w))
-                        video_search = cv2.VideoWriter(os.path.join(
-                            savedir2, video.name + "_search.avi"), fourcc, fps=20, frameSize=(255, 255))
 
                     pred_bbox = gt_bbox_
                     pred_bboxes.append(1)
@@ -220,11 +221,7 @@ def main(cmd_line):
                     outputs = online_tracker.track_advT(img, state, GAN, tracker, idx, direction=direction)
 
                     state = outputs['state']
-                    search_img = outputs['cropx']
                     pred_bbox = outputs['bbox']
-                    MAE.append(outputs['metrics']['MAE'].item())
-                    SSIM = outputs['metrics']['SSIM']
-
                     prev_predbbox = pred_bbox
                     pred_bboxes.append(pred_bbox)
                     pred_bboxes2.append(pred_bbox)
@@ -243,11 +240,8 @@ def main(cmd_line):
                     cv2.putText(img, str(idx), (40, 40), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 255, 255), 2)
                     cv2.putText(img, str(lost_number), (40, 80), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 255), 2)
 
-                    search_img = search_img.data.cpu().numpy(
-                    )[0].transpose(1, 2, 0).astype('uint8')
-
                     video_out.write(img)
-                    video_search.write(search_img)
+
             toc /= cv2.getTickFrequency()
             # save results
 
@@ -291,9 +285,8 @@ def main(cmd_line):
                     else:
                         f.write(','.join([vot_float2str("%.4f", i) for i in x]) + '\n')
 
-            MAE_.append(np.mean(MAE))
-            log('({:3d}) Video: {:12s} Time: {:4.1f}s Speed: {:3.1f}fps Lost: {:d}, MAE: {:2.1f}, Avg. Mean: {:2.1f}'
-                .format(v_idx + 1, video.name, toc, idx / toc, lost_number, np.mean(MAE), np.mean(MAE_)))
+            log('({:3d}) Video: {:12s} Time: {:4.1f}s Speed: {:3.1f}fps Lost: {:d}'
+                .format(v_idx + 1, video.name, toc, idx / toc, lost_number))
             total_lost += lost_number
 
             if args.vis:
@@ -483,7 +476,7 @@ def main(cmd_line):
         ["sh", "-c", " ".join(
             ['python', '-W ignore', 'eval_target.py', '--tracker_path', results_dir, '--dataset', args.dataset,
              '--model_epoch', args.model_iter, '--case', str(args.case), '--tracker_prefix',
-             'G_template_L2_500_regress_' + args.tracker_name, '--logfilename', log_filename, '--trajcase', '11', '-ss'])])
+             'G_template_L2_500_regress_' + args.tracker_name, '--logfilename', log_filename, '--trajcase', args.trajcase, '-ss'])])
 
 
 if __name__ == '__main__':

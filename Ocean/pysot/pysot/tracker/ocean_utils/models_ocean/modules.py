@@ -13,15 +13,17 @@ eps = 1e-5
 # -------------
 # Single Layer
 # -------------
+
+
 def conv3x3(in_planes, out_planes, stride=1):
     """3x3 convolution with padding"""
     return nn.Conv2d(in_planes, out_planes, kernel_size=3, stride=stride,
                      padding=1, bias=False)
 
+
 def conv3x3NP(in_planes, out_planes, stride=1):
     """3x3 convolution without padding"""
     return nn.Conv2d(in_planes, out_planes, kernel_size=3, stride=stride, bias=False)
-
 
 
 def conv1x1(in_planes, out_planes, stride=1):
@@ -32,12 +34,13 @@ def conv1x1(in_planes, out_planes, stride=1):
 def down(in_planes, out_planes):
     """downsampling at the output layer"""
     return nn.Sequential(nn.Conv2d(in_planes, out_planes, kernel_size=1),
-            nn.BatchNorm2d(out_planes))
+                         nn.BatchNorm2d(out_planes))
+
 
 def down_spatial(in_planes, out_planes):
     """downsampling 21*21 to 5*5 (21-5)//4+1=5"""
     return nn.Sequential(nn.Conv2d(in_planes, out_planes, kernel_size=5, stride=4),
-            nn.BatchNorm2d(out_planes))
+                         nn.BatchNorm2d(out_planes))
 
 
 # -------------------------------
@@ -93,6 +96,7 @@ class Bottleneck(nn.Module):
 
         return out
 
+
 class Bottleneck_BIG_CI(nn.Module):
     """
     Bottleneck with center crop layer, double channels in 3*3 conv layer in shortcut branch
@@ -105,12 +109,15 @@ class Bottleneck_BIG_CI(nn.Module):
         self.bn1 = nn.BatchNorm2d(planes)
 
         padding = 1
-        if abs(dilation - 2) < eps: padding = 2
-        if abs(dilation - 3) < eps: padding = 3
+        if abs(dilation - 2) < eps:
+            padding = 2
+        if abs(dilation - 3) < eps:
+            padding = 3
 
-        self.conv2 = nn.Conv2d(planes, planes*2, kernel_size=3, stride=stride, padding=padding, bias=False, dilation=dilation)
-        self.bn2 = nn.BatchNorm2d(planes*2)
-        self.conv3 = nn.Conv2d(planes*2, planes * self.expansion, kernel_size=1, bias=False)
+        self.conv2 = nn.Conv2d(planes, planes * 2, kernel_size=3, stride=stride,
+                               padding=padding, bias=False, dilation=dilation)
+        self.bn2 = nn.BatchNorm2d(planes * 2)
+        self.conv3 = nn.Conv2d(planes * 2, planes * self.expansion, kernel_size=1, bias=False)
         self.bn3 = nn.BatchNorm2d(planes * self.expansion)
         self.relu = nn.ReLU(inplace=True)
         self.downsample = downsample
@@ -154,6 +161,8 @@ class Bottleneck_BIG_CI(nn.Module):
 # ---------------------
 # Modified ResNet
 # ---------------------
+
+
 class ResNet_plus2(nn.Module):
     def __init__(self, block, layers, used_layers, online=False):
         self.inplanes = 64
@@ -170,7 +179,8 @@ class ResNet_plus2(nn.Module):
         self.used_layers = used_layers
         self.layer3_use = True if 3 in used_layers else False
         self.layer4_use = True if 4 in used_layers else False
-        ic(online, "yo")
+
+        #ic(online, "yo")
 
         if self.layer3_use:
             if online:
@@ -228,7 +238,8 @@ class ResNet_plus2(nn.Module):
         for i in range(1, blocks):
             layers.append(block(self.inplanes, planes, dilation=dilation))
 
-        if update: self.inplanes = int(self.inplanes / 2)  # for online
+        if update:
+            self.inplanes = int(self.inplanes / 2)  # for online
         return nn.Sequential(*layers)
 
     def forward(self, x, online=False):
@@ -240,7 +251,8 @@ class ResNet_plus2(nn.Module):
         p1 = self.layer1(x)
         p2 = self.layer2(p1)
 
-        if online: return self.layeronline(p2)
+        if online:
+            return self.layeronline(p2)
         p3 = self.layer3(p2)
 
         return [x_, p1, p2], p3
@@ -263,15 +275,18 @@ class ResNet(nn.Module):
 
         # stage2
         if s2p_flags[0]:
-            self.layer1 = self._make_layer(block, channels[0], layers[0], stride2pool=True, last_relu=last_relus[0])
+            self.layer1 = self._make_layer(
+                block, channels[0], layers[0], stride2pool=True, last_relu=last_relus[0])
         else:
             self.layer1 = self._make_layer(block, channels[0], layers[0], last_relu=last_relus[0])
 
         # stage3
         if s2p_flags[1]:
-            self.layer2 = self._make_layer(block, channels[1], layers[1], stride2pool=True, last_relu=last_relus[1], dilation=dilation)
+            self.layer2 = self._make_layer(
+                block, channels[1], layers[1], stride2pool=True, last_relu=last_relus[1], dilation=dilation)
         else:
-            self.layer2 = self._make_layer(block, channels[1], layers[1], last_relu=last_relus[1], dilation=dilation)
+            self.layer2 = self._make_layer(
+                block, channels[1], layers[1], last_relu=last_relus[1], dilation=dilation)
 
         for m in self.modules():
             if isinstance(m, nn.Conv2d):
@@ -298,7 +313,8 @@ class ResNet(nn.Module):
             )
 
         layers = []
-        layers.append(block(self.inplanes, planes, last_relu=True, stride=stride, downsample=downsample, dilation=dilation))
+        layers.append(block(self.inplanes, planes, last_relu=True,
+                            stride=stride, downsample=downsample, dilation=dilation))
         if stride2pool:
             layers.append(self.maxpool)
         self.inplanes = planes * block.expansion
@@ -333,6 +349,8 @@ class ResNet(nn.Module):
 # ----------------------
 # Modules used by ATOM
 # ----------------------
+
+
 class FeatureBase:
     """Base feature class.
     args:
@@ -343,7 +361,8 @@ class FeatureBase:
         use_for_color: Use this feature for color images.
         use_for_gray: Use this feature for grayscale images.
     """
-    def __init__(self, fparams = None, pool_stride = None, output_size = None, normalize_power = None, use_for_color = True, use_for_gray = True):
+
+    def __init__(self, fparams=None, pool_stride=None, output_size=None, normalize_power=None, use_for_color=True, use_for_gray=True):
         self.fparams = fparams
         self.pool_stride = 1 if pool_stride is None else pool_stride
         self.output_size = output_size
@@ -396,8 +415,8 @@ class FeatureBase:
 
         # Normalize
         if self.normalize_power is not None:
-            feat /= (torch.sum(feat.abs().view(feat.shape[0],1,1,-1)**self.normalize_power, dim=3, keepdim=True) /
-                     (feat.shape[1]*feat.shape[2]*feat.shape[3]) + 1e-10)**(1/self.normalize_power)
+            feat /= (torch.sum(feat.abs().view(feat.shape[0], 1, 1, -1)**self.normalize_power, dim=3, keepdim=True) /
+                     (feat.shape[1] * feat.shape[2] * feat.shape[3]) + 1e-10)**(1 / self.normalize_power)
 
         return feat
 
@@ -406,6 +425,7 @@ class MultiFeatureBase(FeatureBase):
     """Base class for features potentially having multiple feature blocks as output (like CNNs).
     See FeatureBase for more info.
     """
+
     def size(self, im_sz):
         if self.output_size is None:
             return TensorList([im_sz // s for s in self.stride()])
@@ -425,7 +445,7 @@ class MultiFeatureBase(FeatureBase):
 
         feat_list = self.extract(im)
 
-        output_sz = [None]*len(feat_list) if self.output_size is None else self.output_size
+        output_sz = [None] * len(feat_list) if self.output_size is None else self.output_size
 
         # Pool/downsample
         for i, (sz, s) in enumerate(zip(output_sz, self.pool_stride)):
@@ -437,8 +457,8 @@ class MultiFeatureBase(FeatureBase):
         # Normalize
         if self.normalize_power is not None:
             for feat in feat_list:
-                feat /= (torch.sum(feat.abs().view(feat.shape[0],1,1,-1)**self.normalize_power, dim=3, keepdim=True) /
-                         (feat.shape[1]*feat.shape[2]*feat.shape[3]) + 1e-10)**(1/self.normalize_power)
+                feat /= (torch.sum(feat.abs().view(feat.shape[0], 1, 1, -1)**self.normalize_power, dim=3, keepdim=True) /
+                         (feat.shape[1] * feat.shape[2] * feat.shape[3]) + 1e-10)**(1 / self.normalize_power)
 
         return feat_list
 
@@ -456,6 +476,7 @@ class Identity(nn.Module):
     def forward(self, input):
         return input
 
+
 class Conv2dStaticSamePadding(nn.Conv2d):
     """ 2D Convolutions like TensorFlow, for a fixed image size"""
 
@@ -472,7 +493,8 @@ class Conv2dStaticSamePadding(nn.Conv2d):
         pad_h = max((oh - 1) * self.stride[0] + (kh - 1) * self.dilation[0] + 1 - ih, 0)
         pad_w = max((ow - 1) * self.stride[1] + (kw - 1) * self.dilation[1] + 1 - iw, 0)
         if pad_h > 0 or pad_w > 0:
-            self.static_padding = nn.ZeroPad2d((pad_w // 2, pad_w - pad_w // 2, pad_h // 2, pad_h - pad_h // 2))
+            self.static_padding = nn.ZeroPad2d(
+                (pad_w // 2, pad_w - pad_w // 2, pad_h // 2, pad_h - pad_h // 2))
         else:
             self.static_padding = Identity()
 
@@ -509,6 +531,7 @@ class Conv2dDynamicSamePadding(nn.Conv2d):
             x = F.pad(x, [pad_w // 2, pad_w - pad_w // 2, pad_h // 2, pad_h - pad_h // 2])
         return F.conv2d(x, self.weight, self.bias, self.stride, self.padding, self.dilation, self.groups)
 
+
 def round_filters(filters, global_params):
     """ Calculate and round number of filters based on depth multiplier. """
     multiplier = global_params.width_coefficient
@@ -523,12 +546,14 @@ def round_filters(filters, global_params):
         new_filters += divisor
     return int(new_filters)
 
+
 def round_repeats(repeats, global_params):
     """ Round number of filters based on depth multiplier. """
     multiplier = global_params.depth_coefficient
     if not multiplier:
         return repeats
     return int(math.ceil(multiplier * repeats))
+
 
 class SwishImplementation(torch.autograd.Function):
     @staticmethod
@@ -548,9 +573,11 @@ class MemoryEfficientSwish(nn.Module):
     def forward(self, x):
         return SwishImplementation.apply(x)
 
+
 def drop_connect(inputs, p, training):
     """ Drop connect. """
-    if not training: return inputs
+    if not training:
+        return inputs
     batch_size = inputs.shape[0]
     keep_prob = 1 - p
     random_tensor = keep_prob
@@ -558,7 +585,6 @@ def drop_connect(inputs, p, training):
     binary_tensor = torch.floor(random_tensor)
     output = inputs / keep_prob * binary_tensor
     return output
-
 
 
 class MBConvBlock(nn.Module):
@@ -714,6 +740,3 @@ class BlockDecoder(object):
         for block in blocks_args:
             block_strings.append(BlockDecoder._encode_block_string(block))
         return block_strings
-
-
-
