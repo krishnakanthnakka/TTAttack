@@ -184,13 +184,14 @@ Place the downloaded ```targeted_attacks_GT``` folder in the root folder
 
 3. For attacking SiamBAN tracker with ```trajcase``` argument set to ```SouthEast (SE)``` direction i.e., target trajectory  at an offset of (+80, +80) pixels  of the predicted trajectory on clean samples.
     Other options for ```trajcase``` argument is ```SW```, ```NE```, ```NW```.
-   ```py
 
-  cd experiments/siamban_r50_l234_otb
-  python -u ../../tools/test_attack_ours_targeted.py --snapshot ../../../tracker_weights/siamban_r50_l234_otb/model.pth  --dataset OTB100 --config ../../../tracker_weights/siamban_r50_l234_otb/config.yaml  --model_iter=4_net_G.pth --case=2 --eps=16  --trajcase=NE   --attack_universal --istargeted
+  ```py
+
+    cd experiments/siamban_r50_l234_otb
+    python -u ../../tools/test_attack_ours_targeted.py --snapshot ../../../tracker_weights/siamban_r50_l234_otb/model.pth  --dataset OTB100 --config ../../../tracker_weights/siamban_r50_l234_otb/config.yaml  --model_iter=4_net_G.pth --case=2 --eps=16  --trajcase=NE   --attack_universal --istargeted
 
 
-    ```
+  ```
 4. For attacking SiamRPN++ (M)  tracker with ```trajcase``` set ```D45``` direction i.e., target trajectory is at an angle of 45 degrees fixed direction.
     Other options for ```trajcase``` argument is ```D135```, ```D225```, ```D315```.
 
