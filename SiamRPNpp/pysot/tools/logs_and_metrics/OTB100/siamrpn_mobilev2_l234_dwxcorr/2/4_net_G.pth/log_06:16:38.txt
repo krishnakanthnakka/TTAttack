@@ -1,0 +1,80 @@
+Logger saved at ./logs_and_metrics/OTB100/siamrpn_mobilev2_l234_dwxcorr/2/4_net_G.pth/log_06:16:38.txt
+Ran experiment with command: "python ttattack_targeted.py --tracker_name=siamrpn_mobilev2_l234_dwxcorr --dataset=OTB100 --case=2 --gpu=1 --model_iter=4_net_G.pth --trajcase=SE --attack_universal"
+Initializing the conditional Generator with extra channel
+Center point: [12, 12], Feature Map: [25, 25]
+Actual Epsilon: 16.0
+Isuntargeted Attack: False
+Universal perturb: True
+Targted attack radius: 5
+Eps: 16
+Tracker: siamrpn_mobilev2_l234_dwxcorr
+Model: 4_net_G.pth
+Traj case: SE, Target case: SE, no. of directions: 12, drift distance: 12
+Config path: /cvlabsrc1/home/krishna/TTA/TTAttack/SiamRPNpp/../tracker_weights//siamrpn_mobilev2_l234_dwxcorr/config.yaml
+Snapshot path: /cvlabsrc1/home/krishna/TTA/TTAttack/SiamRPNpp/../tracker_weights//siamrpn_mobilev2_l234_dwxcorr/model.pth
+(  1) Video: Basketball   Time:   7.5s Speed: 97.0fps, MAE: nan, Avg. Mean: nan, Lost:   0
+(  2) Video: Biker        Time:   1.2s Speed: 119.4fps, MAE: nan, Avg. Mean: nan, Lost:   0
+(  3) Video: Bird1        Time:   3.4s Speed: 119.8fps, MAE: nan, Avg. Mean: nan, Lost:   0
+(  4) Video: Bird2        Time:   0.8s Speed: 116.5fps, MAE: nan, Avg. Mean: nan, Lost:   0
+(  5) Video: BlurBody     Time:   3.4s Speed: 98.8fps, MAE: nan, Avg. Mean: nan, Lost:   0
+(  6) Video: BlurCar1     Time:   6.3s Speed: 117.6fps, MAE: nan, Avg. Mean: nan, Lost:   0
+(  7) Video: BlurCar2     Time:   5.3s Speed: 109.4fps, MAE: nan, Avg. Mean: nan, Lost:   0
+(  8) Video: BlurCar3     Time:   3.0s Speed: 118.3fps, MAE: nan, Avg. Mean: nan, Lost:   0
+(  9) Video: BlurCar4     Time:   3.3s Speed: 116.0fps, MAE: nan, Avg. Mean: nan, Lost:   0
+( 10) Video: BlurFace     Time:   4.2s Speed: 116.7fps, MAE: nan, Avg. Mean: nan, Lost:   0
+( 11) Video: BlurOwl      Time:   5.3s Speed: 117.9fps, MAE: nan, Avg. Mean: nan, Lost:   0
+( 12) Video: Board        Time:   6.5s Speed: 107.7fps, MAE: nan, Avg. Mean: nan, Lost:   0
+( 13) Video: Bolt         Time:   2.9s Speed: 119.5fps, MAE: nan, Avg. Mean: nan, Lost:   0
+( 14) Video: Bolt2        Time:   2.4s Speed: 119.7fps, MAE: nan, Avg. Mean: nan, Lost:   0
+( 15) Video: Box          Time:  10.0s Speed: 116.0fps, MAE: nan, Avg. Mean: nan, Lost:   0
+( 16) Video: Boy          Time:   5.6s Speed: 108.2fps, MAE: nan, Avg. Mean: nan, Lost:   0
+( 17) Video: Car1         Time:   8.9s Speed: 114.7fps, MAE: nan, Avg. Mean: nan, Lost:   0
+( 18) Video: Car2         Time:   7.7s Speed: 117.8fps, MAE: nan, Avg. Mean: nan, Lost:   0
+( 19) Video: Car24        Time:  25.6s Speed: 119.6fps, MAE: nan, Avg. Mean: nan, Lost:   0
+( 20) Video: Car4         Time:   5.7s Speed: 116.1fps, MAE: nan, Avg. Mean: nan, Lost:   0
+( 21) Video: CarDark      Time:   3.3s Speed: 119.9fps, MAE: nan, Avg. Mean: nan, Lost:   0
+( 22) Video: CarScale     Time:   2.6s Speed: 97.3fps, MAE: nan, Avg. Mean: nan, Lost:   0
+( 23) Video: ClifBar      Time:   4.8s Speed: 97.7fps, MAE: nan, Avg. Mean: nan, Lost:   0
+( 24) Video: Coke         Time:   2.6s Speed: 111.6fps, MAE: nan, Avg. Mean: nan, Lost:   0
+( 25) Video: Couple       Time:   1.2s Speed: 116.7fps, MAE: nan, Avg. Mean: nan, Lost:   0
+( 26) Video: Coupon       Time:   2.8s Speed: 116.6fps, MAE: nan, Avg. Mean: nan, Lost:   0
+( 27) Video: Crossing     Time:   1.0s Speed: 118.3fps, MAE: nan, Avg. Mean: nan, Lost:   0
+( 28) Video: Crowds       Time:   2.9s Speed: 118.8fps, MAE: nan, Avg. Mean: nan, Lost:   0
+( 29) Video: Dancer       Time:   1.9s Speed: 115.7fps, MAE: nan, Avg. Mean: nan, Lost:   0
+( 30) Video: Dancer2      Time:   1.3s Speed: 118.5fps, MAE: nan, Avg. Mean: nan, Lost:   0
+( 31) Video: David        Time:   3.9s Speed: 119.9fps, MAE: nan, Avg. Mean: nan, Lost:   0
+( 32) Video: David2       Time:   4.5s Speed: 119.4fps, MAE: nan, Avg. Mean: nan, Lost:   0
+( 33) Video: David3       Time:   2.1s Speed: 117.3fps, MAE: nan, Avg. Mean: nan, Lost:   0
+( 34) Video: Deer         Time:   0.6s Speed: 118.6fps, MAE: nan, Avg. Mean: nan, Lost:   0
+( 35) Video: Diving       Time:   1.8s Speed: 116.0fps, MAE: nan, Avg. Mean: nan, Lost:   0
+( 36) Video: Dog          Time:   1.0s Speed: 120.0fps, MAE: nan, Avg. Mean: nan, Lost:   0
+( 37) Video: Dog1         Time:  11.3s Speed: 118.9fps, MAE: nan, Avg. Mean: nan, Lost:   0
+( 38) Video: Doll         Time:  32.7s Speed: 118.3fps, MAE: nan, Avg. Mean: nan, Lost:   0
+( 39) Video: DragonBaby   Time:   1.0s Speed: 117.8fps, MAE: nan, Avg. Mean: nan, Lost:   0
+( 40) Video: Dudek        Time:  10.3s Speed: 111.3fps, MAE: nan, Avg. Mean: nan, Lost:   0
+( 41) Video: FaceOcc1     Time:   7.5s Speed: 118.7fps, MAE: nan, Avg. Mean: nan, Lost:   0
+( 42) Video: FaceOcc2     Time:   7.0s Speed: 116.0fps, MAE: nan, Avg. Mean: nan, Lost:   0
+( 43) Video: Fish         Time:   4.1s Speed: 116.9fps, MAE: nan, Avg. Mean: nan, Lost:   0
+( 44) Video: FleetFace    Time:   6.2s Speed: 113.5fps, MAE: nan, Avg. Mean: nan, Lost:   0
+( 45) Video: Football     Time:   3.0s Speed: 118.8fps, MAE: nan, Avg. Mean: nan, Lost:   0
+( 46) Video: Football1    Time:   0.6s Speed: 118.5fps, MAE: nan, Avg. Mean: nan, Lost:   0
+( 47) Video: Freeman1     Time:   2.7s Speed: 118.4fps, MAE: nan, Avg. Mean: nan, Lost:   0
+( 48) Video: Freeman3     Time:   3.9s Speed: 118.2fps, MAE: nan, Avg. Mean: nan, Lost:   0
+( 49) Video: Freeman4     Time:   2.4s Speed: 119.1fps, MAE: nan, Avg. Mean: nan, Lost:   0
+( 50) Video: Girl         Time:   4.2s Speed: 118.4fps, MAE: nan, Avg. Mean: nan, Lost:   0
+( 51) Video: Girl2        Time:  13.0s Speed: 115.6fps, MAE: nan, Avg. Mean: nan, Lost:   0
+( 52) Video: Gym          Time:   6.4s Speed: 119.4fps, MAE: nan, Avg. Mean: nan, Lost:   0
+( 53) Video: Human2       Time:  10.8s Speed: 104.4fps, MAE: nan, Avg. Mean: nan, Lost:   0
+( 54) Video: Human3       Time:  16.2s Speed: 104.6fps, MAE: nan, Avg. Mean: nan, Lost:   0
+( 55) Video: Human4-2     Time:   5.5s Speed: 121.2fps, MAE: nan, Avg. Mean: nan, Lost:   0
+( 56) Video: Human5       Time:   5.9s Speed: 121.2fps, MAE: nan, Avg. Mean: nan, Lost:   0
+( 57) Video: Human6       Time:   6.6s Speed: 120.4fps, MAE: nan, Avg. Mean: nan, Lost:   0
+( 58) Video: Human7       Time:   2.1s Speed: 120.1fps, MAE: nan, Avg. Mean: nan, Lost:   0
+( 59) Video: Human8       Time:   1.1s Speed: 117.7fps, MAE: nan, Avg. Mean: nan, Lost:   0
+( 60) Video: Human9       Time:   2.5s Speed: 120.2fps, MAE: nan, Avg. Mean: nan, Lost:   0
+( 61) Video: Ironman      Time:   1.4s Speed: 117.9fps, MAE: nan, Avg. Mean: nan, Lost:   0
+( 62) Video: Jogging-1    Time:   2.6s Speed: 117.0fps, MAE: nan, Avg. Mean: nan, Lost:   0
+( 63) Video: Jogging-2    Time:   2.6s Speed: 119.8fps, MAE: nan, Avg. Mean: nan, Lost:   0
+( 64) Video: Jump         Time:   1.1s Speed: 115.0fps, MAE: nan, Avg. Mean: nan, Lost:   0
+( 65) Video: Jumping      Time:   2.6s Speed: 121.1fps, MAE: nan, Avg. Mean: nan, Lost:   0
+( 66) Video: KiteSurf     Time:   0.7s Speed: 117.4fps, MAE: nan, Avg. Mean: nan, Lost:   0

@@ -1,0 +1,76 @@
+Logger saved at ./logs_and_metrics/VOT2018/siamrpn_mobilev2_l234_dwxcorr/2/4_net_G.pth/log_06:24:53.txt
+Ran experiment with command: "python ttattack_targeted.py --tracker_name=siamrpn_mobilev2_l234_dwxcorr --dataset=VOT2018 --case=2 --gpu=1 --model_iter=4_net_G.pth --trajcase=SE --attack_universal"
+Initializing the conditional Generator with extra channel
+Center point: [12, 12], Feature Map: [25, 25]
+Actual Epsilon: 16.0
+Isuntargeted Attack: False
+Universal perturb: True
+Targted attack radius: 5
+Eps: 16
+Tracker: siamrpn_mobilev2_l234_dwxcorr
+Model: 4_net_G.pth
+Traj case: SE, Target case: SE, no. of directions: 12, drift distance: 12
+Config path: /cvlabsrc1/home/krishna/TTA/TTAttack/SiamRPNpp/../tracker_weights//siamrpn_mobilev2_l234_dwxcorr/config.yaml
+Snapshot path: /cvlabsrc1/home/krishna/TTA/TTAttack/SiamRPNpp/../tracker_weights//siamrpn_mobilev2_l234_dwxcorr/model.pth
+(  1) Video: ants1        Time:  3.4s Speed: 94.0fps Lost: 0, MAE: 0.0, Avg. Mean: 0.0
+(  2) Video: ants3        Time:  4.9s Speed: 117.5fps Lost: 0, MAE: 0.0, Avg. Mean: 0.0
+(  3) Video: bag          Time:  1.6s Speed: 121.3fps Lost: 0, MAE: 0.0, Avg. Mean: 0.0
+(  4) Video: ball1        Time:  0.9s Speed: 122.1fps Lost: 0, MAE: 0.0, Avg. Mean: 0.0
+(  5) Video: ball2        Time:  0.4s Speed: 113.4fps Lost: 0, MAE: 0.0, Avg. Mean: 0.0
+(  6) Video: basketball   Time:  5.9s Speed: 123.3fps Lost: 0, MAE: 0.0, Avg. Mean: 0.0
+(  7) Video: birds1       Time:  2.8s Speed: 119.3fps Lost: 0, MAE: 0.0, Avg. Mean: 0.0
+(  8) Video: blanket      Time:  1.8s Speed: 122.7fps Lost: 0, MAE: 0.0, Avg. Mean: 0.0
+(  9) Video: bmx          Time:  0.7s Speed: 114.5fps Lost: 0, MAE: 0.0, Avg. Mean: 0.0
+( 10) Video: bolt1        Time:  2.8s Speed: 123.0fps Lost: 0, MAE: 0.0, Avg. Mean: 0.0
+( 11) Video: bolt2        Time:  2.4s Speed: 121.6fps Lost: 0, MAE: 0.0, Avg. Mean: 0.0
+( 12) Video: book         Time:  1.4s Speed: 120.8fps Lost: 0, MAE: 0.0, Avg. Mean: 0.0
+( 13) Video: butterfly    Time:  1.2s Speed: 121.0fps Lost: 0, MAE: 0.0, Avg. Mean: 0.0
+( 14) Video: car1         Time:  6.1s Speed: 121.5fps Lost: 0, MAE: 0.0, Avg. Mean: 0.0
+( 15) Video: conduction1  Time:  2.8s Speed: 122.4fps Lost: 0, MAE: 0.0, Avg. Mean: 0.0
+( 16) Video: crabs1       Time:  1.3s Speed: 118.5fps Lost: 0, MAE: 0.0, Avg. Mean: 0.0
+( 17) Video: crossing     Time:  1.1s Speed: 113.6fps Lost: 0, MAE: 0.0, Avg. Mean: 0.0
+( 18) Video: dinosaur     Time:  2.7s Speed: 118.8fps Lost: 0, MAE: 0.0, Avg. Mean: 0.0
+( 19) Video: drone1       Time:  2.9s Speed: 122.6fps Lost: 0, MAE: 0.0, Avg. Mean: 0.0
+( 20) Video: drone_across Time:  1.3s Speed: 114.8fps Lost: 0, MAE: 0.0, Avg. Mean: 0.0
+( 21) Video: drone_flip   Time:  0.9s Speed: 118.1fps Lost: 0, MAE: 0.0, Avg. Mean: 0.0
+( 22) Video: fernando     Time:  2.5s Speed: 118.7fps Lost: 0, MAE: 0.0, Avg. Mean: 0.0
+( 23) Video: fish1        Time:  3.0s Speed: 122.6fps Lost: 0, MAE: 0.0, Avg. Mean: 0.0
+( 24) Video: fish2        Time:  2.5s Speed: 121.8fps Lost: 0, MAE: 0.0, Avg. Mean: 0.0
+( 25) Video: fish3        Time:  4.2s Speed: 124.5fps Lost: 0, MAE: 0.0, Avg. Mean: 0.0
+( 26) Video: flamingo1    Time: 11.2s Speed: 122.9fps Lost: 0, MAE: 0.0, Avg. Mean: 0.0
+( 27) Video: frisbee      Time:  2.1s Speed: 120.1fps Lost: 0, MAE: 0.0, Avg. Mean: 0.0
+( 28) Video: girl         Time: 12.5s Speed: 119.8fps Lost: 0, MAE: 0.0, Avg. Mean: 0.0
+( 29) Video: glove        Time:  1.0s Speed: 118.5fps Lost: 0, MAE: 0.0, Avg. Mean: 0.0
+( 30) Video: godfather    Time:  3.0s Speed: 121.3fps Lost: 0, MAE: 0.0, Avg. Mean: 0.0
+( 31) Video: graduate     Time:  6.8s Speed: 123.1fps Lost: 0, MAE: 0.0, Avg. Mean: 0.0
+( 32) Video: gymnastics1  Time:  4.7s Speed: 121.7fps Lost: 0, MAE: 0.0, Avg. Mean: 0.0
+( 33) Video: gymnastics2  Time:  2.0s Speed: 118.3fps Lost: 0, MAE: 0.0, Avg. Mean: 0.0
+( 34) Video: gymnastics3  Time:  1.0s Speed: 116.7fps Lost: 0, MAE: 0.0, Avg. Mean: 0.0
+( 35) Video: hand         Time:  2.2s Speed: 122.2fps Lost: 0, MAE: 0.0, Avg. Mean: 0.0
+( 36) Video: handball1    Time:  3.1s Speed: 121.6fps Lost: 0, MAE: 0.0, Avg. Mean: 0.0
+( 37) Video: handball2    Time:  3.3s Speed: 122.7fps Lost: 0, MAE: 0.0, Avg. Mean: 0.0
+( 38) Video: helicopter   Time:  6.1s Speed: 116.4fps Lost: 0, MAE: 0.0, Avg. Mean: 0.0
+( 39) Video: iceskater1   Time:  5.4s Speed: 121.7fps Lost: 0, MAE: 0.0, Avg. Mean: 0.0
+( 40) Video: iceskater2   Time:  6.1s Speed: 116.4fps Lost: 0, MAE: 0.0, Avg. Mean: 0.0
+( 41) Video: leaves       Time:  0.5s Speed: 115.7fps Lost: 0, MAE: 0.0, Avg. Mean: 0.0
+( 42) Video: matrix       Time:  0.8s Speed: 121.5fps Lost: 0, MAE: 0.0, Avg. Mean: 0.0
+( 43) Video: motocross1   Time:  1.3s Speed: 120.9fps Lost: 0, MAE: 0.0, Avg. Mean: 0.0
+( 44) Video: motocross2   Time:  0.5s Speed: 109.9fps Lost: 0, MAE: 0.0, Avg. Mean: 0.0
+( 45) Video: nature       Time:  8.2s Speed: 121.6fps Lost: 0, MAE: 0.0, Avg. Mean: 0.0
+( 46) Video: pedestrian1  Time:  1.2s Speed: 119.0fps Lost: 0, MAE: 0.0, Avg. Mean: 0.0
+( 47) Video: rabbit       Time:  1.3s Speed: 120.8fps Lost: 0, MAE: 0.0, Avg. Mean: 0.0
+( 48) Video: racing       Time:  1.3s Speed: 122.1fps Lost: 0, MAE: 0.0, Avg. Mean: 0.0
+( 49) Video: road         Time:  4.6s Speed: 120.3fps Lost: 0, MAE: 0.0, Avg. Mean: 0.0
+( 50) Video: shaking      Time:  3.0s Speed: 122.0fps Lost: 0, MAE: 0.0, Avg. Mean: 0.0
+( 51) Video: sheep        Time:  2.1s Speed: 119.6fps Lost: 0, MAE: 0.0, Avg. Mean: 0.0
+( 52) Video: singer2      Time:  3.1s Speed: 117.9fps Lost: 0, MAE: 0.0, Avg. Mean: 0.0
+( 53) Video: singer3      Time:  1.1s Speed: 118.6fps Lost: 0, MAE: 0.0, Avg. Mean: 0.0
+( 54) Video: soccer1      Time:  3.2s Speed: 122.1fps Lost: 0, MAE: 0.0, Avg. Mean: 0.0
+( 55) Video: soccer2      Time:  1.1s Speed: 118.3fps Lost: 0, MAE: 0.0, Avg. Mean: 0.0
+( 56) Video: soldier      Time:  1.1s Speed: 119.3fps Lost: 0, MAE: 0.0, Avg. Mean: 0.0
+( 57) Video: tiger        Time:  3.0s Speed: 123.0fps Lost: 0, MAE: 0.0, Avg. Mean: 0.0
+( 58) Video: traffic      Time:  1.6s Speed: 121.1fps Lost: 0, MAE: 0.0, Avg. Mean: 0.0
+( 59) Video: wiper        Time:  2.8s Speed: 122.0fps Lost: 0, MAE: 0.0, Avg. Mean: 0.0
+( 60) Video: zebrafish1   Time:  3.4s Speed: 118.8fps Lost: 0, MAE: 0.0, Avg. Mean: 0.0
+G_template_L2_500_regress_siamrpn_mobilev2_l234_dwxcorr total lost: 0
+Total time : 340.2s, Avg MAE : 0.0

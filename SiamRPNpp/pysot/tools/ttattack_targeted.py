@@ -1,6 +1,7 @@
 """ Usage
 
-python run_template_adv2_targeted2.py  --tracker_name=siamrpn_mobilev2_l234_dwxcorr --dataset=OTB100 --case=211 --gpu=1 --model_iter=4_net_G.pth  --trajcase=11  --targetcase=11  --attack_universal --vis
+python ttattack_targeted.py  --tracker_name=siamrpn_mobilev2_l234_dwxcorr --dataset=OTB100 --case=2 --gpu=1 --model_iter=4_net_G.pth  --trajcase=SE    --attack_universal --vis
+python ttattack_targeted.py  --tracker_name=siamrpn_mobilev2_l234_dwxcorr --dataset=OTB100 --case=2 --gpu=1 --model_iter=4_net_G.pth  --trajcase=SE    --attack_universal #--vis
 
 """
 
@@ -105,8 +106,6 @@ def main(cmd_line):
     log('Ran experiment with command: "{}"'.format(cmd_line))
 
     results_dir = './results_Universal_Targeted' if args.attack_universal else 'results_Targeted'
-    # results_dir = './results_U_ablation_{}'.format(args.directions)  if args.attack_universal else 'results'
-    # results_dir = './results_U_ablation_d_{}'.format(args.driftdistance)  if args.attack_universal else 'results'
 
     from GAN_utils_template_1 import get_model_GAN
     GAN, opt = get_model_GAN(log)
@@ -171,16 +170,14 @@ def main(cmd_line):
             max_size = 500
             dir_ = 0
 
-            if args.case == 133 and args.trajcase in [11, 12, 13, 14, 21, 22, 23, 24]:
-                assert False, "DONT RUN THIS"
-
-            traj_file = os.path.join("/cvlabdata1/home/krishna/AttTracker/pysot/tools/results_paper/{}/G_template_L2_500_regress_siamrpn_r50_l234_dwxcorr/baseline/133/4_net_G.pth/{}/{}".
+            traj_file = os.path.join(root_dir, "../../../", "targeted_attacks_GT", "{}/{}/{}/".
                                      format(args.dataset, args.targetcase, video.name), video.name + '_001_target.txt')
+
             with open(traj_file, 'r') as f:
                 target_traj = [list(map(float, x.strip().split(','))) for x in f.readlines()]
             target_traj = np.array(target_traj)
 
-            for idx, (img, gt_bbox) in enumerate(video):
+            for idx, (img, gt_bbox) in tqdm(enumerate(video)):
 
                 target_bbox = target_traj[idx]
                 cx, cy, w, h = get_axis_aligned_bbox(np.array(target_bbox))
@@ -247,16 +244,6 @@ def main(cmd_line):
 
                     video_out.write(img)
 
-                    if 0:
-                        # cv2.imwrite(os.path.join(savedir, str(idx) + ".png"), img)
-                        search_img = search_img.data.cpu().numpy()[0].transpose(1, 2, 0).astype('uint8')
-                        # cv2.putText(search_img, str(MAE) + " , " + str(SSIM), (40, 120), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 255), 2)
-                        video_search.write(search_img)
-                        # search_img = search_img[:, [2, 1, 0], :, :]
-                        # save_image(search_img / 255, savedir + "/" + str(idx) + "_search.png")
-                        # cv2.imshow(video.name, img)
-                        # cv2.waitKey(1)
-
             toc /= cv2.getTickFrequency()
             video_path = os.path.join(results_dir, args.dataset, model_name, 'baseline', str(
                 expcase), model_epoch, str(args.trajcase), video.name)
@@ -315,9 +302,6 @@ def main(cmd_line):
             savedir2 = os.path.join(basedir, args.dataset, str(
                 args.case), str(args.trajcase))
 
-            # if v_idx< 160:
-            #     continue
-
             if args.vis and not os.path.isdir(savedir2):
                 os.makedirs(savedir2)
 
@@ -334,16 +318,10 @@ def main(cmd_line):
                 traj_file = os.path.join(root_dir, "../../../", "targeted_attacks_GT", "{}/{}/".
                                          format(args.dataset, args.targetcase), video.name + '_target.txt')
 
-                # traj_file = os.path.join("/cvlabdata1/home/krishna/AttTracker/pysot/tools/results_paper/{}/G_template_L2_500_regress_siamrpn_r50_l234_dwxcorr2/133/4_net_G.pth/{}/".
-                #                          format(args.dataset, args.targetcase), video.name + '_target.txt')
-
             elif args.dataset in ['lasot']:
 
                 traj_file = os.path.join(root_dir, "../../../", "targeted_attacks_GT", "{}/{}/".
                                          format(args.dataset, args.targetcase), video.name + '_target.txt')
-
-                # traj_file = os.path.join("/cvlabdata1/home/krishna/AttTracker/pysot/tools/results_target/{}/G_template_L2_500_regress_siamrpn_r50_l234_dwxcorr/133/4_net_G.pth/{}/".
-                #                          format(args.dataset, args.targetcase), video.name + '_target.txt')
 
             with open(traj_file, 'r') as f:
                 target_traj = [list(map(float, x.strip().split(','))) for x in f.readlines()]
@@ -409,8 +387,6 @@ def main(cmd_line):
                         SSIM = outputs['metrics']['SSIM']
 
                     pred_bbox = outputs['bbox']
-
-                    # target_bbox = outputs['target_bbox_f']
                     prev_predbbox = pred_bbox
                     pred_bboxes.append(pred_bbox)
                     target_bboxes.append(target_bbox)
@@ -441,10 +417,6 @@ def main(cmd_line):
                     cv2.rectangle(img, (target_bbox[0], target_bbox[1]), (target_bbox[0] +
                                                                           target_bbox[2], target_bbox[1] + target_bbox[3]), (0, 0, 255), thickness)
                     cv2.putText(img, str(idx), (40, 40), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 255, 255), 2)
-
-                    # img = cv2.circle(img, (target_bbox[0] + int(target_bbox[2] / 2), target_bbox[1]+ int(target_bbox[3] / 2)), radius=10, color=(0, 0, 255), thickness=-1)
-
-                    # img = cv2.circle(img, (pred_bbox[0] + int(pred_bbox[2] / 2), pred_bbox[1]+ int(pred_bbox[3] / 2)), radius=10, color=(0, 255, 255), thickness=-1)
 
                     if args.dataset in ['VOT2018-LT', 'UAV123']:
                         img = rescale_img(img, max_size)

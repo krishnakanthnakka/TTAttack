@@ -1,0 +1,14 @@
+Logger saved at ./logs_and_metrics/VOT2018/siamrpn_mobilev2_l234_dwxcorr/1/4_net_G.pth/log_06:06:19.txt
+Ran experiment with command: "python ttattack_untargeted.py --tracker_name=siamrpn_mobilev2_l234_dwxcorr --dataset=VOT2018 --case=1 --gpu=1 --model_iter=4_net_G.pth --attack_universal"
+Initializing the vanilla Generator without extra channel
+Center point: [12, 12], Feature Map: [25, 25]
+Actual Epsilon: 8.0
+Isuntargeted Attack: True
+Universal perturb: True
+Case: 1
+Epsilon: 8
+Tracker: siamrpn_mobilev2_l234_dwxcorr
+Checkpoint iteration: 4_net_G.pth
+
+(  1) Video: ants1       , Time:  2.9s, Speed:  111.7fps,  Lost:  27
+(  2) Video: ants3       , Time:  4.1s, Speed:  142.7fps,  Lost:  52

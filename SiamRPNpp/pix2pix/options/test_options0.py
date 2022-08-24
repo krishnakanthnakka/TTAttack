@@ -40,14 +40,13 @@ class TestOptions(BaseOptions):
         parser.add_argument('--istargeted', default=False, action='store_true',
                             help='whether visualzie result')
 
-        parser.add_argument('--trajcase', type=int, default=-2)
-        parser.add_argument('--targetcase', type=int, default=-2)
+        parser.add_argument('--trajcase', type=str)
+        parser.add_argument('--targetcase', type=str)
         parser.add_argument('--offsetx', type=int)
         parser.add_argument('--offsety', type=int)
 
         parser.add_argument('--attack_universal', default=False, action='store_true',
                             help='whether visualzie result')
-
 
         # FOR DIMP ----------------------------------------------------------------
         parser.add_argument('--exp_module', type=str,
@@ -63,17 +62,13 @@ class TestOptions(BaseOptions):
         parser.add_argument('--threads', type=int, default=0,
                             help='Number of threads.')
 
-
-
-        parser.add_argument('--config', default='', type=str,        help='config file')
-        parser.add_argument('--snapshot', default='', type=str,help='snapshot of models to eval')
+        parser.add_argument('--config', default='', type=str, help='config file')
+        parser.add_argument('--snapshot', default='', type=str, help='snapshot of models to eval')
 
         # ----------------------------------------------------------------
 
-
         parser.add_argument('--directions', type=int, default=12)
         parser.add_argument('--driftdistance', type=int, default=5)
-
 
         # To avoid cropping, the load_size should be the same as crop_size
         parser.set_defaults(load_size=parser.get_default('crop_size'))
