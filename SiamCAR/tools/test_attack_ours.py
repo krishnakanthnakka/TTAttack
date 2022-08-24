@@ -177,10 +177,10 @@ def main():
                 video_out.release()
 
             if args.attack_universal:
-                video_path = os.path.join('results_U_{}_{}'.format(
+                video_path = os.path.join('results_Universal_{}_{}'.format(
                     attack_method, expcase), args.dataset, model_name, 'baseline', video.name)
             else:
-                video_path = os.path.join('results_{}_{}'.format(attack_method, expcase),
+                video_path = os.path.join('results_TD_{}_{}'.format(attack_method, expcase),
                                           args.dataset, model_name, 'baseline', video.name)
 
             # save results
