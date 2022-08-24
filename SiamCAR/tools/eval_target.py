@@ -1,5 +1,5 @@
 
-# python eval_target.py  --tracker_path ./results_Universal_Targeted_TTA_2  --dataset OTB100  --tracker_prefix model_general --trajcase=11
+# python eval_target.py  --tracker_path ./results_Universal_Targeted_TTA_2  --dataset OTB100  --tracker_prefix model_general --trajcase=SE
 
 from __future__ import absolute_import
 from __future__ import division
@@ -30,7 +30,7 @@ parser.add_argument('--tracker_prefix', '-t', default='',
 parser.add_argument('--show_video_level', '-s', dest='show_video_level',
                     action='store_true')
 parser.set_defaults(show_video_level=False)
-parser.add_argument('--trajcase', type=int, required=True)
+parser.add_argument('--trajcase', type=str, required=True)
 args = parser.parse_args()
 
 

@@ -1,0 +1,2 @@
+Logger saved at ./logs_and_metrics/OTB100/siam_ocean_online/2/4_net_G.pth/log_05:36:13.txt
+Ran experiment with command: "python tt_attack_targeted.py --tracker_name=siam_ocean_online --dataset=OTB100 --case=2 --gpu=1 --model_iter=4_net_G.pth --trajcase=SE --attack_universal"

@@ -1,0 +1,14 @@
+Logger saved at ./logs_and_metrics/OTB100/siam_ocean_online/2/4_net_G.pth/log_05:36:44.txt
+Ran experiment with command: "python tt_attack_targeted.py --tracker_name=siam_ocean_online --dataset=OTB100 --case=2 --gpu=1 --model_iter=4_net_G.pth --trajcase=SE --attack_universal"
+Initializing the conditional Generator with extra channel
+Center point: [12, 12], Feature Map: [25, 25]
+Actual Epsilon: 16.0
+Isuntargeted Attack: False
+Universal perturb: True
+Targted attack radius: 5
+Eps: 16
+Tracker:siam_ocean_online
+Model:4_net_G.pth
+
+(  1) Video: Basketball   Time:  17.6s Speed: 41.2fps, MAE: 0.0, Avg. Mean: 0.0, Lost:   0
+(  2) Video: Biker        Time:   3.7s Speed: 38.6fps, MAE: 0.0, Avg. Mean: 0.0, Lost:   0

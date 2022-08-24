@@ -41,8 +41,8 @@ parser.add_argument('--eps', type=int, required=True)
 parser.add_argument('--attack_universal', default=False, action='store_true',
                     help='whether visualzie result')
 
-parser.add_argument('--trajcase', type=int, required=True)
-parser.add_argument('--targetcase', type=int, required=True)
+parser.add_argument('--trajcase', type=str, required=True)
+parser.add_argument('--targetcase', type=str)
 parser.add_argument('--istargeted', default=False, action='store_true', help='whether visualzie result')
 parser.add_argument('--directions', type=int, default=12)
 
@@ -126,6 +126,9 @@ GAN, expcase, attack_method = load_generator()
 
 
 def main():
+
+    args.targetcase = args.trajcase
+
     # load config
     cfg.merge_from_file(args.config)
 

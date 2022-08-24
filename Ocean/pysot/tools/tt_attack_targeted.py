@@ -1,6 +1,6 @@
 """ Usage
 
-python tt_attack_targeted.py  --tracker_name=siam_ocean_online --dataset=OTB100 --case=2 --gpu=1 --model_iter=4_net_G.pth  --trajcase=11  --targetcase=11  --attack_universal
+python tt_attack_targeted.py  --tracker_name=siam_ocean_online --dataset=OTB100 --case=2 --gpu=1 --model_iter=4_net_G.pth  --trajcase=SE  --attack_universal
 
 
 """
@@ -49,10 +49,10 @@ parser.add_argument('--gpu', type=str,
 parser.add_argument('--model_iter', type=str)
 parser.add_argument('--eps', type=int)
 parser.add_argument('--istargeted', default=False, action='store_true', help='whether visualzie result')
-parser.add_argument('--trajcase', type=int, default=0)
+parser.add_argument('--trajcase', type=str, default=0)
 parser.add_argument('--attack_universal', default=False, action='store_true',
                     help='whether visualzie result')
-parser.add_argument('--targetcase', type=int, required=True)
+parser.add_argument('--targetcase', type=str,)
 
 args = parser.parse_args()
 torch.set_num_threads(1)
@@ -81,6 +81,8 @@ def get_direction(cur_gt_bbox_, prev_gt_box_, idx):
 
 
 def main(cmd_line):
+
+    args.targetcase = args.trajcase
 
     statsdir = './logs_and_metrics/{}/{}/{}/{}/'.format(args.dataset,
                                                         args.tracker_name, args.case, args.model_iter)

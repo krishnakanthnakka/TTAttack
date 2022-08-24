@@ -2,7 +2,7 @@
 
 """
 
-python test_attack_ours_target.py  --dataset OTB100  --snapshot ../../tracker_weights/siamcar_general/model_general.pth   --model_iter=4_net_G.pth --case=2 --eps=16 --attack_universal --trajcase=11  --targetcase=11
+python test_attack_ours_target.py  --dataset OTB100  --snapshot ../../tracker_weights/siamcar_general/model_general.pth   --model_iter=4_net_G.pth --case=2 --eps=16 --attack_universal --trajcase=SE
 
 """
 
@@ -46,8 +46,8 @@ parser.add_argument('--eps', type=int, required=True)
 parser.add_argument('--attack_universal', default=False, action='store_true',
                     help='whether visualzie result')
 parser.add_argument('--directions', type=int, default=12)
-parser.add_argument('--trajcase', type=int, required=True)
-parser.add_argument('--targetcase', type=int, required=True)
+parser.add_argument('--trajcase', type=str, required=True)
+parser.add_argument('--targetcase', type=int)
 args = parser.parse_args()
 
 torch.set_num_threads(1)
@@ -127,6 +127,9 @@ GAN, expcase, attack_method = load_generator()
 
 def main():
     # load config
+
+    args.targetcase = args.trajcase
+
     cfg.merge_from_file(args.config)
 
     # hp_search
