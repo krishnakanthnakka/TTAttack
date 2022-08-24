@@ -137,7 +137,7 @@ def main():
                     pred_bbox = gt_bbox_
                     pred_bboxes.append(1)
 
-                    if idx == 0:
+                    if idx == 0 and args.vis:
                         fourcc = cv2.VideoWriter_fourcc(*'XVID')
                         w, h = img.shape[:2]
                         video_out = cv2.VideoWriter(os.path.join(
