@@ -205,6 +205,51 @@ Place the downloaded ```targeted_attacks_GT``` folder in the root folder
 
 
 
+## Targeted attack on SiamCAR
+
+1. Enter the directory of ```SiamCAR``` tracker by ```cd SiamBAN```
+
+2. Set all environmental paths and other packages in path by ```source envs.sh```
+
+3. For attacking SiamCAR tracker with ```trajcase``` argument set to ```SouthEast (SE)``` direction i.e., target trajectory  at an offset of (+80, +80) pixels  of the predicted trajectory on clean samples.
+    Other options for ```trajcase``` argument is ```SW```, ```NE```, ```NW```.
+
+  ```py
+    cd tools
+    python test_attack_ours_target.py  --dataset OTB100  --snapshot ../../tracker_weights/siamcar_general/model_general.pth   --model_iter=4_net_G.pth --case=2 --eps=16 --attack_universal --trajcase=SE
+  ```
+4. For attacking SiamCAR  tracker with ```trajcase``` set ```D45``` direction i.e., target trajectory is at an angle of 45 degrees fixed direction.
+    Other options for ```trajcase``` argument is ```D135```, ```D225```, ```D315```.
+
+   ```py
+    cd tools
+    python test_attack_ours_target.py  --dataset OTB100  --snapshot ../../tracker_weights/siamcar_general/model_general.pth   --model_iter=4_net_G.pth --case=2 --eps=16 --attack_universal --trajcase=D45
+    ```
+
+
+
+
+
+## Targeted attack on Ocean
+
+1. Enter the directory of ```Ocean``` tracker by ```cd SiamBAN```
+
+2. Set all environmental paths and other packages in path by ```source envs.sh```
+
+3. For attacking Ocean tracker with ```trajcase``` argument set to ```SouthEast (SE)``` direction i.e., target trajectory  at an offset of (+80, +80) pixels  of the predicted trajectory on clean samples.
+    Other options for ```trajcase``` argument is ```SW```, ```NE```, ```NW```.
+
+  ```py
+    cd pysot/tools
+    python tt_attack_targeted.py  --tracker_name=siam_ocean_online --dataset=OTB100 --case=2 --gpu=1 --model_iter=4_net_G.pth  --trajcase=SE  --attack_universal
+  ```
+4. For attacking Ocean  tracker with ```trajcase``` set ```D45``` direction i.e., target trajectory is at an angle of 45 degrees fixed direction.
+    Other options for ```trajcase``` argument is ```D135```, ```D225```, ```D315```.
+
+   ```py
+    cd pysot/tools
+    python tt_attack_targeted.py  --tracker_name=siam_ocean_online --dataset=OTB100 --case=2 --gpu=1 --model_iter=4_net_G.pth  --trajcase=D45  --attack_universal
+    ```
 
 
 ## Citation
