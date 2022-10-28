@@ -48,7 +48,7 @@ This is an official release of the paper **Universal, Transferable Adversarial P
     Please place the ```checkpoints``` folder inside the  ```./SiamRPNpp/``` folder.
 
 
-4. Further, please download the targted attack trajectories [GoogleDrive](https://drive.google.com/drive/folders/1CawsQuwFiGlHxqLYM2BOOF9NxxI-U_m4?usp=sharing). These are created by either fixed offset from clean trajectory or fixed direction from initial position.
+4. Further, please download the targted attack trajectories [GoogleDrive](https://drive.google.com/drive/folders/1D_cgcCSt8ls66oBf5UG3a_HyALry_Jg1?usp=share_link). These are created by either fixed offset from clean trajectory or fixed direction from initial position.
 Place the downloaded ```targeted_attacks_GT``` folder in the root folder
 
 
