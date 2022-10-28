@@ -1,4 +1,3 @@
-## Code is in early release. Will be updated shortly
 
 
 ## Introduction
